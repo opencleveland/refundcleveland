@@ -1,9 +1,14 @@
 /* Variables */
+$c-primary: #ffd634;
+$c-secondary-light: #333;
+$c-secondary-dark: #222;
+
+
 body {
   margin: 0;
   padding: 0;
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
   font-weight: 300;
 }
@@ -17,7 +22,7 @@ div#page-wrap {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Anton";
+  font-family: 'Anton';
 }
 
 .site-branding {
@@ -32,9 +37,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-branding p {
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-weight: 300;
-  color: #ffd634;
+  color: $c-primary;
 }
 
 .site-branding a {
@@ -43,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-branding a:hover {
-  opacity: 0.9;
+  opacity: .9;
 }
 
 nav#main ul {
@@ -64,11 +69,11 @@ nav#main ul li a {
   text-decoration: none;
   padding: 1em;
   color: #000;
-  background: #ffd634;
+  background: $c-primary;
   border-right: 5px solid #fff;
   text-align: center;
-  font-family: "Anton";
-  transition: all 0.2s ease-in-out;
+  font-family: 'Anton';
+  transition: all .2s ease-in-out;
 }
 
 nav#main ul li:last-child a {
@@ -76,17 +81,15 @@ nav#main ul li:last-child a {
 }
 
 nav#main ul li.active a {
-  background: #333;
+  background: $c-secondary-light;
   color: #fff;
 }
 
 nav#main ul li a:hover {
-  background: #222;
+  background: $c-secondary-dark;
   color: #fff;
 }
 
 div#content {
   padding: 1em 0;
 }
-
-/*# sourceMappingURL=style.css.map */
