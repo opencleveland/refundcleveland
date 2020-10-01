@@ -12,7 +12,7 @@ cd refundcleveland
 pip3 install -r requirements.txt
 ```
 #### Add local settings
-Duplicate **local_settings_template.py**. Rename to **local_settings.py** and the enter private environmental variables:
+Duplicate **local_settings_template.py**. Rename to **local_settings.py** and fill in environmental variables:
 
 `SECRET_KEY` -- Django’s Secret Key used by the project
 
