@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Refund Cleveland. #defundthepolice</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="all">
+
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
+    </head>
+
+    <body class="{{ body_classes }}">
+    <div id="page-wrap">
+    <header id="main">
+        <div class="site-branding">
+            <h1><a href="/">Refund Cleveland <span>#defundthepolice</span></a></h1>
+        </div>
+        <nav id="main">
+           <ul>
+               <li><a href="/budget">Change the budget</a></li>
+               <li><a href="/about">About</a></li>
+               <li><a href="/join">Join</a></li>
+           </ul>
+        </nav>
+
+    </header>
+
+        <div id="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+
+        <script src="{% static 'main.js' %}"></script>
+    </div> <!-- end #page-wrap -->
+    </body>
+</html>
