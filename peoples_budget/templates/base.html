@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Refund Cleveland. #defundthepolice</title>
+        <title>Refund Cleveland</title>
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="all">
@@ -13,27 +13,27 @@
     </head>
 
     <body class="{{ body_classes }}">
-    <div id="page-wrap">
-    <header id="main">
-        <div class="site-branding">
-            <h1><a href="/">Refund Cleveland <span>#defundthepolice</span></a></h1>
-        </div>
-        <nav id="main">
-           <ul>
-               <li><a href="/budget">Change the budget</a></li>
-               <li><a href="/about">About</a></li>
-               <li><a href="/join">Join</a></li>
-           </ul>
-        </nav>
+        <div id="page-wrap">
+            <header id="main">
+                <div class="site-branding">
+                    <h1><a href="/">Refund Cleveland</a></h1>
+                    <p>#defundthepolice</p>
+                </div>
+                <nav id="main">
+                   <ul>
+                       <li class="{% if budget %}active{% endif %}"><a href="/budget">change the budget</a></li>
+                       <li class="{% if about %}active{% endif %}"><a href="/about">about</a></li>
+                       <li class="{% if join %}active{% endif %}"><a href="/join">join</a></li>
+                   </ul>
+                </nav>
+            </header>
 
-    </header>
+            <div id="content">
+                {% block content %}
+                {% endblock content %}
+            </div>
 
-        <div id="content">
-            {% block content %}
-            {% endblock content %}
-        </div>
-
-        <script src="{% static 'main.js' %}"></script>
-    </div> <!-- end #page-wrap -->
+            <script src="{% static 'main.js' %}"></script>
+        </div> <!-- end #page-wrap -->
     </body>
 </html>
