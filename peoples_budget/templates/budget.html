@@ -1,5 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-    Budget page
+
+    <h2>Preliminary 2021 Expenses by Department</h2>
+    <p>Hover over bars to see percentages</p>
+    <div id="bar_chart" class="chart"></div>
+
+
 {% endblock content %}
+
+{% block footer_scripts %}
+
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    {% comment %} Make json data available to external scripts {% endcomment %}
+    {{ data | json_script:"json_data" }}
+
+    <!-- Load test D3 visualizations -->
+    <script src="{% static 'js/d3_visualizations.js' %}"></script>
+
+{% endblock footer_scripts %}

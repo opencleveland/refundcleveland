@@ -33,7 +33,10 @@
                 {% endblock content %}
             </div>
 
-            <script src="{% static 'main.js' %}"></script>
+            <footer>
+                {% block footer_scripts %}
+                {% endblock footer_scripts %}
+            </footer>
         </div> <!-- end #page-wrap -->
     </body>
 </html>

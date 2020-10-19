@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
+import json
+from django.conf import settings
+import os
 
 
 def home(request):
@@ -9,8 +12,12 @@ def home(request):
 
 
 def budget(request):
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2020-mayors-estimate.json')) as file:
+        json_file = json.load(file)
+
     return render(request, 'budget.html', {
         'budget': True,
+        'data': json_file,
     })
 
 
