@@ -1,0 +1,94 @@
+{
+  "fund_structure": [
+    {
+      "name": "Governmental Funds",
+      "children": [
+        {
+          "name": "General Fund",
+          "departments": [
+            {
+              "name": "Cleveland City Council",
+              "percentage": 1.18
+            },
+            {
+              "name": "Judicial Branch",
+              "percentage": 6.66
+            },
+            {
+              "name": "General Government",
+              "percentage": 3.8
+            },
+            {
+              "name": "Aging",
+              "percentage": 0.26
+            },
+            {
+              "name": "Human Resources",
+              "percentage": 0.55
+            },
+            {
+              "name": "Law",
+              "percentage": 2.11
+            },
+            {
+              "name": "Finance",
+              "percentage": 3.18
+            },
+            {
+              "name": "Public Health",
+              "percentage": 1.57
+            },
+            {
+              "name": "Public Safety",
+              "percentage": 56.26
+            },
+            {
+              "name": "Public Works",
+              "percentage": 12.13
+            },
+            {
+              "name": "Building and Housing",
+              "percentage": 2.08
+            },
+            {
+              "name": "Subsidies, Other Administrative",
+              "percentage": 9.59
+            },
+            {
+              "name": "Economic Development and Community Development",
+              "percentage": 0.64
+            }
+          ]
+        },
+        {
+          "name": "Special Revenue Fund"
+        },
+        {
+          "name": "Debt Service Fund"
+        }
+      ]
+    },
+    {
+      "name": "Proprietary Funds",
+      "children": [
+        {
+          "name": "Mayor Enterprise Funds"
+        },
+        {
+          "name": "Small Enterprise Funds"
+        },
+        {
+          "name": "Internal Service Funds"
+        }
+      ]
+    },
+    {
+      "name": "Fiduciary Funds",
+      "children": [
+        {
+          "name": "Agency Fund"
+        }
+      ]
+    }
+  ]
+}

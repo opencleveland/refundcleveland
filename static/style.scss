@@ -3,7 +3,6 @@ $c-primary: #ffd634;
 $c-secondary-light: #333;
 $c-secondary-dark: #222;
 
-
 body {
   margin: 0;
   padding: 0;
@@ -92,4 +91,52 @@ nav#main ul li a:hover {
 
 div#content {
   padding: 1em 0;
+}
+
+////////////////////////////////////////////////
+// D3 visualizations
+
+.bars rect {
+  transition: opacity .1s ease-in-out;
+ }
+
+.bars rect.hover {
+  opacity: .7;
+  /* cursor: pointer; */
+}
+
+.tooltip {
+  display: none;
+}
+
+.tooltip.show {
+  display: block;
+  position: absolute;
+  text-align: center;
+  padding: .5em 1em;
+  margin-top: -20px;
+  font: 1em sans-serif;
+  background: #ddd;
+  pointer-events: none;
+  border-radius: 5px;
+}
+
+.tooltip .dept_name {
+  font-weight: 700;
+}
+
+.chart {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+.svg-content {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
