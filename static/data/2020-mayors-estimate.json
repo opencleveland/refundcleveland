@@ -40,7 +40,53 @@
             },
             {
               "name": "Public Safety",
-              "percentage": 56.26
+              "percentage": 56.26,
+              "children": [
+                {
+                  "name": "Director's Office",
+                  "total": 6346486
+                },
+                {
+                  "name": "Police",
+                  "total": 185046132
+                },
+                {
+                  "name": "Fire",
+                  "total": 87882665
+                },
+                {
+                  "name": "Emergency Medical Service",
+                  "total": 25802944
+                },
+                {
+                  "name": "Animal Care and Control",
+                  "total": 1783238
+                },
+                {
+                  "name": "Correction",
+                  "total": 17080814
+                },
+                {
+                  "name": "Office of Professional Standards",
+                  "total": 1180348
+                },
+                {
+                  "name": "Police Review Board",
+                  "total": 91904
+                },
+                {
+                  "name": "Community Police Commission",
+                  "total": 287222
+                },
+                {
+                  "name": "Police Inspector General",
+                  "total": 500
+                },
+                {
+                  "name": "Department of Justice",
+                  "total": 2595457
+                }
+              ]
             },
             {
               "name": "Public Works",

@@ -3,134 +3,252 @@
 
 (function() {
 
-    const margin = {top: 0, right: 0, bottom: 30, left: 0},
-        height = 600 - margin.top - margin.bottom,
-        width = 600 - margin.left - margin.right;
-
-    let deptArray = [],
-        deptNames = [],
-        percentages = [],
-        index,
-        tooltip,
-        x,
-        y,
-        xAxis,
-        // yAxis,
-        barWidth,
-        colors,
-        svg,
-        bars;
-
     // Parse JSON data in Django template
     // https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatefilter-json_script
     const data = JSON.parse(document.getElementById('json_data').textContent);
 
-    // Sort departments array by percentage
-    deptArray = data.fund_structure[0].children[0].departments;
-    deptArray.sort((a, b) => b.percentage - a.percentage);
+   (function(data) {
 
-    // Load json data into arrays
-    for (index = 0; index < deptArray.length; index++) {
-        deptNames.push(deptArray[index].name);
-        percentages.push(deptArray[index].percentage);
-    }
+        const margin = {top: 30, right: 40, bottom: 0, left: 0},
+            height = 800 - margin.top - margin.bottom,
+            width = 400 - margin.left - margin.right;
 
-    // Scales
-    x = d3.scaleLinear()
-        .domain([0, percentages[0]])  // 0 to max percentage
-        .range([0, width]);
+        let deptArray = [],
+            deptNames = [],
+            deptTotals = [],
+            index,
+            tooltip,
+            x,
+            y,
+            yAxis,
+            bandWidth,
+            colors,
+            svg,
+            bars,
+            totalBudget,
+            startingBudget;
 
-    y = d3.scaleLinear()
-        .domain([0, deptArray.length])
-        .range([0, height]);
+        // Sort Public Safety department array by total
+        deptArray = data.fund_structure[0].children[0].departments[8].children;
+        deptArray.sort((a, b) => b.total - a.total);
 
-    barWidth = d3.scaleBand()
-        .domain(percentages)
-        .paddingInner(0.1)
-        .range([0, height]);
+        // Calculate starting total and fill JSON data
+        // into some arrays that may be useful
+        startingBudget = 0;
+        for (index = 0; index < deptArray.length; index++) {
+            deptNames.push(deptArray[index].name);
+            deptTotals.push(deptArray[index].total);
+            startingBudget += deptArray[index].total;
+        }
+        totalBudget = startingBudget;
+        // console.log("STARTING TOTAL: ", totalBudget);
 
-    // Axes
-    xAxis = d3.axisBottom(x).tickValues([10, 20, 30, 40, 50]).tickPadding(10).tickSize(5);
-    // yAxis = d3.axisLeft(y).ticks().tickPadding(10).tickSize(5);
+        // Create scales
+        y = d3.scaleLinear()
+            .domain([0, deptArray.length])
+            .range([0, height]);
 
-    // Colors
-    // Currently using Sequential (Single-Hue) - Blues
-    // from https://observablehq.com/@d3/color-schemes
-    colors = ["#f7fbff","#f6faff","#f5fafe","#f5f9fe","#f4f9fe","#f3f8fe","#f2f8fd","#f2f7fd","#f1f7fd","#f0f6fd","#eff6fc","#eef5fc","#eef5fc","#edf4fc","#ecf4fb","#ebf3fb","#eaf3fb","#eaf2fb","#e9f2fa","#e8f1fa","#e7f1fa","#e7f0fa","#e6f0f9","#e5eff9","#e4eff9","#e3eef9","#e3eef8","#e2edf8","#e1edf8","#e0ecf8","#e0ecf7","#dfebf7","#deebf7","#ddeaf7","#ddeaf6","#dce9f6","#dbe9f6","#dae8f6","#d9e8f5","#d9e7f5","#d8e7f5","#d7e6f5","#d6e6f4","#d6e5f4","#d5e5f4","#d4e4f4","#d3e4f3","#d2e3f3","#d2e3f3","#d1e2f3","#d0e2f2","#cfe1f2","#cee1f2","#cde0f1","#cce0f1","#ccdff1","#cbdff1","#cadef0","#c9def0","#c8ddf0","#c7ddef","#c6dcef","#c5dcef","#c4dbee","#c3dbee","#c2daee","#c1daed","#c0d9ed","#bfd9ec","#bed8ec","#bdd8ec","#bcd7eb","#bbd7eb","#b9d6eb","#b8d5ea","#b7d5ea","#b6d4e9","#b5d4e9","#b4d3e9","#b2d3e8","#b1d2e8","#b0d1e7","#afd1e7","#add0e7","#acd0e6","#abcfe6","#a9cfe5","#a8cee5","#a7cde5","#a5cde4","#a4cce4","#a3cbe3","#a1cbe3","#a0cae3","#9ec9e2","#9dc9e2","#9cc8e1","#9ac7e1","#99c6e1","#97c6e0","#96c5e0","#94c4df","#93c3df","#91c3df","#90c2de","#8ec1de","#8dc0de","#8bc0dd","#8abfdd","#88bedc","#87bddc","#85bcdc","#84bbdb","#82bbdb","#81badb","#7fb9da","#7eb8da","#7cb7d9","#7bb6d9","#79b5d9","#78b5d8","#76b4d8","#75b3d7","#73b2d7","#72b1d7","#70b0d6","#6fafd6","#6daed5","#6caed5","#6badd5","#69acd4","#68abd4","#66aad3","#65a9d3","#63a8d2","#62a7d2","#61a7d1","#5fa6d1","#5ea5d0","#5da4d0","#5ba3d0","#5aa2cf","#59a1cf","#57a0ce","#569fce","#559ecd","#549ecd","#529dcc","#519ccc","#509bcb","#4f9acb","#4d99ca","#4c98ca","#4b97c9","#4a96c9","#4895c8","#4794c8","#4693c7","#4592c7","#4492c6","#4391c6","#4190c5","#408fc4","#3f8ec4","#3e8dc3","#3d8cc3","#3c8bc2","#3b8ac2","#3a89c1","#3988c1","#3787c0","#3686c0","#3585bf","#3484bf","#3383be","#3282bd","#3181bd","#3080bc","#2f7fbc","#2e7ebb","#2d7dbb","#2c7cba","#2b7bb9","#2a7ab9","#2979b8","#2878b8","#2777b7","#2676b6","#2574b6","#2473b5","#2372b4","#2371b4","#2270b3","#216fb3","#206eb2","#1f6db1","#1e6cb0","#1d6bb0","#1c6aaf","#1c69ae","#1b68ae","#1a67ad","#1966ac","#1865ab","#1864aa","#1763aa","#1662a9","#1561a8","#1560a7","#145fa6","#135ea5","#135da4","#125ca4","#115ba3","#115aa2","#1059a1","#1058a0","#0f579f","#0e569e","#0e559d","#0e549c","#0d539a","#0d5299","#0c5198","#0c5097","#0b4f96","#0b4e95","#0b4d93","#0b4c92","#0a4b91","#0a4a90","#0a498e","#0a488d","#09478c","#09468a","#094589","#094487","#094386","#094285","#094183","#084082","#083e80","#083d7f","#083c7d","#083b7c","#083a7a","#083979","#083877","#083776","#083674","#083573","#083471","#083370","#08326e","#08316d","#08306b"];
-    colors.reverse();
+        x = d3.scaleLinear()
+            .domain([0, d3.max(deptTotals)])// 0 to max total
+            .range([0, width]);
 
-    // Add tooltip element to DOM
-    tooltip = d3.select('body')
-        .append("div")
-        .attr("class", "tooltip");
+        bandWidth = d3.scaleBand()
+            .domain(deptNames)
+            .paddingInner(0.1)
+            .range([0, height]);
 
-    // Add svg element to DOM
-    svg = d3.select("#bar_chart")
-        .append("svg")
-        .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
-        .classed("svg-content", true);
+        // Create axes
+        xAxis = d3.axisTop(x).tickPadding(10).tickSize(5)
+            .tickFormat(d => "$" + d3.format("~s")(d));
 
-    // Add bars group to DOM
-    bars = svg.append("g").attr("class", "bars")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("transform", `translate(${margin.left} ${margin.top})`)
-        .selectAll("rect")
-        .data(percentages)
-        .enter()
-        .append("rect")
-        .attr("height", barWidth.bandwidth())
-        .attr("width", 0)
-        .attr("x", 0)
-        .attr("y", (d, i) => y(i))
-        .attr("rx", 5)
-        .attr("fill", (d, i) => colors[i * 20 % colors.length]);
+        yAxis = d3.axisLeft(y).tickValues([]);
 
-    // Event Handlers
-    bars.on('mouseover', function(event, d) {
-        const e = bars.nodes();
-        const i = e.indexOf(this);
+        // Colors
+        // from https://observablehq.com/@d3/color-schemes
+        colors = ["#6e40aa","#7140ab","#743fac","#773fad","#7a3fae","#7d3faf","#803eb0","#833eb0","#873eb1","#8a3eb2","#8d3eb2","#903db2","#943db3","#973db3","#9a3db3","#9d3db3","#a13db3","#a43db3","#a73cb3","#aa3cb2","#ae3cb2","#b13cb2","#b43cb1","#b73cb0","#ba3cb0","#be3caf","#c13dae","#c43dad","#c73dac","#ca3dab","#cd3daa","#d03ea9","#d33ea7","#d53ea6","#d83fa4","#db3fa3","#de3fa1","#e040a0","#e3409e","#e5419c","#e8429a","#ea4298","#ed4396","#ef4494","#f14592","#f34590","#f5468e","#f7478c","#f9488a","#fb4987","#fd4a85","#fe4b83","#ff4d80","#ff4e7e","#ff4f7b","#ff5079","#ff5276","#ff5374","#ff5572","#ff566f","#ff586d","#ff596a","#ff5b68","#ff5d65","#ff5e63","#ff6060","#ff625e","#ff645b","#ff6659","#ff6857","#ff6a54","#ff6c52","#ff6e50","#ff704e","#ff724c","#ff744a","#ff7648","#ff7946","#ff7b44","#ff7d42","#ff8040","#ff823e","#ff843d","#ff873b","#ff893a","#ff8c38","#ff8e37","#fe9136","#fd9334","#fb9633","#f99832","#f89b32","#f69d31","#f4a030","#f2a32f","#f0a52f","#eea82f","#ecaa2e","#eaad2e","#e8b02e","#e6b22e","#e4b52e","#e2b72f","#e0ba2f","#debc30","#dbbf30","#d9c131","#d7c432","#d5c633","#d3c934","#d1cb35","#cece36","#ccd038","#cad239","#c8d53b","#c6d73c","#c4d93e","#c2db40","#c0dd42","#bee044","#bce247","#bae449","#b8e64b","#b6e84e","#b5ea51","#b3eb53","#b1ed56","#b0ef59","#adf05a","#aaf159","#a6f159","#a2f258","#9ef258","#9af357","#96f357","#93f457","#8ff457","#8bf457","#87f557","#83f557","#80f558","#7cf658","#78f659","#74f65a","#71f65b","#6df65c","#6af75d","#66f75e","#63f75f","#5ff761","#5cf662","#59f664","#55f665","#52f667","#4ff669","#4cf56a","#49f56c","#46f46e","#43f470","#41f373","#3ef375","#3bf277","#39f279","#37f17c","#34f07e","#32ef80","#30ee83","#2eed85","#2cec88","#2aeb8a","#28ea8d","#27e98f","#25e892","#24e795","#22e597","#21e49a","#20e29d","#1fe19f","#1edfa2","#1ddea4","#1cdca7","#1bdbaa","#1bd9ac","#1ad7af","#1ad5b1","#1ad4b4","#19d2b6","#19d0b8","#19cebb","#19ccbd","#19cabf","#1ac8c1","#1ac6c4","#1ac4c6","#1bc2c8","#1bbfca","#1cbdcc","#1dbbcd","#1db9cf","#1eb6d1","#1fb4d2","#20b2d4","#21afd5","#22add7","#23abd8","#25a8d9","#26a6db","#27a4dc","#29a1dd","#2a9fdd","#2b9cde","#2d9adf","#2e98e0","#3095e0","#3293e1","#3390e1","#358ee1","#378ce1","#3889e1","#3a87e1","#3c84e1","#3d82e1","#3f80e1","#417de0","#437be0","#4479df","#4676df","#4874de","#4a72dd","#4b70dc","#4d6ddb","#4f6bda","#5169d9","#5267d7","#5465d6","#5663d5","#5761d3","#595fd1","#5a5dd0","#5c5bce","#5d59cc","#5f57ca","#6055c8","#6153c6","#6351c4","#6450c2","#654ec0","#664cbe","#674abb","#6849b9","#6a47b7","#6a46b4","#6b44b2","#6c43af","#6d41ad","#6e40aa"];
+        colors.reverse();
 
-        d3.select(".tooltip")
-            .classed("show", true)
-            .html(`<span class="dept_name"> ${deptNames[i]}:</span> ${d}%`)
-            .style("left", `${d.pageX + 50}px`)
-            .style("top", `${d.pageY}px`)
+        // Add tooltip element to DOM
+        tooltip = d3.select('body')
+            .append("div")
+            .attr("class", "tooltip");
 
-        d3.select(this).classed("hover", true);
+        // Add svg element to DOM
+        svg = d3.select("#bar_chart")
+            .append("svg")
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+            .classed("svg-content", true);
 
-        })
-        .on('mouseout', function() {
-            tooltip.classed("show", false)
-            d3.select(this).classed("hover", false);
-        })
-        .on('mousemove', function(d) {
-            d3.select(".tooltip")
-                .style("left", `${d.pageX + 50}px`)
-                .style("top", `${d.pageY}px`)
-        });
+        // Add bars group to SVG
+        bars = svg.append("g").attr("class", "bars")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("transform", `translate(${margin.left} ${margin.top})`)
+            .selectAll("rect")
+            .data(deptArray)
+            .enter()
+            .append("g")
+            .append("rect")
+            .classed("bar", true)
+            .attr("width", 0)
+            .attr("height", bandWidth.bandwidth())
+            .attr("y", (d, i) => y(i))
+            .attr("x", 0)
+            .attr("rx", 5)
+            .attr("fill", (d, i) => colors[30 + (i * 15) % colors.length]);
 
-    // Add axes to DOM
-    svg.append("g").attr("class", "axis x")
-        .attr("transform", `translate(${margin.left}, ${height + margin.top})`)
-        .call(xAxis);
+        // Handles drag event handler
+        let currentBar,
+            oldTotal,
+            newTotal,
+            surplus,
+            equalShare,
+            totalNodes,
+            cd,
+            datum,
+            currBarIndex;
+        let dragHandles = d3.drag()
+            // .on("start", function(event, d) {})
+            .on("drag", function(event, d) {
 
-    // NOTE: y-axis currently displays department index
-    // and is not very useful
+                const i = handles.nodes().indexOf(this);
+                currentBar = d3.select(bars.nodes()[i]);
+                oldTotal = currentBar.datum().total;
 
-    // svg.append("g").attr("class", "axis y")
-    //     .attr("transform", `translate(${margin.left}, ${margin.top})`)
-    //     .call(yAxis);
+                cd = currentBar.datum()
 
-    // Animate in bars
-    svg.selectAll(".bars rect")
-        .transition()
-        .attr("width", d => x(d))
-        .delay((d, i) => i * 20)
-        .duration(1500)
-        .ease(d3.easeBounceOut);
+                // Calculate new total for bar being dragged
+                // ensuring value doesn't go below $0
+                // or beyond the width of the graph
+                newTotal = Math.max(0, Math.min(x.invert(event.x), x.invert(width)));
 
+                // Update bound datum for bar being dragged
+                cd.total = newTotal;
+
+                // Determine how many dollars were freed up
+                surplus = oldTotal - newTotal;
+                totalNodes = bars.nodes().length;
+                equalShare = surplus / (totalNodes - 1);
+
+                // Reallocate surplus to other bars
+                bars.nodes().forEach(function(x){
+                    datum = d3.select(x).datum();
+                    currBarIndex = bars.nodes().indexOf(x);
+                    if (currBarIndex !== i) {
+                        datum.total += equalShare;
+                    }
+                });
+
+                // Redraw width and position of bars and handles
+                update();
+
+                // Update legend text
+                updateLegend();
+
+            })
+            .on("end", function(event, d) {
+
+                // Recalculate balance
+                totalBudget = 0;
+                for (index = 0; index < deptArray.length; index++) {
+                    totalBudget += deptArray[index].total;
+                }
+
+                // Make sure the budget stays even
+                if (Math.round(totalBudget) != startingBudget) {
+                    throw "Something went wrong... budget isn't even";
+                }
+
+            });
+
+        // Add bar handles to bars group
+        let handles = d3.selectAll(".bars g").append("rect")
+            .classed("handle", true)
+            .attr("height", bandWidth.bandwidth())
+            .attr("width", 10)
+            .attr("x", d => x(d.total) - 10)
+            .attr("y", (d, i) => y(i))
+            .attr("rx", 5)
+            .call(dragHandles);
+
+        // Tooltip event handlers
+        bars.on('mouseover', function(event, d) {
+                const e = bars.nodes();
+                const i = e.indexOf(this);
+
+                d3.select(".tooltip")
+                    .classed("show", true)
+                    .html(`<span class="dept_name"> ${d.name}:</span> \$${addCommas(Math.round(d.total))}`)
+                    .style("top", `${event.pageY - 50}px`)
+                    .style("left", `${event.pageX - 50}px`)
+
+                d3.select(this).classed("hover", true);
+
+            })
+            .on('mouseout', function() {
+                tooltip.classed("show", false)
+                d3.select(this).classed("hover", false);
+            })
+            .on('mousemove', function(event, d) {
+                d3.select(".tooltip")
+                    .style("top", `${event.pageY - 50}px`)
+                    .style("left", `${event.pageX - 50}px`)
+            });
+
+        // Add x axis to DOM
+        svg.append("g").attr("class", "axis x")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`)
+            .call(xAxis);
+
+        // Add y axis to DOM
+        svg.append("g").attr("class", "axis y")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`)
+            .call(yAxis);
+
+        // Animate in bars on load
+        svg.selectAll(".bars g rect.bar")
+            .transition()
+            .attr("width", d => x(d.total))
+            .delay((d, i) => i * 20)
+            .duration(1500)
+            .ease(d3.easeBounceOut);
+
+        /////////////////////////////////////////////////////
+        // Helper functions
+
+        // Update height and position of bars and handles
+        // using Math.max to ensure they remain on screen
+        // even when their datum value is negative
+        let update = function() {
+            svg.selectAll(".bars g rect.bar")
+                .attr("width", d => Math.max(15, x(d.total)));
+
+            svg.selectAll(".bars g rect.handle")
+                .attr("x", d => Math.max(5, x(d.total) - 10));
+        }
+
+        // Update text in #legend div
+        let updateLegend = function(total) {
+            let legend_text = "<h2>Total Public Safety Budget: $" + addCommas(Math.round(totalBudget)) + "</h2>";
+            deptArray.forEach(function(x){
+                legend_text += "<p><span>" + x.name + "</span><span ";
+                if (x.total < 0) { legend_text += "class='red'"; }
+                legend_text += "> $" + addCommas(Math.round(x.total)) + "</p></span>";
+            });
+            d3.select("#legend").html(legend_text);
+        }
+
+        // Format integer with price commas
+        let addCommas = function(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Add starting legend text on load
+        updateLegend();
+
+    })(data);
 })();
+
 
 

@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 18px;
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 300;
@@ -14,10 +14,6 @@ div#page-wrap {
   padding: 1em 2.5%;
   margin: 0 auto;
   max-width: 1000px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Anton";
 }
 
 .site-branding {
@@ -67,7 +63,6 @@ nav#main ul li a {
   background: #ffd634;
   border-right: 5px solid #fff;
   text-align: center;
-  font-family: "Anton";
   transition: all 0.2s ease-in-out;
 }
 
@@ -93,9 +88,18 @@ div#content {
   transition: opacity 0.1s ease-in-out;
 }
 
-.bars rect.hover {
-  opacity: 0.7;
-  /* cursor: pointer; */
+.bars rect:hover {
+  opacity: 0.9;
+}
+
+.bars rect.handle:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.bars rect.handle {
+  opacity: 0.3;
+  fill: #fff;
 }
 
 .tooltip {
@@ -122,9 +126,10 @@ div#content {
   display: inline-block;
   position: relative;
   width: 100%;
-  padding-bottom: 100%;
+  padding-bottom: 200%;
   vertical-align: top;
   overflow: hidden;
+  margin: 1em 0;
 }
 
 .svg-content {
@@ -132,6 +137,22 @@ div#content {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+#legend {
+  font-size: 0.8em;
+  background: #efefef;
+  padding: 2em;
+}
+
+#legend p span:first-child {
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+
+#legend p span.red {
+  font-weight: 700;
+  color: red;
 }
 
 /*# sourceMappingURL=style.css.map */
