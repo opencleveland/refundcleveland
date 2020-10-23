@@ -1,10 +1,11 @@
 (function() {
 
+
     const data = [{"name": "Health", "dollars": 0, },
-            {"name": "Housing", "dollars": 0, "programs": ["Build permanent supportive housing", "Affordable housing revolving loan fund"]},
-            {"name": "Jobs", "dollars": 0},
-            {"name": "Justice", "dollars": 0},
-            {"name": "Redirect Police Programs", "dollars": 0}];
+        {"name": "Housing", "dollars": 0, "programs": ["Build permanent supportive housing", "Affordable housing revolving loan fund"]},
+        {"name": "Jobs", "dollars": 0},
+        {"name": "Justice", "dollars": 0},
+        {"name": "Redirect Police Programs", "dollars": 0}];
 
     const MULTIPLIER = 2.5,  // add height to bars
         SHIFT = 50,  // bar height when data is $0
@@ -31,6 +32,14 @@
         .attr("height", height + margin.top + margin.bottom)
         .attr("width", "100%")
         .attr("y", 0);
+
+    // Add background bar rects
+    let background_bars = svgs.append("rect")
+        .attr("class", "background_bar")
+        .attr("width", "100%")
+        .attr("height", d => (100 * MULTIPLIER) + SHIFT)
+        .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
+        .attr("x", 0);
 
     // Bars drag event handler
     let max_amount, current_data;
