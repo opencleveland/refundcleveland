@@ -1,7 +1,7 @@
 (function() {
 
-    const data = [{"name": "Health", "dollars": 0, "programs": ["Build permanent supportive housing", "Affordable housing revolving loan fund"]},
-            {"name": "Housing", "dollars": 0},
+    const data = [{"name": "Health", "dollars": 0, },
+            {"name": "Housing", "dollars": 0, "programs": ["Build permanent supportive housing", "Affordable housing revolving loan fund"]},
             {"name": "Jobs", "dollars": 0},
             {"name": "Justice", "dollars": 0},
             {"name": "Redirect Police Programs", "dollars": 0}];
