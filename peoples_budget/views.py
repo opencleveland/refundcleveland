@@ -31,3 +31,8 @@ def about(request):
     return render(request, 'about.html', {
         'about': True,
     })
+
+def penny(request):
+    return render(request, 'penny-budget.html', {
+        'penny': True,
+    })

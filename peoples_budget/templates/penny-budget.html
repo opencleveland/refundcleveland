@@ -1,0 +1,31 @@
+{% extends "base-blank.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="penny_budget">
+
+    <div id="penny_budget_legend"></div>
+    <p><em>You have <strong>$100</strong> to spend</em> on your community. How would <strong>you</strong> allocate it?</p>
+
+    <div id="penny_budget">
+
+    </div>
+
+</div>
+
+
+{% endblock content %}
+
+{% block footer_scripts %}
+
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    {% comment %} Make json data available to external scripts {% endcomment %}
+    {{ data | json_script:"json_data" }}
+
+    <!-- Load test D3 visualizations -->
+    <script src="{% static 'js/penny_budget.js' %}"></script>
+
+{% endblock footer_scripts %}

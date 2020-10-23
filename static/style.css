@@ -155,4 +155,90 @@ div#content {
   color: red;
 }
 
+div#penny_budget {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#penny_budget .bar_wrap {
+  display: inline-block;
+  margin-bottom: 2em;
+  width: 47%;
+}
+
+@media screen and (min-width: 481px) {
+  #penny_budget .bar_wrap {
+    width: 31%;
+  }
+}
+@media screen and (min-width: 769px) {
+  #penny_budget .bar_wrap {
+    width: 23%;
+  }
+}
+#penny_budget ul {
+  margin: 0;
+  padding: 0;
+}
+
+#penny_budget ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0.5em 0 0;
+  font-size: 16px;
+}
+
+#penny_budget .bar_wrap text {
+  font-weight: 700;
+  font-size: 1.5em;
+  fill: #999;
+  transition: fill 0.2s ease-in-out;
+}
+
+#penny_budget .bar_wrap rect {
+  transition: opacity 0.2s ease-in-out;
+}
+
+#penny_budget .bar_wrap rect:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+#penny_budget rect:hover ~ text {
+  fill: #000;
+}
+
+#penny_budget_legend h1 {
+  font-weight: 400;
+}
+
+#penny_budget_legend h1 span {
+  font-weight: 700;
+  font-size: 2em;
+  display: block;
+}
+
+.penny_budget p em {
+  font-style: normal;
+  text-decoration: underline;
+}
+
+.penny_budget button {
+  background: none;
+  border: none;
+  font-size: 2em;
+  font-family: "Roboto";
+  font-weight: 700;
+  text-align: right;
+  width: 100%;
+  padding: 2em;
+  outline: none;
+}
+
+.penny_budget button:hover {
+  color: #999;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=style.css.map */

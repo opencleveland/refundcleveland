@@ -23,4 +23,5 @@ urlpatterns = [
     path('join/', views.join, name='join'),
     path('budget/', views.budget, name='budget'),
     path('about/', views.about, name='about'),
+    path('penny-budget/', views.penny, name='penny-budget'),
 ]

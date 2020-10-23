@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Refund Cleveland</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="all">
+
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
+    </head>
+
+    <body class="{{ body_classes }}">
+        <div id="page-wrap">
+            <div id="content">
+                {% block content %}
+                {% endblock content %}
+            </div>
+
+            <footer>
+                {% block footer_scripts %}
+                {% endblock footer_scripts %}
+            </footer>
+        </div> <!-- end #page-wrap -->
+    </body>
+</html>
