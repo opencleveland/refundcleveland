@@ -1,14 +1,23 @@
 # Refund Cleveland
-2-3 sentence description of what the project is; 
 
-This is in the early stages and more information is currently at https://docs.google.com/document/u/1/d/1gloF8vosBnLmgS8yu1wF3Hk_tpYM5xMA89m-NEn3wgo/edit
+a website for residents to City of Cleveland change their Budget to show what they want the city to value and 
+share their proposed budget with their elected councilperson in city government.
 
-### Errors / Bugs
+This is in the early stages and more information is at:
+https://docs.google.com/document/u/1/d/1gloF8vosBnLmgS8yu1wF3Hk_tpYM5xMA89m-NEn3wgo/edit
+
+We have a [Miro Board](https://miro.com/app/board/o9J_kj4DePU=/) to sketch out a wireframe. 
+
+You can view this project by building it.
+
+### Errors / Bugs:
 
 If something is not behaving as you expected, it could be a bug, or if you have an idea, it can be reported in our issue tracker at https://github.com/opencleveland/refundcleveland
 
-## How to become involved 
+## How to become involved: 
 Join our slack channel; #refundcleveland ; to join our slack complete https://opencle-slack.herokuapp.com/
+
+We also meet weekly at 7:30 PM (Eastern Standard Time) on a Zoom call on Mondays (Details in the slack channel)
 
 ## Developer Instructions
 
