@@ -1,1 +1,1 @@
-web: gunicorn refund_cleveland:app
+web: gunicorn refund_cleveland.wsgi
