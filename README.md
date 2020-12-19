@@ -22,6 +22,9 @@ We also meet weekly at 7:30 PM (Eastern Standard Time) on a Zoom call on Mondays
 ## Developer Instructions
 
 ### Configuring and running locally
+Pre-Requisites:
+- Git
+- Python 3
 
 #### Clone repo and install requirements
 
