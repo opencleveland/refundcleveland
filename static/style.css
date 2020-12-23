@@ -2,10 +2,14 @@
 body {
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 300;
+}
+
+body.home {
+  background: #FCE21B;
 }
 
 div#page-wrap {
@@ -13,24 +17,22 @@ div#page-wrap {
   box-sizing: border-box;
   padding: 1em 2.5%;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1400px;
 }
 
 .site-branding {
-  background: #000;
-  color: #fff;
-  padding: 1em;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-.site-branding h1 {
-  font-size: 2.5em;
-  margin-bottom: 0;
+header#main {
+  padding: 1em 0;
 }
 
-.site-branding p {
-  font-family: "Roboto";
-  font-weight: 300;
-  color: #ffd634;
+nav#main {
+  display: inline-block;
+  float: right;
 }
 
 .site-branding a {
@@ -43,63 +45,36 @@ div#page-wrap {
 }
 
 nav#main ul {
-  display: flex;
-  width: 100%;
   margin: 0;
   padding: 0;
-  justify-content: space-between;
+  list-style: none;
+  text-align: right;
 }
 
 nav#main ul li {
-  list-style: none;
-  flex-grow: 1;
+  display: inline-block;
 }
 
 nav#main ul li a {
-  display: block;
   text-decoration: none;
-  padding: 1em;
   color: #000;
-  background: #ffd634;
-  border-right: 5px solid #fff;
-  text-align: center;
-  transition: all 0.2s ease-in-out;
-}
-
-nav#main ul li:last-child a {
-  border-right: 0px;
+  padding: 0.5em;
 }
 
 nav#main ul li.active a {
-  background: #333;
-  color: #fff;
+  font-weight: 700;
 }
 
 nav#main ul li a:hover {
-  background: #222;
-  color: #fff;
+  text-decoration: underline;
 }
 
 div#content {
   padding: 1em 0;
 }
 
-.bars rect {
-  transition: opacity 0.1s ease-in-out;
-}
-
-.bars rect:hover {
-  opacity: 0.9;
-}
-
-.bars rect.handle:hover {
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-.bars rect.handle {
-  opacity: 0.3;
-  fill: #fff;
+div#content p {
+  max-width: 700px;
 }
 
 .tooltip {
@@ -139,50 +114,46 @@ div#content {
   left: 0;
 }
 
-#legend {
-  font-size: 0.8em;
-  background: #efefef;
-  padding: 2em;
-}
-
-#legend p span:first-child {
-  font-weight: 700;
-  margin-right: 0.5em;
-}
-
-#legend p span.red {
-  font-weight: 700;
-  color: red;
-}
-
-div#penny_budget {
+div#penny_budget, div#budget_visualization {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-#penny_budget .bar_wrap {
+.bar_wrap {
   display: inline-block;
   margin-bottom: 2em;
   width: 47%;
 }
 
 @media screen and (min-width: 481px) {
-  #penny_budget .bar_wrap {
-    width: 31%;
+  .bar_wrap {
+    width: 22%;
   }
 }
 @media screen and (min-width: 769px) {
   #penny_budget .bar_wrap {
-    width: 18%;
+    width: 13%;
+  }
+
+  #budget_visualization .bar_wrap {
+    width: 13%;
   }
 }
-#penny_budget ul {
+#penny_budget ul, #budget_visualization ul {
   margin: 0;
   padding: 0;
 }
 
-#penny_budget ul li {
+#budget_visualization .bar_wrap p, #penny_budget .bar_wrap p {
+  font-weight: 700;
+}
+
+#budget_visualization .bar_wrap ul li, #penny_budget .bar_wrap ul li {
+  font-size: 90%;
+}
+
+#penny_budget ul li, #budget_visualization ul li {
   list-style: none;
   margin: 0;
   padding: 0.5em 0 0;
@@ -196,7 +167,14 @@ div#penny_budget {
   transition: fill 0.2s ease-in-out;
 }
 
-#penny_budget .bar_wrap rect {
+#budget_visualization .bar_wrap text {
+  font-weight: 700;
+  fill: #000;
+  transition: fill 0.2s ease-in-out;
+  opacity: 0.2;
+}
+
+.bar_wrap rect {
   transition: opacity 0.2s ease-in-out;
 }
 
@@ -205,7 +183,7 @@ div#penny_budget {
   opacity: 0.9;
 }
 
-#penny_budget rect:hover ~ text {
+.bar_wrap rect:hover ~ text {
   fill: #000;
 }
 
@@ -219,12 +197,17 @@ div#penny_budget {
   display: block;
 }
 
+#penny_budget_legend {
+  border: 2px solid #000;
+  text-align: center;
+}
+
 .penny_budget p em {
   font-style: normal;
   text-decoration: underline;
 }
 
-.penny_budget button {
+button {
   background: none;
   border: none;
   font-size: 2em;
@@ -232,16 +215,21 @@ div#penny_budget {
   font-weight: 700;
   text-align: right;
   width: 100%;
-  padding: 2em;
+  padding: 2em 0 2em 2em;
   outline: none;
 }
 
-.penny_budget button:hover {
-  color: #999;
+button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button a:hover {
+  opacity: 0.6;
   cursor: pointer;
 }
 
-.penny_budget rect.background_bar {
+rect.background_bar {
   fill: #f9f9f9;
 }
 

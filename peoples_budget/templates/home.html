@@ -1,5 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-    <p>The Cleveland budget is $217 million. What would you like to see that money spent on instead?</p>
+
+    <h1>Mayor Jackson's 2020 General Fund Proposal</h1>
+
+    <div id="budget_visualization">
+
+    </div>
+
+    <p>Refund Cleveland is a collaborative and community-led effort to design a city budget that centers around the values, needs, and priorities of our community.</p>
+
 {% endblock content %}
+
+{% block footer_scripts %}
+
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    {% comment %} Make json data available to external scripts {% endcomment %}
+    {{ data | json_script:"json_data" }}
+
+    <!-- Load test D3 visualizations -->
+    <script src="{% static 'js/budget_proposal.js' %}"></script>
+
+{% endblock footer_scripts %}

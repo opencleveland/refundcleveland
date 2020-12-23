@@ -6,31 +6,21 @@ import os
 
 
 def home(request):
-    return render(request, 'home.html', {
-        'home': True,
-    })
-
-
-def budget(request):
     with open(os.path.join(settings.BASE_DIR, 'static/data/2020-mayors-estimate.json')) as file:
         json_file = json.load(file)
 
-    return render(request, 'budget.html', {
-        'budget': True,
+    return render(request, 'home.html', {
+        'home': True,
         'data': json_file,
+        'body_classes': 'home'
     })
 
 
-def join(request):
-    return render(request, 'join.html', {
-        'join': True,
+def change_budget(request):
+    return render(request, 'change-the-budget.html', {
+        'change_budget': True,
     })
 
-
-def about(request):
-    return render(request, 'about.html', {
-        'about': True,
-    })
 
 def penny(request):
     return render(request, 'penny-budget.html', {
