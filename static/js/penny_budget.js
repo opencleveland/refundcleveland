@@ -2,10 +2,11 @@
 
 
     const data = [{"name": "Health", "dollars": 0, },
+        {"name": "Education", "dollars": 0},
         {"name": "Housing", "dollars": 0, "programs": ["Build permanent supportive housing", "Affordable housing revolving loan fund"]},
-        {"name": "Jobs", "dollars": 0},
-        {"name": "Justice", "dollars": 0},
-        {"name": "Redirect Police Programs", "dollars": 0}];
+        {"name": "Infrastructure", "dollars": 0},
+        {"name": "Community resources", "dollars": 0},
+        {"name": "Carceral system", "dollars": 0}];
 
     const MULTIPLIER = 2.5,  // add height to bars
         SHIFT = 50,  // bar height when data is $0
@@ -116,7 +117,7 @@
     bar_divs.append("div")
         .html( function(d) {
             content = "";
-            content += `<p style="font-weight: 700; font-size: 1.5em; margin: 0;">${d.name}</p>`;
+            content += `<p>${d.name}</p>`;
 
             // Add real programs if they exist in the data set
             if (d.programs) {
@@ -129,7 +130,7 @@
             }
             // otherwise add placeholders
             else {
-                content += `<ul><li>Program 1</li><li>Program 2</li><li>Program 3</li></ul>`;
+                content += `<ul><li>Add programs to dataset</li></ul>`;
             }
             return content;
         })
