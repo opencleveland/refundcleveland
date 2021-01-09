@@ -72,18 +72,6 @@
 
             update_legend(update_total());
             update_bar_totals();
-        })
-        .on("touchmove", function(event, d) {
-            curr_total = update_total();
-            max_amount = Math.max(0, 100 - curr_total);
-            current_data = d.dollars;
-
-            d.dollars = Math.round(Math.max(0, Math.min((height/MULTIPLIER), (height - event.y) / MULTIPLIER, current_data + max_amount)));
-            d3.select(this).attr("height", d => (d.dollars * MULTIPLIER) + SHIFT);
-            d3.select(this).attr("y", height - (d.dollars * MULTIPLIER) - SHIFT);
-
-            update_legend(update_total());
-            update_bar_totals();
         });
     
     // Add bars to SVG
