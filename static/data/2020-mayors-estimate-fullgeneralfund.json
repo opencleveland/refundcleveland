@@ -23,21 +23,13 @@
                                     "total": 1041242
                                 },
                                 {
-                                    "name": "Recreation",
-                                    "total": 15352030
-                                },
-                                {
-                                    "name": "Parks Maintenance & Properties",
-                                    "total": 17134475
-                                },
-                                {
                                     "name": "Division of Waste Disposal",
                                     "total": 31804962
                                 }
                             ]
                         },
                         {
-                            "name": "Fire, EMS, and Animal Control",
+                            "name": "Community Services",
                             "percentage": 20.0,
                             "children": [
                                 {
@@ -51,6 +43,26 @@
                                 {
                                     "name": "Animal Care and Control",
                                     "total": 3160671
+                                },
+                                {
+                                    "name": "Recreation",
+                                    "total": 15352030
+                                },
+                                {
+                                    "name": "Parks Maintenance & Properties",
+                                    "total": 17134475
+                                },
+                                {
+                                    "name": "Landmarks Commission",
+                                    "total": 218635
+                                },
+                                {
+                                    "name": "Department of Aging",
+                                    "total": 1773190
+                                },
+                                {
+                                    "name": "Community Relations Board",
+                                    "total": 2241472
                                 }
                             ]
                         },
@@ -58,10 +70,6 @@
                             "name": "Health",
                             "percentage": 20.0,
                             "children": [
-                                {
-                                    "name": "Department of Aging",
-                                    "total": 1773190
-                                },
                                 {
                                     "name": "Department of Public Health - Director's Office",
                                     "total": 2018871
@@ -83,6 +91,10 @@
                                 {
                                     "name": "Division of Public Works Administration",
                                     "total": 3400495
+                                },
+                                {
+                                    "name": "Non-Departmental: Streets Repair Subsidy",
+                                    "total": 7673904
                                 },
                                 {
                                     "name": "Department of Public Works - Division of Traffic Engineering",
@@ -121,32 +133,12 @@
                             "percentage": 0.0,
                             "children": [
                                 {
-                                    "name": "City Council",
-                                    "total": 7904984
-                                },
-                                {
-                                    "name": "Municipal Court",
-                                    "total": 26020801
-                                },
-                                {
-                                    "name": "Clerk of Courts",
-                                    "total": 13521753
-                                },
-                                {
-                                    "name": "Housing Court",
-                                    "total": 5106142
-                                },
-                                {
                                     "name": "Office of the Mayor",
                                     "total": 2960904
                                 },
                                 {
                                     "name": "Office of Quality Control & Performance Management",
                                     "total": 1218555
-                                },
-                                {
-                                    "name": "Landmarks Commission",
-                                    "total": 218635
                                 },
                                 {
                                     "name": "Building Standards and Appeals",
@@ -159,10 +151,6 @@
                                 {
                                     "name": "Civil Service Commission",
                                     "total": 1470734
-                                },
-                                {
-                                    "name": "Community Relations Board",
-                                    "total": 2241472
                                 },
                                 {
                                     "name": "City Planning Commission",
@@ -229,8 +217,8 @@
                                     "total": 2083223
                                 },
                                 {
-                                    "name": "Non-Departmental",
-                                    "total": 64291009
+                                    "name": "Non-Departmental: Non-Streets Subsidies",
+                                    "total": 56617105
                                 }
                             ]
                         }

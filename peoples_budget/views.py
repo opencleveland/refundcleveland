@@ -6,7 +6,7 @@ import os
 
 
 def home(request):
-    with open(os.path.join(settings.BASE_DIR, 'static/data/2020-mayors-estimate.json')) as file:
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2020-mayors-estimate-fullgeneralfund.json')) as file:
         json_file = json.load(file)
 
     return render(request, 'home.html', {
