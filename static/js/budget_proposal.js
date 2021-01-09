@@ -9,8 +9,8 @@
     for (var i=0; i < data.length; i++) {
         var categoryTotal = 0;
         for (var j=0; j < data[i].children.length; j++) {
-            totalFunds += data[i].childre[j].total;
-            categoryTotal += data[i].childre[j].total;
+            totalFunds += data[i].children[j].total;
+            categoryTotal += data[i].children[j].total;
         }
         data[i].fundTotal = categoryTotal;
     }
