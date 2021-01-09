@@ -21,6 +21,26 @@
                                 {
                                     "name": "Department of Public Health - Air Quality",
                                     "total": 1041242
+                                },
+                                {
+                                    "name": "Division of Public Works Administration",
+                                    "total": 3400495
+                                },
+                                {
+                                    "name": "Recreation",
+                                    "total": 15352030
+                                },
+                                {
+                                    "name": "Property Management",
+                                    "total": 8443015
+                                },
+                                {
+                                    "name": "Parks Maintenance & Properties",
+                                    "total": 17134475
+                                },
+                                {
+                                    "name": "Division of Waste Disposal",
+                                    "total": 31804962
                                 }
                             ]
                         },
@@ -113,6 +133,10 @@
                             "percentage": 0.0,
                             "children": [
                                 {
+                                    "name": "City Council",
+                                    "total": 7904984
+                                },
+                                {
                                     "name": "Municipal Court",
                                     "total": 26020801
                                 },
@@ -187,6 +211,30 @@
                                 {
                                     "name": "Department of Public Safety - Department of Justice",
                                     "total": 4155753
+                                },
+                                {
+                                    "name": "Department of Public Works - Parking Facilities",
+                                    "total": 1263091
+                                },
+                                {
+                                    "name": "Department of Public Works - Division of Traffic Engineering",
+                                    "total": 3934048
+                                },
+                                {
+                                    "name": "Community Development Director's Office",
+                                    "total": 2207845
+                                },
+                                {
+                                    "name": "Department of Building & Housing",
+                                    "total": 13959512
+                                },
+                                {
+                                    "name": "Economic Development",
+                                    "total": 2083223
+                                },
+                                {
+                                    "name": "Non-Departmental",
+                                    "total": 64291009
                                 }
                             ]
                         }
