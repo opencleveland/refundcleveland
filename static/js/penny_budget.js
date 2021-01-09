@@ -64,6 +64,7 @@
             event.sourceEvent.preventDefault();
         })
         .on("drag", function(event, d) {
+            event.sourceEvent.preventDefault();
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
             current_data = d.dollars;
