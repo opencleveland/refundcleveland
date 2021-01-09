@@ -1,4 +1,58 @@
 {
+    "fund_structure":[
+        {
+            "name": "Governmental Funds",
+            "children":[
+                {
+                    "name": "Categories",
+                    "departments":[
+                        {
+                            "name": "Environment and Sustainability",
+                            "percentage": 0.0,
+                            "children": [
+                                
+                            ]
+                        },
+                        {
+                            "name": "Fire, EMS, and Animal Control",
+                            "percentage": 0.0,
+                            "children": [
+                                
+                            ]
+                        },
+                        {
+                            "name": "Health",
+                            "percentage": 0.0,
+                            "children": [
+                                
+                            ]
+                        },
+                        {
+                            "name": "Infrastructure",
+                            "percentage": 0.0,
+                            "children": [
+                                
+                            ]
+                        },
+                        {
+                            "name": "Policing and Corrections",
+                            "percentage": 0.0,
+                            "children": [
+                                
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+        
+    ]
+}
+/*
+
+ACTUAL BUDGET NUMBERS FROM 2020
+
+{
   "fund_structure": [
     {
       "name": "Governmental Funds",
@@ -137,4 +191,4 @@
       ]
     }
   ]
-}
+}*/
