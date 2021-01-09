@@ -61,6 +61,7 @@
     let max_amount, current_data;
     let drag_bars = d3.drag()
         .on("drag", function(event, d) {
+            event.preventDefault();
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
             current_data = d.dollars;
@@ -72,7 +73,7 @@
             update_legend(update_total());
             update_bar_totals();
         });
-
+    
     // Add bars to SVG
     let bars = svgs.append("rect")
         .attr("class", "bar")
