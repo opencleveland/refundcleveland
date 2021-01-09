@@ -197,6 +197,10 @@ div#penny_budget, div#budget_visualization {
   display: block;
 }
 
+#penny_budget_legend h1 span.empty {
+  color: #b10222;
+}
+
 #penny_budget_legend {
   border: 2px solid #000;
   text-align: center;
