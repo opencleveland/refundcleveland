@@ -71,7 +71,7 @@
 
             update_legend(update_total());
             update_bar_totals();
-        })
+        }, {passive: false})
         .touchable(true);
     
     // Add bars to SVG
