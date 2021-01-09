@@ -15,7 +15,8 @@
         data[i].fundTotal = categoryTotal;
     }
     for (var i=0; i<data.length; i++) {
-        data[i].percentage = data[i].fundTotal / totalFunds;
+        data[i].percentage = (data[i].fundTotal / totalFunds) * 100;
+        data[i].percentage = data[i].percentage.toFixed(2);
     }
     data.sort((a, b) => b.percentage - a.percentage);
 
