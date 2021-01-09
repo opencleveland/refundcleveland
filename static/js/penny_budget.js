@@ -84,8 +84,6 @@
             update_legend(update_total());
             update_bar_totals();
         });
-    
-    let touch_bars = d3.s
 
     // Add bars to SVG
     let bars = svgs.append("rect")
@@ -96,7 +94,6 @@
         .attr("x", 0)
         .attr("fill", (d, i) => colors[30 + (i * 15) % colors.length])
         .call(drag_bars);
-        .call(touch_bars);
 
     // Animate in bars on load
     bars.transition()
