@@ -60,6 +60,9 @@
     // Bars drag event handler
     let max_amount, current_data;
     let drag_bars = d3.drag()
+        .on("start", function() {
+            d3.event.sourceEvent.preventDefault();
+        })
         .on("drag", function(event, d) {
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
