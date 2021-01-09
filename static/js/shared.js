@@ -23,5 +23,13 @@ function sort_budget_data(data) {
         toReturn[i].percentage = toReturn[i].percentage.toFixed(2);
     }
     toReturn.sort((a, b) => b.percentage - a.percentage);
+    
+    for (var i=0; i<toReturn.length; i++) {
+        if (toReturn[i].name === "Other") {
+            var other = toReturn.splice(i, 1)[0];
+            toReturn.push(other);
+            break;
+        }
+    }
     return toReturn;
 }
