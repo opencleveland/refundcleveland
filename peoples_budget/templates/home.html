@@ -23,6 +23,8 @@
     {% comment %} Make json data available to external scripts {% endcomment %}
     {{ data | json_script:"json_data" }}
 
+    <!-- Load shared functions -->
+    <script src="{% static 'js/shared.js' %}"></script>
     <!-- Load test D3 visualizations -->
     <script src="{% static 'js/budget_proposal.js' %}"></script>
 

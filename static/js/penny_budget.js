@@ -1,15 +1,15 @@
 (function() {
 
-    const json_data = JSON.parse(document.getElementById('json_data').textContent);
-    console.log(json_data);
-    const mayors_data = json_data.fund_structure[0].children[0].departments;
+    var mayors_data = retrieve_budget_data();
+    
+    mayors_data = sort_budget_data(mayors_data);
     
     /*const data = [{"name": "Environment and Sustainability", "dollars": 0, "programs": ["Environment", "Air Quality", "Office of Sustainability", "Recreation", "Parks Maintenance & Properties", "Division of Waste Management"]},
         {"name": "Fire, EMS, and Animal Control", "dollars": 0, "programs": ["Fire", "EMS", "Animal Care and Control"]},
         {"name": "Health", "dollars": 0, "programs": ["Dept of Public Health Director", "Health"]},
         {"name": "Infrastructure", "dollars": 0, "programs": ["Capital Projects", "Street Construction, Maintenance, & Repair"]},
         {"name": "Policing and Corrections", "dollars": 0, "programs": ["Police", "Police Review Board", "Community Police Commission", "Police Inspector General", "Corrections"]}];*/
-    const data = [];
+    var data = [];
     for (var i=0; i < mayors_data.length; i++) {
         if (mayors_data[i].name != "Other") {
             var child = {};
