@@ -23,16 +23,8 @@
                                     "total": 1041242
                                 },
                                 {
-                                    "name": "Division of Public Works Administration",
-                                    "total": 3400495
-                                },
-                                {
                                     "name": "Recreation",
                                     "total": 15352030
-                                },
-                                {
-                                    "name": "Property Management",
-                                    "total": 8443015
                                 },
                                 {
                                     "name": "Parks Maintenance & Properties",
@@ -89,12 +81,12 @@
                                     "total": 6970241
                                 },
                                 {
-                                    "name": "Building Standards and Appeals",
-                                    "total": 158991
+                                    "name": "Division of Public Works Administration",
+                                    "total": 3400495
                                 },
                                 {
-                                    "name": "Zoning Appeals",
-                                    "total": 236212
+                                    "name": "Department of Public Works - Division of Traffic Engineering",
+                                    "total": 3934048
                                 }
                             ]
                         },
@@ -102,10 +94,6 @@
                             "name": "Policing and Corrections",
                             "percentage": 20.0,
                             "children": [
-                                {
-                                    "name": "Community Relations Board",
-                                    "total": 2241472
-                                },
                                 {
                                     "name": "Police",
                                     "total": 217908375
@@ -127,118 +115,7 @@
                                     "total": 2018871
                                 }
                             ]
-                        },
-                        {
-                            "name": "Other",
-                            "percentage": 0.0,
-                            "children": [
-                                {
-                                    "name": "City Council",
-                                    "total": 7904984
-                                },
-                                {
-                                    "name": "Municipal Court",
-                                    "total": 26020801
-                                },
-                                {
-                                    "name": "Clerk of Courts",
-                                    "total": 13521753
-                                },
-                                {
-                                    "name": "Housing Court",
-                                    "total": 5106142
-                                },
-                                {
-                                    "name": "Office of the Mayor",
-                                    "total": 2960904
-                                },
-                                {
-                                    "name": "Office of Quality Control & Performance Management",
-                                    "total": 1218555
-                                },
-                                {
-                                    "name": "Office of Quality Control & Performance Management",
-                                    "total": 1218555
-                                },
-                                {
-                                    "name": "Landmarks Commission",
-                                    "total": 218635
-                                },
-                                {
-                                    "name": "Civil Service Commission",
-                                    "total": 1470734
-                                },
-                                {
-                                    "name": "City Planning Commission",
-                                    "total": 2372913
-                                },
-                                {
-                                    "name": "Boxing & Wrestling Commission",
-                                    "total": 28887
-                                },
-                                {
-                                    "name": "Office of Equal Opportunity",
-                                    "total": 937384
-                                },
-                                {
-                                    "name": "Office of Intervention, Prevention, and Opportunity",
-                                    "total": 4543490
-                                },
-                                {
-                                    "name": "Office of Budget & Management",
-                                    "total": 880590
-                                },
-                                {
-                                    "name": "Department of Human Resources",
-                                    "total": 3680397
-                                },
-                                {
-                                    "name": "Department of Law",
-                                    "total": 14173149
-                                },
-                                {
-                                    "name": "Department of Finance",
-                                    "total": 21326554
-                                },
-                                {
-                                    "name": "Department of Public Safety - Director's Office",
-                                    "total": 6748295
-                                },
-                                {
-                                    "name": "Department of Public Safety - Office of Professional Standards",
-                                    "total": 2018871
-                                },
-                                {
-                                    "name": "Department of Public Safety - Department of Justice",
-                                    "total": 4155753
-                                },
-                                {
-                                    "name": "Department of Public Works - Parking Facilities",
-                                    "total": 1263091
-                                },
-                                {
-                                    "name": "Department of Public Works - Division of Traffic Engineering",
-                                    "total": 3934048
-                                },
-                                {
-                                    "name": "Community Development Director's Office",
-                                    "total": 2207845
-                                },
-                                {
-                                    "name": "Department of Building & Housing",
-                                    "total": 13959512
-                                },
-                                {
-                                    "name": "Economic Development",
-                                    "total": 2083223
-                                },
-                                {
-                                    "name": "Non-Departmental",
-                                    "total": 64291009
-                                }
-                            ]
                         }
-                        
                     ]
                 }
             ]
