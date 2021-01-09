@@ -132,7 +132,6 @@ div#penny_budget, div#budget_visualization {
     width: 47%;
 }
 
-
 @media screen and (min-width: 481px) {
   .bar_wrap {
     width: 22%;
@@ -205,6 +204,10 @@ div#penny_budget, div#budget_visualization {
     font-weight: 700;
     font-size: 2em;
     display: block;
+}
+
+#penny_budget_legend h1 span.empty {
+  color: #b10222;
 }
 
 #penny_budget_legend {
