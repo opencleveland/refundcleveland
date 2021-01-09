@@ -237,8 +237,4 @@ rect.background_bar {
   fill: #f9f9f9;
 }
 
-rect.bar {
-  touch-action: none;
-}
-
 /*# sourceMappingURL=style.css.map */
