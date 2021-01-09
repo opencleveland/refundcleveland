@@ -1,12 +1,11 @@
 (function() {
 
 
-    const data = [{"name": "Health", "dollars": 0, },
-        {"name": "Education", "dollars": 0},
-        {"name": "Housing", "dollars": 0, "programs": ["Build permanent supportive housing", "Affordable housing revolving loan fund"]},
-        {"name": "Infrastructure", "dollars": 0},
-        {"name": "Community resources", "dollars": 0},
-        {"name": "Carceral system", "dollars": 0}];
+    const data = [{"name": "Environment and Sustainability", "dollars": 0, "programs": ["Environment", "Air Quality", "Office of Sustainability", "Recreation", "Parks Maintenance & Properties", "Division of Waste Management"]},
+        {"name": "Fire, EMS, and Animal Control", "dollars": 0, "programs": ["Fire", "EMS", "Animal Care and Control"]},
+        {"name": "Health", "dollars": 0, "programs": ["Dept of Public Health Director", "Health"]},
+        {"name": "Infrastructure", "dollars": 0, "programs": ["Capital Projects", "Street Construction, Maintenance, & Repair"]},
+        {"name": "Policing and Corrections", "dollars": 0, "programs": ["Police", "Police Review Board", "Community Police Commission", "Police Inspector General", "Corrections"]}];
 
     const MULTIPLIER = 2.5,  // add height to bars
         SHIFT = 50,  // bar height when data is $0
@@ -99,8 +98,14 @@
 
     // Update the legend HTML
     let update_legend = function(balance) {
+        let curr_bal = 100 - balance;
+        let bal_class = "";
+        if (curr_bal == 0) {
+            bal_class = "empty";
+        }
+
         d3.select("#penny_budget_legend")
-            .html(`<h1>Your balance: <span>\$${100 - balance}</span></h1>`);
+            .html(`<h1>Your balance: <span class="${bal_class}">\$${curr_bal}</span></h1>`);
             // .html(`<h1>Current total: \$${balance}</h1>`);
     }
 

@@ -63,7 +63,6 @@
         .duration(1500)
         .ease(d3.easeCubicOut);
 
-
     // Add placeholder programs below each bar
     bar_divs.append("div")
         .html( function(d) {
