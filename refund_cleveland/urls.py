@@ -20,8 +20,6 @@ from peoples_budget import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('join/', views.join, name='join'),
-    path('budget/', views.budget, name='budget'),
-    path('about/', views.about, name='about'),
+    path('change-the-budget/', views.change_budget, name='change_budget'),
     path('penny-budget/', views.penny, name='penny-budget'),
 ]
