@@ -8,7 +8,7 @@ https://docs.google.com/document/u/1/d/1gloF8vosBnLmgS8yu1wF3Hk_tpYM5xMA89m-NEn3
 
 We have a [Miro Board](https://miro.com/app/board/o9J_kj4DePU=/) to sketch out a wireframe. 
 
-You can view this project by building it.
+You can view this project at https://refund-cleveland.herokuapp.com/
 
 ### Errors / Bugs:
 
