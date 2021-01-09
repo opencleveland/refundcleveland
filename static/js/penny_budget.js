@@ -60,15 +60,7 @@
     // Bars drag event handler
     let max_amount, current_data;
     let drag_bars = d3.drag()
-        .on("start", function(event, d) {
-            console.log(event.sourceEvent);
-            event.sourceEvent.preventDefault();
-            event.sourceEvent.stopPropagation();
-        })
         .on("drag", function(event, d) {
-            console.log(event.sourceEvent);
-            event.sourceEvent.preventDefault();
-            event.sourceEvent.stopPropagation();
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
             current_data = d.dollars;
@@ -80,10 +72,7 @@
             update_legend(update_total());
             update_bar_totals();
         })
-        .on("end", function(event, d) {
-            console.log(event.sourceEvent);
-            event.sourceEvent.preventDefault();
-        });
+        .touchable(true);
     
     // Add bars to SVG
     let bars = svgs.append("rect")
