@@ -10,7 +10,6 @@
                             "name": "Environment and Sustainability",
                             "percentage": 20.0,
                             "children": [
-                                
                                 {
                                     "name": "Office of Sustainability",
                                     "total": 1236037
@@ -22,7 +21,7 @@
                                 {
                                     "name": "Department of Public Health - Air Quality",
                                     "total": 1041242
-                                },
+                                }
                             ]
                         },
                         {
@@ -40,7 +39,7 @@
                                 {
                                     "name": "Animal Care and Control",
                                     "total": 3160671
-                                },
+                                }
                             ]
                         },
                         {
@@ -58,7 +57,7 @@
                                 {
                                     "name": "Department of Public Health - Health",
                                     "total": 5196900
-                                },
+                                }
                             ]
                         },
                         {
@@ -76,7 +75,7 @@
                                 {
                                     "name": "Zoning Appeals",
                                     "total": 236212
-                                },
+                                }
                             ]
                         },
                         {
@@ -106,7 +105,7 @@
                                 {
                                     "name": "Police Inspector General",
                                     "total": 2018871
-                                },
+                                }
                             ]
                         },
                         {
@@ -188,7 +187,7 @@
                                 {
                                     "name": "Department of Public Safety - Department of Justice",
                                     "total": 4155753
-                                },
+                                }
                             ]
                         }
                         
