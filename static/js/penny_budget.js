@@ -1,11 +1,27 @@
 (function() {
 
-
-    const data = [{"name": "Environment and Sustainability", "dollars": 0, "programs": ["Environment", "Air Quality", "Office of Sustainability", "Recreation", "Parks Maintenance & Properties", "Division of Waste Management"]},
+    const json_data = JSON.parse(document.getElementById('json_data').textContent);
+    console.log(json_data);
+    const mayors_data = json_data.fund_structure[0].children[0].departments;
+    
+    /*const data = [{"name": "Environment and Sustainability", "dollars": 0, "programs": ["Environment", "Air Quality", "Office of Sustainability", "Recreation", "Parks Maintenance & Properties", "Division of Waste Management"]},
         {"name": "Fire, EMS, and Animal Control", "dollars": 0, "programs": ["Fire", "EMS", "Animal Care and Control"]},
         {"name": "Health", "dollars": 0, "programs": ["Dept of Public Health Director", "Health"]},
         {"name": "Infrastructure", "dollars": 0, "programs": ["Capital Projects", "Street Construction, Maintenance, & Repair"]},
-        {"name": "Policing and Corrections", "dollars": 0, "programs": ["Police", "Police Review Board", "Community Police Commission", "Police Inspector General", "Corrections"]}];
+        {"name": "Policing and Corrections", "dollars": 0, "programs": ["Police", "Police Review Board", "Community Police Commission", "Police Inspector General", "Corrections"]}];*/
+    const data = [];
+    for (var i=0; i < mayors_data.length; i++) {
+        if (mayors_data[i].name != "Other") {
+            var child = {};
+            child.name = mayors_data[i].name;
+            child.dollars = 0;
+            child.programs = [];
+            for (var j=0; j < mayors_data[i].children.length; j++) {
+                child.programs.push(mayors_data[i].children[j].name);
+            }
+            data.push(child);
+        }
+    }
 
     const MULTIPLIER = 2.5,  // add height to bars
         SHIFT = 50,  // bar height when data is $0
