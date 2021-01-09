@@ -5,6 +5,18 @@
     const json_data = JSON.parse(document.getElementById('json_data').textContent);
     const data = json_data.fund_structure[0].children[0].departments;
     console.log(data);
+    var totalFunds = 0;
+    for (var i=0; i < data.length; i++) {
+        var categoryTotal = 0;
+        for (var j=0; j < data[i].children.length; j++) {
+            totalFunds += data[i].childre[j].total;
+            categoryTotal += data[i].childre[j].total;
+        }
+        data[i].fundTotal = categoryTotal;
+    }
+    for (var i=0; i<data.length; i++) {
+        data[i].percentage = data[i].fundTotal / totalFunds;
+    }
     data.sort((a, b) => b.percentage - a.percentage);
 
     const MULTIPLIER = 2,  // add height to bars
