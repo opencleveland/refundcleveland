@@ -1,25 +1,8 @@
 (function() {
-
-    // Parse JSON data in Django template
-    // https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatefilter-json_script
-    const json_data = JSON.parse(document.getElementById('json_data').textContent);
-    const data = json_data.fund_structure[0].children[0].departments;
-    console.log(data);
-    var totalFunds = 0;
-    for (var i=0; i < data.length; i++) {
-        var categoryTotal = 0;
-        for (var j=0; j < data[i].children.length; j++) {
-            totalFunds += data[i].children[j].total;
-            categoryTotal += data[i].children[j].total;
-        }
-        data[i].fundTotal = categoryTotal;
-    }
-    for (var i=0; i<data.length; i++) {
-        data[i].percentage = (data[i].fundTotal / totalFunds) * 100;
-        data[i].percentage = data[i].percentage.toFixed(2);
-    }
-    data.sort((a, b) => b.percentage - a.percentage);
-
+    var data = retrieve_budget_data();
+    
+    data = sort_budget_data(data);
+    
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 2,  // bar height when data is 0
         margin = {top: 0, right: 0, bottom: 0, left: 0},

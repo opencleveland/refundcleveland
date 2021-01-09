@@ -17,12 +17,17 @@ def home(request):
 
 
 def change_budget(request):
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2020-mayors-estimate-fullgeneralfund.json')) as file:
+        json_file = json.load(file)
+        
     return render(request, 'change-the-budget.html', {
         'change_budget': True,
+        'data': json_file
     })
 
 
 def penny(request):
+    
     return render(request, 'penny-budget.html', {
-        'penny': True,
+        'penny': True
     })

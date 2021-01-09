@@ -5,7 +5,7 @@
 
 <div class="penny_budget">
 
-    <h1>You have <strong>$100</strong> to spend on your community:</h1>
+    <h1>What would <strong>your</strong> budget look like?</h1>
     <div id="penny_budget_legend"></div>
 
     <div id="penny_budget">
@@ -25,6 +25,8 @@
     {% comment %} Make json data available to external scripts {% endcomment %}
     {{ data | json_script:"json_data" }}
 
+    <!-- Load shared functions -->
+    <script src="{% static 'js/shared.js' %}"></script>
     <!-- Load test D3 visualizations -->
     <script src="{% static 'js/penny_budget.js' %}"></script>
 
