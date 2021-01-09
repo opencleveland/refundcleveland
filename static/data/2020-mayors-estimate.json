@@ -1,140 +1,125 @@
 {
-  "fund_structure": [
-    {
-      "name": "Governmental Funds",
-      "children": [
+    "fund_structure":[
         {
-          "name": "General Fund",
-          "departments": [
-            {
-              "name": "Cleveland City Council",
-              "percentage": 1.18
-            },
-            {
-              "name": "Judicial Branch",
-              "percentage": 6.66
-            },
-            {
-              "name": "General Government",
-              "percentage": 3.8
-            },
-            {
-              "name": "Aging",
-              "percentage": 0.26
-            },
-            {
-              "name": "Human Resources",
-              "percentage": 0.55
-            },
-            {
-              "name": "Law",
-              "percentage": 2.11
-            },
-            {
-              "name": "Finance",
-              "percentage": 3.18
-            },
-            {
-              "name": "Public Health",
-              "percentage": 1.57
-            },
-            {
-              "name": "Public Safety",
-              "percentage": 56.26,
-              "children": [
+            "name": "Governmental Funds",
+            "children":[
                 {
-                  "name": "Director's Office",
-                  "total": 6346486
-                },
-                {
-                  "name": "Police",
-                  "total": 185046132
-                },
-                {
-                  "name": "Fire",
-                  "total": 87882665
-                },
-                {
-                  "name": "Emergency Medical Service",
-                  "total": 25802944
-                },
-                {
-                  "name": "Animal Care and Control",
-                  "total": 1783238
-                },
-                {
-                  "name": "Correction",
-                  "total": 17080814
-                },
-                {
-                  "name": "Office of Professional Standards",
-                  "total": 1180348
-                },
-                {
-                  "name": "Police Review Board",
-                  "total": 91904
-                },
-                {
-                  "name": "Community Police Commission",
-                  "total": 287222
-                },
-                {
-                  "name": "Police Inspector General",
-                  "total": 500
-                },
-                {
-                  "name": "Department of Justice",
-                  "total": 2595457
+                    "name": "Categories",
+                    "departments":[
+                        {
+                            "name": "Environment and Sustainability",
+                            "percentage": 20.0,
+                            "children": [
+                                {
+                                    "name": "Office of Sustainability",
+                                    "total": 1236037
+                                },
+                                {
+                                    "name": "Department of Public Health - Environment",
+                                    "total": 2249473
+                                },
+                                {
+                                    "name": "Department of Public Health - Air Quality",
+                                    "total": 1041242
+                                },
+                                {
+                                    "name": "Recreation",
+                                    "total": 15352030
+                                },
+                                {
+                                    "name": "Parks Maintenance & Properties",
+                                    "total": 17134475
+                                },
+                                {
+                                    "name": "Division of Waste Disposal",
+                                    "total": 31804962
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Fire, EMS, and Animal Control",
+                            "percentage": 20.0,
+                            "children": [
+                                {
+                                    "name": "Fire",
+                                    "total": 96588773
+                                },
+                                {
+                                    "name": "Emergency Medical Service",
+                                    "total": 37790532
+                                },
+                                {
+                                    "name": "Animal Care and Control",
+                                    "total": 3160671
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Health",
+                            "percentage": 20.0,
+                            "children": [
+                                {
+                                    "name": "Department of Aging",
+                                    "total": 1773190
+                                },
+                                {
+                                    "name": "Department of Public Health - Director's Office",
+                                    "total": 2018871
+                                },
+                                {
+                                    "name": "Department of Public Health - Health",
+                                    "total": 5196900
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Infrastructure",
+                            "percentage": 20.0,
+                            "children": [
+                                {
+                                    "name": "Office of Capital Projects",
+                                    "total": 6970241
+                                },
+                                {
+                                    "name": "Division of Public Works Administration",
+                                    "total": 3400495
+                                },
+                                {
+                                    "name": "Department of Public Works - Division of Traffic Engineering",
+                                    "total": 3934048
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Policing and Corrections",
+                            "percentage": 20.0,
+                            "children": [
+                                {
+                                    "name": "Police",
+                                    "total": 217908375
+                                },
+                                {
+                                    "name": "Correction",
+                                    "total": 8374574
+                                },
+                                {
+                                    "name": "Police Review Board",
+                                    "total": 175422
+                                },
+                                {
+                                    "name": "Community Police Commission",
+                                    "total": 2018871
+                                },
+                                {
+                                    "name": "Police Inspector General",
+                                    "total": 2018871
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "name": "Public Works",
-              "percentage": 12.13
-            },
-            {
-              "name": "Building and Housing",
-              "percentage": 2.08
-            },
-            {
-              "name": "Subsidies, Other Administrative",
-              "percentage": 9.59
-            },
-            {
-              "name": "Economic Development and Community Development",
-              "percentage": 0.64
-            }
-          ]
-        },
-        {
-          "name": "Special Revenue Fund"
-        },
-        {
-          "name": "Debt Service Fund"
+            ]
         }
-      ]
-    },
-    {
-      "name": "Proprietary Funds",
-      "children": [
-        {
-          "name": "Mayor Enterprise Funds"
-        },
-        {
-          "name": "Small Enterprise Funds"
-        },
-        {
-          "name": "Internal Service Funds"
-        }
-      ]
-    },
-    {
-      "name": "Fiduciary Funds",
-      "children": [
-        {
-          "name": "Agency Fund"
-        }
-      ]
-    }
-  ]
+        
+    ]
 }
