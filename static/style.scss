@@ -1,6 +1,6 @@
 /* Variables */
 //$c-primary: #ffd634;
-$c-primary: #FCE21B;  // BLM yellow
+$c-primary: #FCE21B; // BLM yellow
 $c-secondary-light: #333;
 $c-secondary-dark: #222;
 
@@ -14,7 +14,7 @@ body {
 }
 
 body.home, body.colored-bg {
- background: $c-primary;
+  background: $c-primary;
 }
 
 body.change-the-budget {
@@ -36,12 +36,12 @@ div#page-wrap {
 }
 
 header#main {
-    padding: 1em 0;
+  padding: 1em 0;
 }
 
 nav#main {
-    display: inline-block;
-    float: right;
+  display: inline-block;
+  float: right;
 }
 
 .site-branding a {
@@ -88,57 +88,57 @@ div#content p {
 
 
 .tooltip {
-    display: none;
+  display: none;
 }
 
 .tooltip.show {
-    display: block;
-    position: absolute;
-    text-align: center;
-    padding: 0.5em 1em;
-    margin-top: -20px;
-    font: 1em sans-serif;
-    background: #ddd;
-    pointer-events: none;
-    border-radius: 5px;
+  display: block;
+  position: absolute;
+  text-align: center;
+  padding: 0.5em 1em;
+  margin-top: -20px;
+  font: 1em sans-serif;
+  background: #ddd;
+  pointer-events: none;
+  border-radius: 5px;
 }
 
 .tooltip .dept_name {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .chart {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    padding-bottom: 200%;
-    vertical-align: top;
-    overflow: hidden;
-    margin: 1em 0;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 200%;
+  vertical-align: top;
+  overflow: hidden;
+  margin: 1em 0;
 }
 
 .svg-content {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 div#penny_budget, div#budget_visualization .bars {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .bar_wrap {
-    display: inline-block;
-    margin-bottom: 2em;
-    width: 47%;
+  display: inline-block;
+  margin-bottom: 2em;
+  width: 47%;
 }
 
 // Make "Other" bar a different color on home page
 div#budget_visualization .bars .bar_wrap:last-child svg rect {
-    fill: rgba(0,0,0,.2);
+  fill: rgba(0, 0, 0, .2);
 }
 
 @media screen and (min-width: 481px) {
@@ -158,8 +158,8 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
 }
 
 #penny_budget ul, #budget_visualization ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #budget_visualization .bar_wrap p, #penny_budget .bar_wrap p {
@@ -171,10 +171,10 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
 }
 
 #penny_budget ul li, #budget_visualization ul li {
-    list-style: none;
-    margin: 0;
-    padding: .5em 0 0;
-    font-size: 16px;
+  list-style: none;
+  margin: 0;
+  padding: .5em 0 0;
+  font-size: 16px;
 }
 
 #budget_visualization .bar_wrap text, #penny_budget .bar_wrap text {
@@ -186,26 +186,27 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
 }
 
 .bar_wrap rect {
-    transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
 }
 
 #penny_budget .bar_wrap rect:hover {
-    cursor: pointer;
-    opacity: .9;
+  cursor: pointer;
+  opacity: .9;
 }
 
 .bar_wrap rect:hover ~ text {
-   fill: #000;
+  fill: #000;
 }
 
 #penny_budget_legend h1 {
-    font-weight: 400;
+  font-weight: 400;
+  margin-bottom: 0;
 }
 
 #penny_budget_legend h1 span {
-    font-weight: 700;
-    font-size: 2em;
-    display: block;
+  font-weight: 700;
+  font-size: 2em;
+  display: block;
 }
 
 #penny_budget_legend h1 span.balanced {
@@ -218,25 +219,25 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
 }
 
 div#penny_budget_legend p {
-    text-align: center;
-    margin: 0 auto 1em;
+  text-align: center;
+  margin: 0 auto 1em;
 }
 
 .penny_budget p em {
-    font-style: normal;
-    text-decoration: underline;
+  font-style: normal;
+  text-decoration: underline;
 }
 
 button {
-    background: none;
-    border: none;
-    font-size: 2em;
-    font-family: 'Roboto';
-    font-weight: 700;
-    text-align: right;
-    width: 100%;
-    padding: 2em 0 2em 2em;
-    outline: none;
+  background: none;
+  border: none;
+  font-size: 2em;
+  font-family: 'Roboto';
+  font-weight: 700;
+  text-align: right;
+  width: 100%;
+  padding: 2em 0 2em 2em;
+  outline: none;
 }
 
 button a {
@@ -250,5 +251,5 @@ button a:hover {
 }
 
 rect.background_bar {
-    fill: rgba(0,0,0,.0);
+  fill: rgba(0, 0, 0, .0);
 }

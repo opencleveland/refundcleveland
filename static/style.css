@@ -190,6 +190,7 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
 
 #penny_budget_legend h1 {
   font-weight: 400;
+  margin-bottom: 0;
 }
 
 #penny_budget_legend h1 span {
