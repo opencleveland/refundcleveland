@@ -18,7 +18,7 @@ function sort_budget_data(data) {
         let category_total = 0;
         for (let j = 0; j < data[i].children.length; j++) {
             // Add each line item to category total
-            category_total = data[i].children[j].total
+            category_total += data[i].children[j].total
         }
 
         // Update overall total
