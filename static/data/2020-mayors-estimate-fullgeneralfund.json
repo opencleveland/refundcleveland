@@ -8,7 +8,6 @@
                     "departments":[
                         {
                             "name": "Environment and Sustainability",
-                            "percentage": 20.0,
                             "children": [
                                 {
                                     "name": "Office of Sustainability",
@@ -30,7 +29,6 @@
                         },
                         {
                             "name": "Community Services",
-                            "percentage": 20.0,
                             "children": [
                                 {
                                     "name": "Fire",
@@ -68,7 +66,6 @@
                         },
                         {
                             "name": "Health",
-                            "percentage": 20.0,
                             "children": [
                                 {
                                     "name": "Department of Public Health - Director's Office",
@@ -82,7 +79,6 @@
                         },
                         {
                             "name": "Infrastructure",
-                            "percentage": 20.0,
                             "children": [
                                 {
                                     "name": "Office of Capital Projects",
@@ -104,7 +100,6 @@
                         },
                         {
                             "name": "Policing and Corrections",
-                            "percentage": 20.0,
                             "children": [
                                 {
                                     "name": "Police",
@@ -130,7 +125,6 @@
                         },
                         {
                             "name": "Other",
-                            "percentage": 0.0,
                             "children": [
                                 {
                                     "name": "Office of the Mayor",
