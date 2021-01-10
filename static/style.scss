@@ -3,6 +3,7 @@
 $c-primary: #FCE21B; // BLM yellow
 $c-secondary-light: #333;
 $c-secondary-dark: #222;
+$max-content-width: 700px;
 
 body {
   margin: 0;
@@ -10,6 +11,10 @@ body {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
+  font-weight: 300;
+}
+
+h1 {
   font-weight: 300;
 }
 
@@ -83,7 +88,7 @@ div#content {
 }
 
 div#content p {
-  max-width: 700px;
+  max-width: $max-content-width
 }
 
 
@@ -199,7 +204,7 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
 }
 
 #penny_budget_legend h1 {
-  font-weight: 400;
+  font-weight: 300;
   margin-bottom: 0;
 }
 
@@ -252,4 +257,52 @@ button a:hover {
 
 rect.background_bar {
   fill: rgba(0, 0, 0, .0);
+}
+
+/* Modal (background) */
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  transition: opacity .3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #efefef;
+  background-color: rgba(255,255,255,.95);
+  border-radius: .5em;
+  margin: 15vh auto;
+  padding: 1em;
+  width: 80%;
+  max-width: $max-content-width;
+}
+
+.modal-content h1 {
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
