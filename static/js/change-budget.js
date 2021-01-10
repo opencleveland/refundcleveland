@@ -1,5 +1,11 @@
 (function() {
-
+    let scrollable = true;
+    
+    // Add event listener to prevent default scrolling behavior in Google Chrome when user should be able to drag bars
+    document.addEventListener("touchstart", function(e) {           if (!scrollable) {
+        e.preventDefault();
+    } }, { passive: false });
+    
     // Retrieve data
     let data = sort_budget_data(retrieve_budget_data());
 
@@ -45,6 +51,9 @@
     // Bars drag event handler
     let max_amount, current_data;
     let drag_bars = d3.drag()
+        .on("start", function(event, d) {
+            scrollable = false;
+        })
         .on("drag", function(event, d) {
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
@@ -56,6 +65,9 @@
 
             update_legend(update_total());
             update_bar_totals();
+        })
+        .on("end", function (event, d) {
+            scrollable = true;  
         });
 
     // Add bars to SVG
