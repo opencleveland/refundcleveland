@@ -105,7 +105,7 @@
                 .html(`<h1>Your surplus: <span class="balanced">${curr_bal}%</span></h1><p>You're balanced!</p>`);
         } else {
             d3.select("#penny_budget_legend")
-                .html(`<h1>Your surplus: <span>${curr_bal}%</span></h1>`);
+                .html(`<h1>Your surplus: <span>${curr_bal}%</span></h1><p>Drag the bars below to disperse funds</p>`);
         }
 
     }
