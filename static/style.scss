@@ -13,8 +13,12 @@ body {
   font-weight: 300;
 }
 
-body.home {
+body.home, body.colored-bg {
  background: $c-primary;
+}
+
+body.change-the-budget {
+  background: #1bfc9f;
 }
 
 div#page-wrap {
@@ -120,7 +124,7 @@ div#content p {
     left: 0;
 }
 
-div#penny_budget, div#budget_visualization {
+div#penny_budget, div#budget_visualization .bars {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -130,6 +134,11 @@ div#penny_budget, div#budget_visualization {
     display: inline-block;
     margin-bottom: 2em;
     width: 47%;
+}
+
+// Make "Other" bar a different color on home page
+div#budget_visualization .bars .bar_wrap:last-child svg rect {
+    fill: rgba(0,0,0,.2);
 }
 
 @media screen and (min-width: 481px) {
@@ -168,14 +177,7 @@ div#penny_budget, div#budget_visualization {
     font-size: 16px;
 }
 
-#penny_budget .bar_wrap text {
-    font-weight: 700;
-    font-size: 1.5em;
-    fill: #999;
-    transition: fill .2s ease-in-out;
-}
-
-#budget_visualization .bar_wrap text {
+#budget_visualization .bar_wrap text, #penny_budget .bar_wrap text {
   font-weight: 700;
   //font-size: 1.5em;
   fill: #000;
@@ -206,13 +208,18 @@ div#penny_budget, div#budget_visualization {
     display: block;
 }
 
-#penny_budget_legend h1 span.empty {
+#penny_budget_legend h1 span.balanced {
   color: #b10222;
 }
 
 #penny_budget_legend {
   border: 2px solid #000;
   text-align: center;
+}
+
+div#penny_budget_legend p {
+    text-align: center;
+    margin: 0 auto 1em;
 }
 
 .penny_budget p em {
@@ -243,5 +250,5 @@ button a:hover {
 }
 
 rect.background_bar {
-    fill: #f9f9f9;
+    fill: rgba(0,0,0,.0);
 }

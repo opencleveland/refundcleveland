@@ -12,7 +12,7 @@ def home(request):
     return render(request, 'home.html', {
         'home': True,
         'data': json_file,
-        'body_classes': 'home'
+        'body_classes': 'home colored-bg'
     })
 
 
@@ -22,12 +22,7 @@ def change_budget(request):
         
     return render(request, 'change-the-budget.html', {
         'change_budget': True,
-        'data': json_file
+        'data': json_file,
+        'body_classes': 'change-the-budget colored-bg'
     })
 
-
-def penny(request):
-    
-    return render(request, 'penny-budget.html', {
-        'penny': True
-    })
