@@ -1,35 +1,48 @@
 // Parse JSON data in Django template
 // https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatefilter-json_script
 function retrieve_budget_data() {
+    // Get data file from Django template
     const json_data = JSON.parse(document.getElementById('json_data').textContent);
-    console.log(json_data);
-    const data = json_data.fund_structure[0].children[0].departments;
-    return data;
+
+    // Return the relevant portion of the JSON file
+    return json_data.fund_structure[0].children[0].departments;
 }
 
 function sort_budget_data(data) {
-    var toReturn = [...data];
-    var totalFunds = 0;
-    for (var i=0; i < data.length; i++) {
-        var categoryTotal = 0;
-        for (var j=0; j < data[i].children.length; j++) {
-            totalFunds += data[i].children[j].total;
-            categoryTotal += data[i].children[j].total;
+    let sorted_data = [...data];
+    let total_funds = 0;
+
+    // Calculate the dollar amount for each category
+    // as well as the overall total
+    for (let i = 0; i < data.length; i++) {
+        let category_total = 0;
+        for (let j = 0; j < data[i].children.length; j++) {
+            // Add each line item to category total
+            category_total = data[i].children[j].total
         }
-        toReturn[i].fundTotal = categoryTotal;
+
+        // Update overall total
+        total_funds += category_total;
+
+        // Add final category total to data object
+        sorted_data[i].fund_total = category_total;
     }
-    for (var i=0; i<data.length; i++) {
-        toReturn[i].percentage = (toReturn[i].fundTotal / totalFunds) * 100;
-        toReturn[i].percentage = toReturn[i].percentage.toFixed(2);
+
+    // Calculate percentage for each category
+    // and add to the data object
+    for (let i = 0; i < data.length; i++) {
+        sorted_data[i].percentage = ((sorted_data[i].fund_total / total_funds) * 100).toFixed(2);
     }
-    toReturn.sort((a, b) => b.percentage - a.percentage);
+
+    // Sort the data by category percentage
+    sorted_data.sort((a, b) => b.percentage - a.percentage);
     
-    for (var i=0; i<toReturn.length; i++) {
-        if (toReturn[i].name === "Other") {
-            var other = toReturn.splice(i, 1)[0];
-            toReturn.push(other);
+    for (let i = 0; i < sorted_data.length; i++) {
+        if (sorted_data[i].name === "Other") {
+            let other = sorted_data.splice(i, 1)[0];
+            sorted_data.push(other);
             break;
         }
     }
-    return toReturn;
+    return sorted_data;
 }
