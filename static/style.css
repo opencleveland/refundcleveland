@@ -85,6 +85,15 @@ div#content p {
   max-width: 700px;
 }
 
+div#content a, div#content a:visited {
+  color: inherit;
+  font-weight: 700;
+}
+
+div#content a:hover {
+  text-decoration: none;
+}
+
 .tooltip {
   display: none;
 }
@@ -248,7 +257,6 @@ rect.background_bar {
   fill: rgba(0, 0, 0, 0);
 }
 
-/* Modal (background) */
 .modal {
   display: block;
   position: fixed;
@@ -261,10 +269,9 @@ rect.background_bar {
   height: 100%;
   overflow: auto;
   background-color: black;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #efefef;
   background-color: rgba(255, 255, 255, 0.95);
@@ -273,6 +280,8 @@ rect.background_bar {
   padding: 1em;
   width: 80%;
   max-width: 700px;
+  font-size: 1.25em;
+  font-weight: 700;
 }
 
 .modal-content h1 {
@@ -281,17 +290,24 @@ rect.background_bar {
   font-weight: 700;
 }
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+div#content .modal-content a, div#content :window-inactive.modal-content a:visited {
+  color: #ababab;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
+div#content .modal-content a:hover {
+  color: #000;
+}
+
+.modal-content .close {
+  color: #000;
+  float: right;
+  font-size: 2em;
+  line-height: 1;
+}
+
+.modal-content .close:hover,
+.modal-content .close:focus {
+  color: #000;
   text-decoration: none;
   cursor: pointer;
 }
