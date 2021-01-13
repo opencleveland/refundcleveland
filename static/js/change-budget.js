@@ -7,7 +7,8 @@
     let categories = data.children;
 
     // Remove "Other" category from data object
-    categories.pop();
+    let other_category = categories.pop();
+    data.total -= other_category.total;
 
     // Init all category totals and percentages to 0
     categories.forEach(function (category) {
@@ -126,9 +127,6 @@
             d3.select("#penny_budget_legend")
                 .html(`<h1>Your surplus: <span>${curr_bal}%</span></h1><p>Drag the bars below to disperse funds</p>`);
         }
-
-        console.log(data);
-
     }
 
     // Update text for bar totals
