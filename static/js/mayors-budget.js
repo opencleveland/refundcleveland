@@ -1,7 +1,11 @@
 (function() {
-    let data = sort_budget_data(retrieve_budget_data());
-    console.log(data);
-    
+
+    // Retrieve data
+    let data = retrieve_budget_data();
+    data = sum_category_totals(data);
+    data = sort_desc_by_percentage(data);
+    let categories = data.children;
+
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 2,  // bar height when data is 0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
@@ -12,7 +16,7 @@
 
     // Select all .bar_wrap divs
     let bar_divs = container_div.append("div").attr("class", "bars").selectAll("svg")
-        .data(data)
+        .data(categories)
         .enter()
         .append("div")
         .attr("class", "bar_wrap");
@@ -54,7 +58,7 @@
         .duration(1500)
         .ease(d3.easeCubicOut);
 
-    // Add placeholder programs below each bar
+    // Display line items below each bar
     bar_divs.append("div")
         .html( function(d) {
             content = "";
@@ -69,10 +73,7 @@
                 })
                 content += "</ul>";
             }
-            // otherwise add placeholders
-            else {
-                content += `<ul><li>Add sub-depts to JSON</li></ul>`;
-            }
+
             return content;
         })
         .attr("y", height + margin.bottom);

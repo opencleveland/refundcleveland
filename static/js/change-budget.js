@@ -1,23 +1,19 @@
-(function() {
-    let scrollable = true;
-    
-    // Add event listener to prevent default scrolling behavior in Google Chrome when user should be able to drag bars
-    document.addEventListener("touchstart", function(e) {           if (!scrollable) {
-        e.preventDefault();
-    } }, { passive: false });
-    
+(function () {
+
     // Retrieve data
-    let data = sort_budget_data(retrieve_budget_data());
+    let data = retrieve_budget_data();
+    data = sum_category_totals(data);
+    data = sort_desc_by_percentage(data);
+    let categories = data.children;
 
     // Remove "Other" category from data object
-    data.pop();
+    categories.pop();
 
-    // Set all category percentages to 0%
-    data.forEach(function(data) {
-        data.percentage = 0;
-    })
-
-    console.log(data);
+    // Init all category totals and percentages to 0
+    categories.forEach(function (category) {
+        category.percentage = 0;
+        category.total = 0;
+    });
 
     const MULTIPLIER = 2.5,  // add height to bars
         SHIFT = 50,  // bar height when data is $0
@@ -29,7 +25,7 @@
 
     // Select all .bar_wrap divs
     let bar_divs = container_div.selectAll("svg")
-        .data(data)
+        .data(categories)
         .enter()
         .append("div")
         .attr("class", "bar_wrap");
@@ -48,26 +44,37 @@
         .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
         .attr("x", 0);
 
+    // Prevent default scrolling behavior in Google Chrome
+    // when user should be able to drag bars
+    let scrollable = true;
+    document.addEventListener("touchstart", function (e) {
+        if (!scrollable) {
+            e.preventDefault();
+        }
+    }, {passive: false});
+
     // Bars drag event handler
-    let max_amount, current_data;
+    let max_amount;
     let drag_bars = d3.drag()
-        .on("start", function(event, d) {
+        .on("start", function (event, d) {
             scrollable = false;
         })
-        .on("drag", function(event, d) {
+        .on("drag", function (event, d) {
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
-            current_data = d.percentage;
 
-            d.percentage = Math.round(Math.max(0, Math.min((height/MULTIPLIER), (height - event.y) / MULTIPLIER, current_data + max_amount)));
-            d3.select(this).attr("height", d => (d.percentage * MULTIPLIER) + SHIFT);
-            d3.select(this).attr("y", height - (d.percentage * MULTIPLIER) - SHIFT);
+            d.percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.percentage + max_amount));
+            d3.select(this).attr("height", d => (Math.round(d.percentage) * MULTIPLIER) + SHIFT);
+            d3.select(this).attr("y", height - (Math.round(d.percentage) * MULTIPLIER) - SHIFT);
 
-            update_legend(update_total());
+            // Update current category dollar amount
+            d.total = d.percentage / 100 * data.total;
+
+            update_legend(Math.round(update_total()));
             update_bar_totals();
         })
         .on("end", function (event, d) {
-            scrollable = true;  
+            scrollable = true;
         });
 
     // Add bars to SVG
@@ -101,16 +108,16 @@
         .ease(d3.easeCubicOut);
 
     // Get the current total of all programs
-    let update_total = function() {
+    let update_total = function () {
         let newTotal = 0;
-        for (let i = 0; i < data.length; i++) {
-            newTotal += data[i].percentage;
+        for (let i = 0; i < categories.length; i++) {
+            newTotal += categories[i].percentage;
         }
         return newTotal;
     }
 
     // Update the legend HTML
-    let update_legend = function(balance) {
+    let update_legend = function (balance) {
         let curr_bal = 100 - balance;
         if (curr_bal === 0) {
             d3.select("#penny_budget_legend")
@@ -120,11 +127,16 @@
                 .html(`<h1>Your surplus: <span>${curr_bal}%</span></h1><p>Drag the bars below to disperse funds</p>`);
         }
 
+        console.log(data);
+
     }
 
-    let update_bar_totals = function() {
+    // Update text for bar totals
+    let update_bar_totals = function () {
         bar_totals.attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
-            .html(d => d.percentage + "%");
+            .html(function(d) {
+                return Math.round(d.percentage) + "% = $" + add_commas(Math.round(d.total));
+            });
     }
 
     // Get total and update legend on load
@@ -133,14 +145,14 @@
 
     // Add placeholder programs below each bar
     bar_divs.append("div")
-        .html( function(d) {
+        .html(function (d) {
             content = "";
             content += `<p>${d.name}</p>`;
 
             // Add real programs if they exist in the data set
             if (d.children) {
                 content += "<ul>";
-                d.children.forEach(function(children) {
+                d.children.forEach(function (children) {
                     content += `<li>${children.name}</li>`;
 
                 })
@@ -151,7 +163,7 @@
         .attr("y", height + margin.bottom);
 
     container_div.append("button")
-        .html( "Submit your budget &#8594;" );
+        .html("Submit your budget &#8594;");
 
 })();
 
