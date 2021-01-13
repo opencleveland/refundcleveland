@@ -1,9 +1,20 @@
 (function() {
 
-    // Retrieve data
+    // Retrieve and format data
     let data = retrieve_budget_data();
     data = sum_category_totals(data);
+    data = add_percentage_to_categories(data);
     data = sort_desc_by_percentage(data);
+
+    // Move "Other" category to the end
+    data.children.forEach(function (category, i) {
+        if (category.name == "Other") {
+            let other_category = data.children[i];
+            data.children.splice(i, 1);
+            data.children.push(other_category)
+        }
+    });
+
     let categories = data.children;
 
     const MULTIPLIER = 2,  // add height to bars

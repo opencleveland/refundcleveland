@@ -1,19 +1,40 @@
 (function () {
 
-    // Retrieve data
+    // Retrieve and format data
     let data = retrieve_budget_data();
     data = sum_category_totals(data);
-    data = sort_desc_by_percentage(data);
-    let categories = data.children;
 
     // Remove "Other" category from data object
-    let other_category = categories.pop();
+    let other_category;
+    data.children.forEach(function (category, i) {
+        if (category.name === "Other") {
+            other_category = data.children[i];
+            data.children.splice(i, 1);
+        }
+    });
+
+    data.full_total = data.total;
     data.total -= other_category.total;
 
-    // Init all category totals and percentages to 0
+    // Calculate category percentage data
+    // and sort to match order of home page.
+    data = add_percentage_to_categories(data);
+    data = sort_desc_by_percentage(data);
+
+    // Clear category totals and percentage data
+    // for the user
+    let categories = data.children;
     categories.forEach(function (category) {
         category.percentage = 0;
         category.total = 0;
+    });
+
+    // Placeholder info explaining what data
+    // the user is manipulating
+    d3.select("#header-info").append("div")
+        .attr("class", "surplus-explanation")
+        .html(function() {
+        return `<div class="equation">$${add_commas(data.full_total)} <span>Full General Fund</span></div> <div class="equation">- $${add_commas(other_category.total)} <span>Other category</span></div> <div class="equation">= $${add_commas(data.total)} <span>Your budget surplus</span></div>`;
     });
 
     const MULTIPLIER = 2.5,  // add height to bars
