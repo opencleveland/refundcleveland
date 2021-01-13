@@ -28,26 +28,17 @@ function sum_category_totals(data) {
     return data;
 }
 
-// Sort categories in descending order by percentage
-function sort_desc_by_percentage(data) {
-
-    // Add percentage data to JSON object
+// Add percentage data to child categories
+function add_percentage_to_categories(data) {
     data.children.forEach(function (category) {
         category.percentage = (category.total / data.total * 100).toFixed(2)
-    })
-
-    // Sort the categories by percentage
-    data.children.sort((a, b) => b.percentage - a.percentage);
-
-    // Move "Other" category to the end
-    data.children.forEach(function (category, i) {
-        if (category.name == "Other") {
-            let other_category = data.children[i];
-            data.children.splice(i, 1);
-            data.children.push(other_category)
-        }
     });
+    return data;
+}
 
+// Sort child categories in descending order by percentage
+function sort_desc_by_percentage(data) {
+    data.children.sort((a, b) => b.percentage - a.percentage);
     return data;
 }
 

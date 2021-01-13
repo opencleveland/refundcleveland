@@ -312,4 +312,13 @@ div#content .modal-content a:hover {
   cursor: pointer;
 }
 
+.surplus-explanation {
+  margin-bottom: 1em;
+}
+
+.surplus-explanation .equation span {
+  margin-left: 0.5em;
+  font-style: italic;
+}
+
 /*# sourceMappingURL=style.css.map */
