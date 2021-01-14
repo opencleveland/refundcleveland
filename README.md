@@ -3,19 +3,22 @@
 a website for residents to City of Cleveland change their Budget to show what they want the city to value and 
 share their proposed budget with their elected councilperson in city government.
 
-This is in the early stages and more information is at:
+There's more information at:
 https://docs.google.com/document/u/1/d/1gloF8vosBnLmgS8yu1wF3Hk_tpYM5xMA89m-NEn3wgo/edit
 
 We have a [Miro Board](https://miro.com/app/board/o9J_kj4DePU=/) to sketch out a wireframe. 
 
-You can view this project by building it.
+You can view our project, live, at https://refundcleveland.com
 
 ### Errors / Bugs:
 
 If something is not behaving as you expected, it could be a bug, or if you have an idea, it can be reported in our issue tracker at https://github.com/opencleveland/refundcleveland
 
 ## How to become involved: 
-Join our slack channel; #refundcleveland ; to join our slack complete https://opencle-slack.herokuapp.com/
+
+Join our slack channel - #refundcleveland. Complete self-sign up link https://opencle-slack.herokuapp.com/ to join our slack instance. 
+
+Most of our features, issues, and discussion is coordinated through our slack channel.
 
 We also meet weekly at 7:30 PM (Eastern Standard Time) on a Zoom call on Mondays (Details in the slack channel)
 
@@ -47,10 +50,11 @@ python3 manage.py runserver
 Navigate to http://localhost:8000/
 
 ### Running in a production environment
-
+This is currently done through heroku.
 
 ### Dependencies
-We used the following open source tools:
+We used the following open source libraries/tools:
+d3, django, python3
 
 ### Note on Patches/Pull Requests 
 * Fork the project.
