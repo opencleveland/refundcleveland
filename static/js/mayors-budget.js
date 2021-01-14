@@ -17,10 +17,18 @@
 
     let categories = data.children;
 
+    // Placeholder info explaining the simplified budget
+    d3.select("#header-info").append("div")
+        .attr("class", "surplus-explanation")
+        .html(function() {
+            return `<p>Refund Cleveland put together a simplified view of the $${add_commas(data.total)} general fund proposal. Check it out below and then <a href="/change-the-budget">share your feedback.</a></p>`
+        });
+
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 2,  // bar height when data is 0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
-        height = 200 - margin.top - margin.bottom + SHIFT;
+        height = 200 - margin.top - margin.bottom + SHIFT,
+        colors = get_bar_colors();
 
     // Select container div
     let container_div = d3.select("#budget_visualization");
@@ -45,8 +53,7 @@
         .attr("height", d => (100 * MULTIPLIER) + SHIFT)
         .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
         .attr("x", 0)
-        // .attr("fill", (d, i) => colors[30 + (i * 15) % colors.length])
-        .attr("fill", "#000");
+        .attr("fill", (d, i) => colors[i % colors.length]);
 
     // Animate in bars on load
     bars.transition()

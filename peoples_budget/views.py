@@ -23,6 +23,6 @@ def change_budget(request):
     return render(request, 'change-the-budget.html', {
         'change_budget': True,
         'data': json_file,
-        'body_classes': 'change-the-budget colored-bg'
+        'body_classes': 'change-the-budget'
     })
 

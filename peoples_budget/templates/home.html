@@ -3,14 +3,16 @@
 
 {% block content %}
 
-    <h1>Mayor Jackson's 2020 General Fund Proposal</h1>
+   <div id="header-info">
+       <h1>Mayor Jackson's 2021 General Fund Proposal</h1>
+    </div>
 
     <div id="budget_visualization"></div>
 
     <!-- Modal content-->
-    <div id="about-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
+{#    <div id="about-modal" class="modal">#}
+{#        <div class="modal-content">#}
+{#            <span class="close">&times;</span>#}
             <p>The residents of Cleveland have no public input into their city's budget. There are no budget town halls,
                 no public comment sessions, no way for the residents of Cleveland to discuss with their leaders what the
                 spending priorities should be in their community.</p>
@@ -20,34 +22,34 @@
             <p>Refund Cleveland is a collaborative and community-led effort to design a city budget that centers around
                 the values, needs, and priorities of our community. We want to thank <a href="https://www.opencleveland.org/">Open Cleveland</a> and all of their
                 volunteers for their help and guidance in bringing this project to life.</p>
-        </div>
-    </div>
+{#        </div>#}
+{#    </div>#}
 
 
 {% endblock content %}
 
 {% block footer_scripts %}
-    <!-- Modal -->
-    <script>
-        (function () {
-            // Fade in the modal
-            let modal = document.getElementById("about-modal");
-            modal.style.opacity = 1;
-
-            // Close the modal on close button click
-            let span = document.getElementsByClassName("close")[0];
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // Close the modal on a click outside of the modal
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        })();
-    </script>
+{#    <!-- Modal -->#}
+{#    <script>#}
+{#        (function () {#}
+{#            // Fade in the modal#}
+{#            let modal = document.getElementById("about-modal");#}
+{#            modal.style.opacity = 1;#}
+{##}
+{#            // Close the modal on close button click#}
+{#            let span = document.getElementsByClassName("close")[0];#}
+{#            span.onclick = function () {#}
+{#                modal.style.display = "none";#}
+{#            }#}
+{##}
+{#            // Close the modal on a click outside of the modal#}
+{#            window.onclick = function (event) {#}
+{#                if (event.target == modal) {#}
+{#                    modal.style.display = "none";#}
+{#                }#}
+{#            }#}
+{#        })();#}
+{#    </script>#}
 
     <!-- Load D3.js -->
     <script src="https://d3js.org/d3.v6.min.js"></script>

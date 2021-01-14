@@ -34,13 +34,14 @@
     d3.select("#header-info").append("div")
         .attr("class", "surplus-explanation")
         .html(function() {
-        return `<div class="equation">$${add_commas(data.full_total)} <span>Full General Fund</span></div> <div class="equation">- $${add_commas(other_category.total)} <span>Other category</span></div> <div class="equation">= $${add_commas(data.total)} <span>Your budget surplus</span></div>`;
-    });
+            return `<p>Refund Cleveland is collecting public feedback about how $${add_commas(data.total)} should be dispersed between the categories below (the full $${add_commas(data.full_total)} general fund minus the $${add_commas(other_category.total)} "Other" category in our <a href="/">simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
+        });
 
     const MULTIPLIER = 2.5,  // add height to bars
         SHIFT = 50,  // bar height when data is $0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
-        height = 300 - margin.top - margin.bottom + SHIFT;
+        height = 300 - margin.top - margin.bottom + SHIFT,
+        colors = get_bar_colors();
 
     // Select container div
     let container_div = d3.select("#penny_budget");
@@ -106,7 +107,7 @@
         .attr("height", d => (100 * MULTIPLIER) + SHIFT)
         .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
         .attr("x", 0)
-        // .attr("fill", (d, i) => colors[30 + (i * 15) % colors.length])
+        .attr("fill", (d, i) => colors[i % colors.length])
         .call(drag_bars);
 
     // Animate in bars on load
@@ -143,10 +144,10 @@
         let curr_bal = 100 - balance;
         if (curr_bal === 0) {
             d3.select("#penny_budget_legend")
-                .html(`<h1>Your surplus: <span class="balanced">${curr_bal}%</span></h1><p>You're balanced!</p>`);
+                .html(`<div class="balanced"><h2>Your surplus: <span class="balanced">${curr_bal}%</span></h2><p>You're balanced!</p></div>`);
         } else {
             d3.select("#penny_budget_legend")
-                .html(`<h1>Your surplus: <span>${curr_bal}%</span></h1><p>Drag the bars below to disperse funds</p>`);
+                .html(`<div><h2>Your surplus: <span>${curr_bal}%</span></h2><p>Drag the bars below to disperse funds</p></div>`);
         }
     }
 
