@@ -46,3 +46,8 @@ function sort_desc_by_percentage(data) {
 function add_commas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+// Returns array of bar colors
+function get_bar_colors() {
+    return ["#349479", "#FC7045", "#4D2B7F", "#B42B5C", "#771247", "#666666"];
+}

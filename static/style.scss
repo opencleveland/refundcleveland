@@ -19,11 +19,7 @@ h1 {
 }
 
 body.home, body.colored-bg {
-  background: $c-primary;
-}
-
-body.change-the-budget {
-  background: #1bfc9f;
+  background: #fccc1b;
 }
 
 div#page-wrap {
@@ -211,24 +207,25 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
   fill: #000;
 }
 
-#penny_budget_legend h1 {
+#penny_budget_legend h2 {
   font-weight: 300;
   margin-bottom: 0;
 }
 
-#penny_budget_legend h1 span {
+#penny_budget_legend h2 span {
   font-weight: 700;
   font-size: 2em;
   display: block;
 }
 
-#penny_budget_legend h1 span.balanced {
-  color: #b10222;
-}
-
-#penny_budget_legend {
+#penny_budget_legend > div {
   border: 2px solid #000;
   text-align: center;
+  padding: .5em 0;
+}
+#penny_budget_legend > div.balanced {
+  background: #fccc1b;
+  border: 2px solid #fccc1b;
 }
 
 div#penny_budget_legend p {
