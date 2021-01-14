@@ -1,41 +1,60 @@
 {% load static %}
 <!DOCTYPE HTML>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Refund Cleveland</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Cleveland</title>
 
-        <!-- Stylesheets -->
-        <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="all">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="all">
 
-        <!-- Google fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
-    </head>
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap"
+          rel="stylesheet">
+</head>
 
-    <body class="{{ body_classes }}">
-        <div id="page-wrap">
-            <header id="main">
-                <div class="site-branding">
-                    <a href="/">Refund Cleveland</a>
-                </div>
-                <nav id="main">
-                   <ul>
-                       <li class="{% if home %}active{% endif %}"><a href="/">Home</a></li>
-                       <li class="{% if change_budget %}active{% endif %}"><a href="/change-the-budget">Change the budget</a></li>
-                   </ul>
-                </nav>
-            </header>
+<body class="{{ body_classes }}">
 
-            <div id="content">
-                {% block content %}
-                {% endblock content %}
+<div id="page-wrap">
+    <header id="masthead">
+            <div class="site-branding">
+                <a href="/">Refund Cleveland</a>
             </div>
+            <nav id="main_nav">
+                <ul>
+                    <li class="{% if home %}active{% endif %}"><a href="/">Home</a></li>
+                    <li class="{% if change_budget %}active{% endif %}"><a href="/change-the-budget">Change the
+                        budget</a></li>
+                </ul>
+            </nav>
 
-            <footer>
-                {% block footer_scripts %}
-                {% endblock footer_scripts %}
-            </footer>
-        </div> <!-- end #page-wrap -->
-    </body>
+            <button id="masthead__button">
+                <div id="masthead__button__wrap">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+
+        <ul id="mobile_menu">
+            <li class="{% if home %}active{% endif %}"><a href="/">Home</a></li>
+            <li class="{% if change_budget %}active{% endif %}"><a href="/change-the-budget">Change the
+                budget</a></li>
+        </ul>
+    </header>
+
+    <div id="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <footer>
+        <script src="{% static 'js/nav.js' %}"></script>
+
+        {% block footer_scripts %}
+        {% endblock footer_scripts %}
+    </footer>
+</div> <!-- end #page-wrap -->
+</body>
 </html>

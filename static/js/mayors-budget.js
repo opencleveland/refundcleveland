@@ -21,7 +21,7 @@
     d3.select("#header-info").append("div")
         .attr("class", "surplus-explanation")
         .html(function() {
-            return `<p>Refund Cleveland put together a simplified view of the $${add_commas(data.total)} general fund proposal. Check it out below and then <a href="/change-the-budget">share your feedback.</a></p>`
+            return `<p>Refund Cleveland put together a simplified view of the <strong>$${add_commas(data.total)}</strong> general fund proposal. Check it out below and then <a href="/change-the-budget">share your feedback.</a></p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars
@@ -97,6 +97,7 @@
         .attr("y", height + margin.bottom);
 
     container_div.append("button")
+        .attr("class", "next")
         .html("<a href=\"/change-the-budget\">Change the budget &#8594;</a>" );
 
 })();

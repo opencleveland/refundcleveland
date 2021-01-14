@@ -4,6 +4,7 @@ $c-primary: #FCE21B; // BLM yellow
 $c-secondary-light: #333;
 $c-secondary-dark: #222;
 $max-content-width: 700px;
+$breakpoint1: 781px;
 
 body {
   margin: 0;
@@ -36,12 +37,8 @@ div#page-wrap {
   font-weight: 700;
 }
 
-header#main {
-  padding: 1em 0;
-}
-
-nav#main {
-  display: inline-block;
+nav#main_nav {
+  display: none;
   float: right;
 }
 
@@ -54,28 +51,28 @@ nav#main {
   opacity: .9;
 }
 
-nav#main ul {
+nav#main_nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
   text-align: right;
 }
 
-nav#main ul li {
+nav#main_nav ul li {
   display: inline-block;
 }
 
-nav#main ul li a {
+nav#main_nav ul li a {
   text-decoration: none;
   color: #000;
   padding: .5em;
 }
 
-nav#main ul li.active a {
+nav#main_nav ul li.active a, #mobile_menu li.active a {
   font-weight: 700;
 }
 
-nav#main ul li a:hover {
+nav#main_nav ul li a:hover {
   text-decoration: underline;
 }
 
@@ -223,9 +220,9 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
   text-align: center;
   padding: .5em 0;
 }
+
 #penny_budget_legend > div.balanced {
   background: #fccc1b;
-  border: 2px solid #fccc1b;
 }
 
 div#penny_budget_legend p {
@@ -238,7 +235,7 @@ div#penny_budget_legend p {
   text-decoration: underline;
 }
 
-button {
+button.next {
   background: none;
   border: none;
   font-size: 2em;
@@ -250,12 +247,12 @@ button {
   outline: none;
 }
 
-button a {
+button.next a {
   text-decoration: none;
   color: inherit;
 }
 
-button a:hover {
+button.next a:hover {
   opacity: .6;
   cursor: pointer;
 }
@@ -276,13 +273,13 @@ rect.background_bar {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,.1);
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, .1);
 }
 
 .modal-content {
   background-color: #efefef;
-  background-color: rgba(255,255,255,.95);
+  background-color: rgba(255, 255, 255, .95);
   border-radius: .5em;
   margin: 15vh auto;
   padding: 1em;
@@ -307,10 +304,10 @@ div#content .modal-content a:hover {
 }
 
 .modal-content .close {
-    color: #000;
-    float: right;
-    font-size: 2em;
-    line-height: 1;
+  color: #000;
+  float: right;
+  font-size: 2em;
+  line-height: 1;
 }
 
 .modal-content .close:hover,
@@ -327,4 +324,153 @@ div#content .modal-content a:hover {
 .surplus-explanation .equation span {
   margin-left: .5em;
   font-style: italic;
+}
+
+
+// Mobile menu
+$defaultTransition: all .25s cubic-bezier(0.2, 0, .5, 1.0);
+
+body {
+  min-height: 200vh; /* `fixed` style added to header on scroll */
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+header#masthead {
+  width: 100%;
+  -webkit-transition: $defaultTransition;
+  -o-transition: $defaultTransition;
+  transition: $defaultTransition;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#masthead.fixed {
+  background: rgba(0, 0, 0, .7);
+  color: #fff;
+}
+
+#masthead.fixed a {
+  color: #fff;
+}
+
+#mobile_menu {
+  width: 100%;
+  -webkit-transition: $defaultTransition;
+  -o-transition: $defaultTransition;
+  transition: $defaultTransition;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+}
+
+#mobile_menu li a {
+  text-decoration: none;
+  color: #000;
+  padding: .5em 0;
+  display: block;
+  cursor: pointer;
+  -webkit-transition: $defaultTransition;
+  -o-transition: $defaultTransition;
+  transition: $defaultTransition;
+}
+
+#mobile_menu li:first-child a {
+  padding-top: 1em;
+}
+
+#mobile_menu li:last-child a {
+  padding-bottom: 1em;
+}
+
+#mobile_menu a:hover {
+  opacity: .8;
+  background: rgba(0, 0, 0, .1);
+}
+
+#masthead.collapsed #mobile_menu {
+  opacity: 0;
+  height: 0px;
+}
+
+#masthead.expanded #mobile_menu {
+  opacity: 1;
+}
+
+#masthead__button {
+  background: none;
+  border: none;
+  float: right;
+  -webkit-transition: $defaultTransition;
+  -o-transition: $defaultTransition;
+  transition: $defaultTransition;
+}
+
+#masthead__button:focus {
+  outline: none;
+}
+
+#masthead__button:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+#masthead__button span {
+  display: block;
+  width: 2em;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  -webkit-transform-origin: 0 50%;
+  -ms-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  background: #000;
+  z-index: 1;
+  -webkit-transition: $defaultTransition;
+  -o-transition: $defaultTransition;
+  transition: $defaultTransition;
+}
+
+#masthead.expanded #masthead__button span:first-child {
+  -webkit-transform-origin: 0 0%;
+  -ms-transform-origin: 0 0%;
+  transform-origin: 0 0%;
+  -webkit-transform: rotate(45deg) translate(0, 0em);
+  -ms-transform: rotate(45deg) translate(0, 0em);
+  transform: rotate(45deg) translate(0, 0em);
+}
+
+#masthead.expanded #masthead__button span:last-child {
+  -webkit-transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: rotate(-45deg) translate(0, 0em);
+  -ms-transform: rotate(-45deg) translate(0, 0em);
+  transform: rotate(-45deg) translate(0, 0em);
+}
+
+#masthead.expanded #masthead__button span:nth-child(2) {
+  opacity: 0;
+}
+
+#masthead.fixed #masthead__button span {
+  background: #fff;
+}
+
+@media screen and (min-width: $breakpoint1) {
+
+  #masthead__button {
+    opacity: 0;
+    display: none;
+  }
+
+  nav#main_nav {
+    display: inline-block;
+  }
+
+  #mobile_menu {
+    display: none;
+  }
 }
