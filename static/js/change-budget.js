@@ -34,7 +34,7 @@
     d3.select("#header-info").append("div")
         .attr("class", "surplus-explanation")
         .html(function() {
-            return `<p>Refund Cleveland is collecting public feedback about how $${add_commas(data.total)} should be dispersed between the categories below (the full $${add_commas(data.full_total)} general fund minus the $${add_commas(other_category.total)} "Other" category in our <a href="/">simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
+            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)} general fund</strong> minus the <strong>$${add_commas(other_category.total)} "Other" category</strong> in our <a href="/">simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2.5,  // add height to bars
@@ -183,6 +183,7 @@
         .attr("y", height + margin.bottom);
 
     container_div.append("button")
+        .attr("class", "next")
         .html("Submit your budget &#8594;");
 
 })();
