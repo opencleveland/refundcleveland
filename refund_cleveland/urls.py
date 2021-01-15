@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('change-the-budget/', views.change_budget, name='change_budget'),
     path('submit/', views.submit_budget, name='submit_budget'),
+    path('store-data/', views.store_data, name='store_data')
 ]

@@ -268,8 +268,14 @@ div#content button.next a:hover, #submit_btn:hover {
   cursor: pointer;
 }
 
+// Add background to button when budget is balanced
+.change-the-budget #submit_btn {
+  background: #ddd;
+}
+
 #submit_btn:disabled, #submit_btn[disabled] {
   cursor: not-allowed;
+  background: none;
 }
 
 ul.errorlist.nonfield {

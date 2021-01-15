@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>Submitted data:</h1>
+
+    <ul>
+        <li>Email:</li>
+        <ul>
+            <li>{{ email }}</li>
+        </ul>
+        <li>Address:</li>
+        <ul>
+            <li>{{ address }}</li>
+        </ul>
+        <li>Budget data</li>
+        <ul>
+            <li>
+                <pre>{{ budget | pprint }}</pre>
+            </li>
+        </ul>
+    </ul>
+
+{% endblock content %}
+
+{% block footer_scripts %}
+
+{% endblock footer_scripts %}
