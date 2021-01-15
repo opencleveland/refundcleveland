@@ -3,8 +3,8 @@
 a website for residents to City of Cleveland change their Budget to show what they want the city to value and 
 share their proposed budget with their elected councilperson in city government.
 
-There's more information at:
-https://docs.google.com/document/u/1/d/1gloF8vosBnLmgS8yu1wF3Hk_tpYM5xMA89m-NEn3wgo/edit
+Project outline is at: 
+https://docs.google.com/document/d/1ydc5Bw0Ctp8LJFEWECu9f9wMeUfM-FKlhTROik0QJiY/edit
 
 We have a [Miro Board](https://miro.com/app/board/o9J_kj4DePU=/) to sketch out a wireframe. 
 
