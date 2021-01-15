@@ -11,6 +11,13 @@
             other_category = data.children[i];
             data.children.splice(i, 1);
         }
+        else {
+            // Optional: Remove line item totals
+            // since they are no longer needed
+            data.children[i].children.forEach(function(line_item) {
+                delete line_item.total;
+            });
+        }
     });
 
     data.full_total = data.total;
@@ -33,7 +40,7 @@
     // the user is manipulating
     d3.select("#header-info").append("div")
         .html(function() {
-            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> General Fund minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
+            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> General Fund minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2.5,  // add height to bars
