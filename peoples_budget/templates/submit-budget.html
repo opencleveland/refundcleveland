@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block content %}
-    <!-- TODO: add form to collect email and address -->
 
-    <!-- Get user's budget data -->
-    {{ json_data }}
+    <form id="submit_form" action="/store-data/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit your budget &#8594;" id="submit_btn">
+    </form>
 
 {% endblock content %}
 

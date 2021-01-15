@@ -148,7 +148,7 @@
 
             // Update legend and add balanced class
             d3.select("#change_budget_legend")
-                .html(`<div class="balanced"><h2>Your surplus: <span class="balanced">${curr_bal}%</span></h2><p>You're balanced!</p></div>`);
+                .html(`<div class="balanced"><h2>Your surplus: <span class="balanced">${curr_bal}%</span></h2><p>You're balanced! Click the button to submit</p></div>`);
 
         } else {
             // Disable Submit button
