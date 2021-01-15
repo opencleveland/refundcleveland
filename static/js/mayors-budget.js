@@ -20,7 +20,7 @@
     // Placeholder info explaining the simplified budget
     d3.select("#header-info").append("div")
         .html(function() {
-            return `<p>Refund Cleveland put together a simplified view of the <strong>$${add_commas(data.total)}</strong> general fund proposal. Check it out below and then <a href="/change-the-budget">share your feedback.</a></p>`
+            return `<p>Refund Cleveland created a simplified view of the mayor's <strong>$${add_commas(data.total)}</strong> general fund proposal. View it below and then <a href="/change-the-budget">change the budget to match your priorities &raquo;</a>.</p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars
