@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('change-the-budget/', views.change_budget, name='change_budget'),
+    path('submit/', views.submit_budget, name='submit_budget'),
 ]

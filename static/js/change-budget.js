@@ -32,9 +32,8 @@
     // Placeholder info explaining what data
     // the user is manipulating
     d3.select("#header-info").append("div")
-        .attr("class", "surplus-explanation")
         .html(function() {
-            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)} general fund</strong> minus the <strong>$${add_commas(other_category.total)} "Other" category</strong> in our <a href="/">simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
+            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> General Fund minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2.5,  // add height to bars
@@ -44,7 +43,7 @@
         colors = get_bar_colors();
 
     // Select container div
-    let container_div = d3.select("#penny_budget");
+    let container_div = d3.select("#change_budget");
 
     // Select all .bar_wrap divs
     let bar_divs = container_div.selectAll("svg")
@@ -95,6 +94,7 @@
 
             update_legend(Math.round(update_total()));
             update_bar_totals();
+            update_form_input_value();
         })
         .on("end", function (event, d) {
             scrollable = true;
@@ -132,21 +132,30 @@
 
     // Get the current total of all programs
     let update_total = function () {
-        let newTotal = 0;
+        let new_total = 0;
         for (let i = 0; i < categories.length; i++) {
-            newTotal += categories[i].percentage;
+            new_total += categories[i].percentage;
         }
-        return newTotal;
+        return new_total;
     }
 
     // Update the legend HTML
     let update_legend = function (balance) {
         let curr_bal = 100 - balance;
         if (curr_bal === 0) {
-            d3.select("#penny_budget_legend")
+            // Enable Submit button
+            document.getElementById("submit_btn").disabled = false;
+
+            // Update legend and add balanced class
+            d3.select("#change_budget_legend")
                 .html(`<div class="balanced"><h2>Your surplus: <span class="balanced">${curr_bal}%</span></h2><p>You're balanced!</p></div>`);
+
         } else {
-            d3.select("#penny_budget_legend")
+            // Disable Submit button
+            document.getElementById("submit_btn").disabled = true;
+
+            // Update legend
+            d3.select("#change_budget_legend")
                 .html(`<div><h2>Your surplus: <span>${curr_bal}%</span></h2><p>Drag the bars below to disperse funds</p></div>`);
         }
     }
@@ -155,7 +164,7 @@
     let update_bar_totals = function () {
         bar_totals.attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
             .html(function(d) {
-                return Math.round(d.percentage) + "% = $" + add_commas(Math.round(d.total));
+                return Math.round(d.percentage) + "%";
             });
     }
 
@@ -182,9 +191,12 @@
         })
         .attr("y", height + margin.bottom);
 
-    container_div.append("button")
-        .attr("class", "next")
-        .html("Submit your budget &#8594;");
+    let update_form_input_value = function() {
+        let json_input = document.getElementById("id_json_data");
+        json_input.value = JSON.stringify(data);
+    }
+    update_form_input_value();
+
 
 })();
 
