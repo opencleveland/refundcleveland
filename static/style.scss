@@ -349,13 +349,6 @@ div#content .modal-content a:hover {
 // Mobile menu
 $defaultTransition: all .25s cubic-bezier(0.2, 0, .5, 1.0);
 
-body {
-  min-height: 200vh; /* `fixed` style added to header on scroll */
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-}
-
 header#masthead {
   width: 100%;
   -webkit-transition: $defaultTransition;
@@ -456,18 +449,18 @@ header#masthead {
   -webkit-transform-origin: 0 0%;
   -ms-transform-origin: 0 0%;
   transform-origin: 0 0%;
-  -webkit-transform: rotate(45deg) translate(0, 0em);
-  -ms-transform: rotate(45deg) translate(0, 0em);
-  transform: rotate(45deg) translate(0, 0em);
+  -webkit-transform: rotate(45deg) translate(-2px, -2px);
+  -ms-transform: rotate(45deg) translate(-2px, -2px);
+  transform: rotate(45deg) translate(-2px, -2px);
 }
 
 #masthead.expanded #masthead__button span:last-child {
   -webkit-transform-origin: 0 100%;
   -ms-transform-origin: 0 100%;
   transform-origin: 0 100%;
-  -webkit-transform: rotate(-45deg) translate(0, 0em);
-  -ms-transform: rotate(-45deg) translate(0, 0em);
-  transform: rotate(-45deg) translate(0, 0em);
+  -webkit-transform: rotate(-45deg) translate(0, 0);
+  -ms-transform: rotate(-45deg) translate(0, 0);
+  transform: rotate(-45deg) translate(0, 0);
 }
 
 #masthead.expanded #masthead__button span:nth-child(2) {
