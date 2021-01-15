@@ -245,7 +245,7 @@ div#change_budget_legend p {
   text-decoration: underline;
 }
 
-button.next, #submit_btn {
+button.next, #submit_btn, #submit_btn:visited {
   background: none;
   border: none;
   font-size: 2em;
@@ -258,12 +258,12 @@ button.next, #submit_btn {
   color: #000;
 }
 
-button.next a {
+div#content button.next a, button.next a:visited {
   text-decoration: none;
   color: #000;
 }
 
-button.next a:hover, #submit_btn:hover {
+div#content button.next a:hover, #submit_btn:hover {
   opacity: .6;
   cursor: pointer;
 }
