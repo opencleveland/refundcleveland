@@ -242,7 +242,7 @@ button.next, #submit_btn {
 
 button.next a {
   text-decoration: none;
-  color: inherit;
+  color: #000;
 }
 
 button.next a:hover, #submit_btn:hover {
