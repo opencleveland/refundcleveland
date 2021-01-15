@@ -6,14 +6,15 @@ body {
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 300;
+  background-color: #f9f9f9;
 }
 
-h1 {
-  font-weight: 300;
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
 }
 
-body.home, body.colored-bg {
-  background: #fccc1b;
+b, strong {
+  font-weight: 700;
 }
 
 div#page-wrap {
@@ -78,12 +79,14 @@ div#content p {
 }
 
 div#content a, div#content a:visited {
-  color: inherit;
+  color: #349479;
   font-weight: 700;
+  text-decoration: none;
 }
 
 div#content a:hover {
-  text-decoration: none;
+  opacity: 0.9;
+  text-decoration: underline;
 }
 
 .tooltip {
@@ -123,7 +126,7 @@ div#content a:hover {
   left: 0;
 }
 
-div#penny_budget, div#budget_visualization .bars {
+div#change_budget, div#budget_visualization .bars {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -145,7 +148,7 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
   }
 }
 @media screen and (min-width: 769px) {
-  #penny_budget .bar_wrap {
+  #change_budget .bar_wrap {
     width: 13%;
   }
 
@@ -153,27 +156,27 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
     width: 13%;
   }
 }
-#penny_budget ul, #budget_visualization ul {
+#change_budget ul, #budget_visualization ul {
   margin: 0;
   padding: 0;
 }
 
-#budget_visualization .bar_wrap p, #penny_budget .bar_wrap p {
+#budget_visualization .bar_wrap p, #change_budget .bar_wrap p {
   font-weight: 700;
 }
 
-#budget_visualization .bar_wrap ul li, #penny_budget .bar_wrap ul li {
+#budget_visualization .bar_wrap ul li, #change_budget .bar_wrap ul li {
   font-size: 90%;
 }
 
-#penny_budget ul li, #budget_visualization ul li {
+#change_budget ul li, #budget_visualization ul li {
   list-style: none;
   margin: 0;
   padding: 0.5em 0 0;
   font-size: 16px;
 }
 
-#budget_visualization .bar_wrap text, #penny_budget .bar_wrap text {
+#budget_visualization .bar_wrap text, #change_budget .bar_wrap text {
   font-weight: 700;
   fill: #000;
   transition: fill 0.2s ease-in-out;
@@ -184,7 +187,7 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
   transition: opacity 0.2s ease-in-out;
 }
 
-#penny_budget .bar_wrap rect:hover {
+#change_budget .bar_wrap rect:hover {
   cursor: pointer;
   opacity: 0.9;
 }
@@ -193,38 +196,38 @@ div#budget_visualization .bars .bar_wrap:last-child svg rect {
   fill: #000;
 }
 
-#penny_budget_legend h2 {
+#change_budget_legend h2 {
   font-weight: 300;
   margin-bottom: 0;
 }
 
-#penny_budget_legend h2 span {
+#change_budget_legend h2 span {
   font-weight: 700;
   font-size: 2em;
   display: block;
 }
 
-#penny_budget_legend > div {
+#change_budget_legend > div {
   border: 2px solid #000;
   text-align: center;
-  padding: 0.5em 0;
+  padding: 1em 0;
 }
 
-#penny_budget_legend > div.balanced {
-  background: #fccc1b;
-}
-
-div#penny_budget_legend p {
+div#change_budget_legend p {
   text-align: center;
-  margin: 0 auto 1em;
+  margin: 0 auto;
 }
 
-.penny_budget p em {
+#change_budget_legend > div.balanced p {
+  font-weight: 700;
+}
+
+.change_budget p em {
   font-style: normal;
   text-decoration: underline;
 }
 
-button.next {
+button.next, #submit_btn {
   background: none;
   border: none;
   font-size: 2em;
@@ -234,6 +237,7 @@ button.next {
   width: 100%;
   padding: 2em 0 2em 2em;
   outline: none;
+  color: #000;
 }
 
 button.next a {
@@ -241,9 +245,17 @@ button.next a {
   color: inherit;
 }
 
-button.next a:hover {
+button.next a:hover, #submit_btn:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+#submit_btn:disabled, #submit_btn[disabled] {
+  cursor: not-allowed;
+}
+
+ul.errorlist.nonfield {
+  display: none;
 }
 
 rect.background_bar {
@@ -444,7 +456,7 @@ header#masthead {
   background: #fff;
 }
 
-@media screen and (min-width: 781px) {
+@media screen and (min-width: 481px) {
   #masthead__button {
     opacity: 0;
     display: none;

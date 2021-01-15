@@ -19,7 +19,6 @@
 
     // Placeholder info explaining the simplified budget
     d3.select("#header-info").append("div")
-        .attr("class", "surplus-explanation")
         .html(function() {
             return `<p>Refund Cleveland put together a simplified view of the <strong>$${add_commas(data.total)}</strong> general fund proposal. Check it out below and then <a href="/change-the-budget">share your feedback.</a></p>`
         });

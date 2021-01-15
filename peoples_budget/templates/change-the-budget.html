@@ -2,18 +2,19 @@
 {% load static %}
 
 {% block content %}
-
-<div class="penny_budget">
-
-    <div id="header-info">
-        <h1>What would your budget look like?</h1>
+    <div class="change_budget">
+        <div id="header-info">
+            <h1>What would your budget look like?</h1>
+        </div>
+        <div id="change_budget_legend"></div>
+        <div id="change_budget"></div>
     </div>
-    <div id="penny_budget_legend"></div>
 
-    <div id="penny_budget"></div>
-
-</div>
-
+    <form action="/submit/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit your budget &#8594;" id="submit_btn">
+    </form>
 
 {% endblock content %}
 
@@ -29,5 +30,6 @@
     <script src="{% static 'js/shared.js' %}"></script>
     <!-- Load test D3 visualizations -->
     <script src="{% static 'js/change-budget.js' %}"></script>
+
 
 {% endblock footer_scripts %}
