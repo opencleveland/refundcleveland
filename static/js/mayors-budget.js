@@ -24,9 +24,9 @@
         });
 
     const MULTIPLIER = 2,  // add height to bars
-        SHIFT = 2,  // bar height when data is 0
+        SHIFT = 25,  // bar height when data is 0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
-        height = 200 - margin.top - margin.bottom + SHIFT,
+        height = 230 - margin.top - margin.bottom + SHIFT,
         colors = get_bar_colors();
 
     // Select container div

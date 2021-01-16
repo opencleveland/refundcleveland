@@ -192,6 +192,10 @@ div#change_budget, div#budget_visualization .bars {
   fill: #000;
 }
 
+#change_budget_legend {
+  margin-bottom: 1em;
+}
+
 #change_budget_legend h2 {
   font-weight: 300;
   margin-bottom: 0;
@@ -241,8 +245,8 @@ button.next {
 }
 
 #content #submit_btn, #content #submit_btn:visited {
-  background-color: #F7B733;
-  padding: 1em 0.5em;
+  background-color: #000;
+  padding: 1em;
   display: block;
   font-size: 2em;
   font-family: "Roboto";
@@ -255,16 +259,17 @@ button.next {
   color: #fff;
   width: 100%;
   box-sizing: border-box;
+  transition: all 0.1s ease-in-out;
 }
 
 @media screen and (min-width: 769px) {
-  #submit_btn {
+  #content #submit_btn {
     text-align: left;
   }
 }
 #content #submit_btn:hover {
-  opacity: 0.6;
   cursor: pointer;
+  background-color: #F7B733;
 }
 
 #content #submit_btn:disabled, #content #submit_btn[disabled] {
@@ -273,12 +278,25 @@ button.next {
   color: #ccc;
 }
 
+#submit_form {
+  margin-bottom: 1em;
+}
+
+#submit_form input {
+  display: block;
+  margin-bottom: 1em;
+}
+
 ul.errorlist.nonfield {
   display: none;
 }
 
 rect.background_bar {
   fill: rgba(0, 0, 0, 0);
+}
+
+div#header-info {
+  margin-bottom: 1em;
 }
 
 .modal {
