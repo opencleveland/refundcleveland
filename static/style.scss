@@ -1,8 +1,13 @@
 /* Variables */
-//$c-primary: #ffd634;
-$c-primary: #FCE21B; // BLM yellow
-$c-secondary-light: #333;
-$c-secondary-dark: #222;
+
+$color1: #3333CC;
+$color2: #FC4A1A;
+$color3: #4ABDAC;
+$color4: #BD42BD;
+$color5: #CC3333;
+$color6: #DFDCE3;
+$color7: #F7B733;
+
 $max-content-width: 700px;
 $breakpoint1: 481px;
 $breakpoint2: 769px;
@@ -90,7 +95,7 @@ div#content p {
 }
 
 div#content a, div#content a:visited {
-  color: #349479;
+  color: $color2;
   font-weight: 700;
   text-decoration: none;
 }
@@ -147,11 +152,6 @@ div#change_budget, div#budget_visualization .bars {
   display: inline-block;
   margin-bottom: 2em;
   width: 47%;
-}
-
-// Make "Other" bar a different color on home page
-div#budget_visualization .bars .bar_wrap:last-child svg rect {
-  fill: rgba(0, 0, 0, .2);
 }
 
 @media screen and (min-width: 481px) {
@@ -241,11 +241,11 @@ div#change_budget_legend p {
 }
 
 #change_budget_legend span {
-  color: #842A59;
+  color: #000;
 }
 
 #change_budget_legend span.balanced {
-  color: #000;
+  color: #888;
 }
 
 .change_budget p em {
@@ -262,44 +262,38 @@ button.next, {
   padding: 0;
 }
 
-button.next a, #submit_btn, #submit_btn:visited {
-  background-color: #FFE66B;
-  padding: 2em .5em;
+#content #submit_btn, #content #submit_btn:visited {
+  background-color: $color7;
+  padding: 1em .5em;
   display: block;
   font-size: 2em;
   font-family: 'Roboto';
   font-weight: 700;
   text-align: center;
-  color: #000;
   outline: none;
   border: none;
-  margin-bottom: .5em;
-}
-
-#submit_btn {
+  margin-bottom: 1em;
+  text-decoration: none;
+  color: #fff;
   width: 100%;
+  box-sizing: border-box;
 }
 
 @media screen and (min-width: $breakpoint2) {
-  button.next a, #submit_btn, #submit_btn:visited {
+  #submit_btn {
     text-align: left;
   }
 }
 
-div#content button.next a, button.next a:visited {
-  text-decoration: none;
-  color: #000;
-}
-
-div#content button.next a:hover, #submit_btn:hover {
+#content #submit_btn:hover {
   opacity: .6;
   cursor: pointer;
 }
 
-#submit_btn:disabled, #submit_btn[disabled] {
+#content #submit_btn:disabled, #content #submit_btn[disabled] {
   cursor: not-allowed;
-  background: #ccc;
-  color: #888;
+  background: #888;
+  color: #ccc;
 }
 
 ul.errorlist.nonfield {
