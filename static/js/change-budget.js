@@ -43,10 +43,10 @@
             return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> General Fund minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
-    const MULTIPLIER = 2.5,  // add height to bars
-        SHIFT = 50,  // bar height when data is $0
+    const MULTIPLIER = 2,  // add height to bars
+        SHIFT = 25,  // bar height when data is $0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
-        height = 300 - margin.top - margin.bottom + SHIFT,
+        height = 230 - margin.top - margin.bottom + SHIFT,
         colors = get_bar_colors();
 
     // Select container div
