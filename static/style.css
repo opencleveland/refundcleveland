@@ -235,19 +235,38 @@ div#change_budget_legend p {
   text-decoration: underline;
 }
 
-button.next, #submit_btn, #submit_btn:visited {
-  background: none;
+button.next {
   border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+button.next a, #submit_btn, #submit_btn:visited {
+  background-color: #FFE66B;
+  padding: 2em 0.5em;
+  display: block;
   font-size: 2em;
   font-family: "Roboto";
   font-weight: 700;
-  text-align: right;
-  width: 100%;
-  padding: 2em 0 2em 2em;
-  outline: none;
+  text-align: center;
   color: #000;
+  outline: none;
+  border: none;
+  margin-bottom: 0.5em;
 }
 
+#submit_btn {
+  width: 100%;
+}
+
+@media screen and (min-width: 769px) {
+  button.next a, #submit_btn, #submit_btn:visited {
+    text-align: left;
+  }
+}
 div#content button.next a, button.next a:visited {
   text-decoration: none;
   color: #000;
@@ -258,13 +277,10 @@ div#content button.next a:hover, #submit_btn:hover {
   cursor: pointer;
 }
 
-.change-the-budget #submit_btn {
-  background: #ddd;
-}
-
 #submit_btn:disabled, #submit_btn[disabled] {
   cursor: not-allowed;
-  background: none;
+  background: #ccc;
+  color: #888;
 }
 
 ul.errorlist.nonfield {
