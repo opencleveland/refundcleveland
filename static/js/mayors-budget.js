@@ -81,7 +81,6 @@
             content = "";
             content += `<p>${d.name}</p>`;
 
-            // Add real programs if they exist in the data set
             if (d.children) {
                 content += "<ul>";
                 d.children.forEach(function(subdept, index) {
@@ -94,10 +93,6 @@
             return content;
         })
         .attr("y", height + margin.bottom);
-
-    container_div.append("button")
-        .attr("class", "next")
-        .html("<a href=\"/change-the-budget\">Change the budget &#8594;</a>" );
 
 })();
 
