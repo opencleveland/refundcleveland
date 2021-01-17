@@ -10,11 +10,10 @@
         if (category.name === "Other") {
             other_category = data.children[i];
             data.children.splice(i, 1);
-        }
-        else {
+        } else {
             // Optional: Remove line item totals
             // since they are no longer needed
-            data.children[i].children.forEach(function(line_item) {
+            data.children[i].children.forEach(function (line_item) {
                 delete line_item.total;
             });
         }
@@ -32,21 +31,21 @@
     // for the user
     let categories = data.children;
     categories.forEach(function (category) {
-        category.percentage = 0;
+        category.user_percentage = 0;
         category.total = 0;
     });
 
     // Placeholder info explaining what data
     // the user is manipulating
     d3.select("#header-info").append("div")
-        .html(function() {
+        .html(function () {
             return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> General Fund minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 40,  // bar height when data is $0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
-        height = 235 - margin.top - margin.bottom + SHIFT,
+        height = 230 - margin.top - margin.bottom + SHIFT,
         colors = get_bar_colors();
 
     // Select container div
@@ -92,12 +91,12 @@
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
 
-            d.percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.percentage + max_amount));
-            d3.select(this).attr("height", d => (Math.round(d.percentage) * MULTIPLIER) + SHIFT);
-            d3.select(this).attr("y", height - (Math.round(d.percentage) * MULTIPLIER) - SHIFT);
+            d.user_percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.user_percentage + max_amount));
+            d3.select(this).attr("height", d => (Math.round(d.user_percentage) * MULTIPLIER) + SHIFT);
+            d3.select(this).attr("y", height - (Math.round(d.user_percentage) * MULTIPLIER) - SHIFT);
 
             // Update current category dollar amount
-            d.total = d.percentage / 100 * data.total;
+            d.total = d.user_percentage / 100 * data.total;
 
             update_legend(Math.round(update_total()));
             update_bar_totals();
@@ -119,8 +118,8 @@
 
     // Animate in bars on load
     bars.transition()
-        .attr("height", d => (d.percentage * MULTIPLIER) + SHIFT)
-        .attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT)
+        .attr("height", d => (d.user_percentage * MULTIPLIER) + SHIFT)
+        .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT)
         .delay((d, i) => 400 + i * 100)
         .duration(1500)
         .ease(d3.easeCubicOut);
@@ -129,9 +128,9 @@
     let bar_totals = svgs.append("text").style("opacity", 0);
 
     // Animate in bar totals on load
-    bar_totals.html(d => d.percentage + "%")
+    bar_totals.html(d => d.user_percentage + "%")
         .transition()
-        .attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
+        .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
         .style("opacity", 1)
         .delay((d, i) => 400 + i * 100)
         .duration(1500)
@@ -141,7 +140,7 @@
     let update_total = function () {
         let new_total = 0;
         for (let i = 0; i < categories.length; i++) {
-            new_total += categories[i].percentage;
+            new_total += categories[i].user_percentage;
         }
         return new_total;
     }
@@ -169,9 +168,9 @@
 
     // Update text for bar totals
     let update_bar_totals = function () {
-        bar_totals.attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
-            .html(function(d) {
-                return Math.round(d.percentage) + "%";
+        bar_totals.attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
+            .html(function (d) {
+                return Math.round(d.user_percentage) + "%";
             });
     }
 
@@ -179,26 +178,33 @@
     let curr_total = update_total();
     update_legend(curr_total);
 
-    // Add placeholder programs below each bar
+    // Display line items below each bar
     bar_divs.append("div")
-        .html(function (d) {
-            content = "";
-            content += `<p>${d.name}</p>`;
+        .html(function (d, i) {
+            content = `<p class="city_budget" style="color: ${colors[i]};">City Budget ${d.percentage}%</p>`;
+            content += `<a class="category_details">See Details</a>`
+            content += `<div class="modal" id="cat${i}">`;
+            content += `<div class="modal-content"><span class="close" id="close${i}">&times;</span>`
 
-            // Add real programs if they exist in the data set
+            content += `<strong><p>${d.name}</p></strong>`;
+
             if (d.children) {
                 content += "<ul>";
-                d.children.forEach(function (children) {
-                    content += `<li>${children.name}</li>`;
+                d.children.forEach(function (subdept, index) {
+                    content += `<li>${subdept.name}</li>`;
 
                 })
                 content += "</ul>";
             }
+
+            content += `</div></div>`
+
+
             return content;
         })
         .attr("y", height + margin.bottom);
 
-    let update_form_input_value = function() {
+    let update_form_input_value = function () {
         let json_input = document.getElementById("id_json_data");
         json_input.value = JSON.stringify(data);
     }

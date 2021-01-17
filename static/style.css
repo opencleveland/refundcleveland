@@ -36,8 +36,8 @@ nav#main_nav {
   float: right;
 }
 
-.site-branding a {
-  color: inherit;
+.site-branding a, .site-branding a:visited {
+  color: #000;
   text-decoration: none;
 }
 
@@ -60,6 +60,7 @@ nav#main_nav ul li a {
   text-decoration: none;
   color: #000;
   padding: 0.5em;
+  font-weight: 300;
 }
 
 nav#main_nav ul li.active a, #mobile_menu li.active a {
@@ -78,13 +79,13 @@ div#content p {
   max-width: 700px;
 }
 
-div#content a, div#content a:visited {
+a, a:visited {
   color: #FC4A1A;
   font-weight: 700;
   text-decoration: none;
 }
 
-div#content a:hover {
+a:hover {
   opacity: 0.9;
   text-decoration: underline;
 }
@@ -244,38 +245,57 @@ button.next {
   padding: 0;
 }
 
-#content #submit_btn, #content #submit_btn:visited {
+#submit_btn, #submit_btn:visited {
   background-color: #000;
-  padding: 1em;
-  display: block;
-  font-size: 2em;
+  display: inline-block;
+  width: 100%;
+  font-size: 1.5em;
   font-family: "Roboto";
   font-weight: 700;
   text-align: center;
   outline: none;
   border: none;
   margin-bottom: 1em;
+  padding: 0.75em 2em;
   text-decoration: none;
   color: #fff;
-  width: 100%;
   box-sizing: border-box;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border-radius: 0;
 }
 
 @media screen and (min-width: 769px) {
-  #content #submit_btn {
+  #submit_btn {
     text-align: left;
+    width: auto;
   }
 }
-#content #submit_btn:hover {
+#submit_btn:hover, #submit_btn:focus, #submit_btn:active {
   cursor: pointer;
   background-color: #F7B733;
 }
 
-#content #submit_btn:disabled, #content #submit_btn[disabled] {
+#submit_btn:disabled, #content #submit_btn[disabled] {
   cursor: not-allowed;
   background: #888;
   color: #ccc;
+}
+
+a.category_details {
+  font-weight: 300;
+  color: #888;
+  text-decoration: underline;
+  font-size: 90%;
+}
+
+a.category_details:hover {
+  cursor: pointer;
+  color: #000;
+}
+
+#change_budget .bar_wrap p.city_budget {
+  font-size: 90%;
+  font-weight: 300;
 }
 
 #submit_form {
@@ -300,10 +320,9 @@ div#header-info {
 }
 
 .modal {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 1;
-  opacity: 0;
   left: 0;
   top: 0;
   transition: opacity 0.3s ease-in-out;
@@ -311,19 +330,15 @@ div#header-info {
   height: 100%;
   overflow: auto;
   background-color: black;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
   background-color: #efefef;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 0.5em;
   margin: 15vh auto;
   padding: 1em;
   width: 80%;
   max-width: 700px;
-  font-size: 1.25em;
-  font-weight: 700;
 }
 
 .modal-content h1 {
