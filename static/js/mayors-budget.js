@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     // Retrieve and format data
     let data = retrieve_budget_data();
@@ -19,7 +19,7 @@
 
     // Placeholder info explaining the simplified budget
     d3.select("#header-info").append("div")
-        .html(function() {
+        .html(function () {
             return `<p>Refund Cleveland created this simplified view of the mayor's <strong>$${add_commas(data.total)}</strong> general fund proposal. View it below and then <a href="/change-the-budget">change the budget to match your priorities &raquo;</a>.</p>`
         });
 
@@ -77,18 +77,22 @@
 
     // Display line items below each bar
     bar_divs.append("div")
-        .html( function(d) {
-            content = "";
-            content += `<p>${d.name}</p>`;
+        .html(function (d, i) {
+            content = `<a class="category_details">See Details</a>`
+            content += `<div class="modal" id="cat${i}">`;
+            content += `<div class="modal-content"><span class="close" id="close${i}">&times;</span>`
+
+            content += `<strong><p>${d.name}</p></strong>`;
 
             if (d.children) {
                 content += "<ul>";
-                d.children.forEach(function(subdept, index) {
+                d.children.forEach(function (subdept, index) {
                     content += `<li>${subdept.name}</li>`;
 
                 })
                 content += "</ul>";
             }
+            content += `</div></div>`
 
             return content;
         })
