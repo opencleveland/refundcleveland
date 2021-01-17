@@ -78,7 +78,8 @@
     // Display line items below each bar
     bar_divs.append("div")
         .html(function (d, i) {
-            content = `<a class="category_details">See Details</a>`
+            content = `<p class="category_name">${d.name}</p>`;
+            content += `<a class="category_details">See Details</a>`
             content += `<div class="modal" id="cat${i}">`;
             content += `<div class="modal-content"><span class="close" id="close${i}">&times;</span>`
 

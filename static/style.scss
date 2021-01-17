@@ -176,10 +176,6 @@ div#change_budget, div#budget_visualization .bars {
   padding: 0;
 }
 
-#budget_visualization .bar_wrap p, #change_budget .bar_wrap p {
-  font-weight: 700;
-}
-
 #budget_visualization .bar_wrap ul li, #change_budget .bar_wrap ul li {
   font-size: 90%;
 }
@@ -306,6 +302,12 @@ button.next, {
 
 
 // Line items in categories
+
+p.category_name {
+  margin-bottom: .25em;
+  font-weight: 700;
+}
+
 a.category_details {
   font-weight: 300;
   color: #888;
@@ -318,7 +320,7 @@ a.category_details:hover {
   color: #000;
 }
 
-#change_budget .bar_wrap p.city_budget {
+.bar_wrap p.city_budget {
   font-size: 75%;
   font-weight: 300;
   margin-top: 0;
