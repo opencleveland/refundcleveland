@@ -69,5 +69,10 @@ def store_data(request):
                 'address': address,
                 'budget': json.loads(budget)
             })
+        else:
+            return render(request, 'submit-budget.html', {
+                'form': form
+            })
+
     else:
         return redirect("/change-the-budget")

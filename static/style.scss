@@ -340,6 +340,12 @@ ul.errorlist.nonfield {
   display: none;
 }
 
+ul.errorlist {
+    list-style: none;
+    padding: 0;
+    color: $color5;
+}
+
 .change-the-budget rect.background_bar {
     fill: #f3f2f2;
 }
