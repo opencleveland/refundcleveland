@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 
 
 def home(request):
-    with open(os.path.join(settings.BASE_DIR, 'static/data/2020-mayors-estimate-fullgeneralfund.json')) as file:
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
         json_file = json.load(file)
 
     return render(request, 'home.html', {
@@ -19,7 +19,7 @@ def home(request):
 
 def change_budget(request):
     """Collect user budget data"""
-    with open(os.path.join(settings.BASE_DIR, 'static/data/2020-mayors-estimate-fullgeneralfund.json')) as file:
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
         json_file = json.load(file)
 
     # Add hidden field to store user budget data
