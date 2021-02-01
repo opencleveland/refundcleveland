@@ -8,7 +8,7 @@
 
     // Move "Other" category to the end
     data.children.forEach(function (category, i) {
-        if (category.name == "Other") {
+        if (category.name == "Administration, Law, and Other") {
             let other_category = data.children[i];
             data.children.splice(i, 1);
             data.children.push(other_category)

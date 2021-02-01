@@ -7,7 +7,7 @@
     // Remove "Other" category from data object
     let other_category;
     data.children.forEach(function (category, i) {
-        if (category.name === "Other") {
+        if (category.name === "Administration, Law, and Other") {
             other_category = data.children[i];
             data.children.splice(i, 1);
         } else {
