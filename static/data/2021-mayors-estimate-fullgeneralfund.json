@@ -8,19 +8,19 @@
           "children": [
             {
               "name": "Office of Sustainability",
-              "total": 973233
+              "total": 1122905
             },
             {
               "name": "Department of Public Health - Environment",
-              "total": 1885108
+              "total": 2317317
             },
             {
               "name": "Department of Public Health - Air Quality",
-              "total": 876400
+              "total": 1030200
             },
             {
               "name": "Division of Waste Disposal",
-              "total": 30272215
+              "total": 31492036
             }
           ]
         },
@@ -29,43 +29,43 @@
           "children": [
             {
               "name": "Fire",
-              "total": 96000888
+              "total": 98341723
             },
             {
               "name": "Emergency Medical Service",
-              "total": 33202139
+              "total": 33967871
             },
             {
               "name": "Animal Care and Control",
-              "total": 2557369 
+              "total": 3190691
             },
 			{
               "name": "Department of Public Safety - Director's Office",
-              "total": 6193106
+              "total": 7292191
             },
             {
               "name": "Recreation",
-              "total": 12817782
+              "total": 15558362
             },
             {
               "name": "Parks Maintenance & Properties",
-              "total": 16468106 
+              "total": 17073377
             },
             {
               "name": "Landmarks Commission",
-              "total": 197593
+              "total": 218363
             },
             {
               "name": "Department of Aging",
-              "total": 1358771
+              "total": 1600724
             },
 			{
               "name": "Office of Intervention, Prevention, and Opportunity",
-              "total": 3362400
+              "total": 4010925
             },
             {
               "name": "Community Relations Board",
-              "total": 1945165
+              "total": 2034480
             }
           ]
         },
@@ -74,15 +74,15 @@
           "children": [
             {
               "name": "Department of Public Health - Director's Office",
-              "total": 1869628
+              "total": 2199962
             },
             {
               "name": "Department of Public Health - Health",
-              "total": 4646321
+              "total": 5339413
             },
 			{
               "name": "Health, Equity & Soc. Justice",
-              "total": 0
+              "total": 227360
             }
           ]
         },
@@ -91,47 +91,47 @@
           "children": [
             {
               "name": "Office of Capital Projects",
-              "total": 6332161
+              "total": 6868551 
             },
             {
               "name": "Public Works Administration",
-              "total": 3092113
+              "total": 3183328
             },
             {
               "name": "Non-Departmental: Subsidy to Street Construction",
-              "total": 13900000
+              "total": 12072066
             },
 			{
               "name": "Community Development Director's Office",
-              "total": 1871896
+              "total": 1962106
             },
             {
               "name": "Building Standards and Appeals",
-              "total": 126986
+              "total": 159294
             },
             {
               "name": "City Planning Commission",
-              "total": 1955555
+              "total": 2147611
             },
             {
               "name": "Zoning Appeals",
-              "total": 225660
+              "total": 242583
             },
             {
               "name": "Department of Building & Housing",
-              "total": 12542702
+              "total": 13883487
             },
             {
               "name": "Department of Public Works - Property Management",
-              "total": 7893451
+              "total": 8571306 
             },
             {
               "name": "Department of Public Works - Parking Facilities",
-              "total": 963071
+              "total": 1001431
             },			
             {
               "name": "Department of Public Works - Division of Traffic Engineering",
-              "total": 3710891
+              "total": 3936237
             }
           ]
         },
@@ -140,84 +140,84 @@
           "children": [
             {
               "name": "Police",
-              "total": 210837155
+              "total": 218153161
             },
             {
               "name": "Correction",
-              "total": 2566065
+              "total": 4517301
             },
             {
               "name": "Police Review Board",
-              "total": 154768
+              "total": 172879
             },
             {
               "name": "Community Police Commission",
-              "total": 530825
+              "total": 594471
             },
 			{
               "name": "Department of Public Safety - Office of Professional Standards",
-              "total": 1344714
+              "total": 1502165
             },
             {
               "name": "Department of Public Safety - Department of Justice",
-              "total": 2568736
+              "total": 3509263
             },
             {
               "name": "Police Inspector General",
-              "total": 161701
+              "total": 243279
             }
           ]
         },
         {
           "name": "Other",
           "children": [
-			{
+             {
               "name": "Office of the Mayor",
-              "total": 2102925
+              "total": 2699373
             },
             {
               "name": "Office of Quality Control & Performance Management",
-              "total": 1106181
+              "total": 1157120
             },
             {
               "name": "Civil Service Commission",
-              "total": 896934
+              "total": 1358473
             },
             {
               "name": "Boxing & Wrestling Commission",
-              "total": 17416
+              "total": 28884
             },
             {
               "name": "Office of Equal Opportunity",
-              "total": 782673
+              "total": 919235
             },
             {
               "name": "Office of Budget & Management",
-              "total": 671848
+              "total": 755423
             },
             {
               "name": "Department of Human Resources",
-              "total": 3697390
+              "total": 3814662
             },
             {
               "name": "Department of Law",
-              "total": 20875830
+              "total": 15287450
             },
             {
               "name": "Department of Finance",
-              "total": 18028389
+              "total": 22969156
             },
             {
               "name": "Economic Development",
-              "total": 1655616
+              "total": 1924383
             },
             {
               "name": "Non-Departmental: Subsidies to Non-Street Construction Funds",
-              "total": 49987325
+              "total": 31930263
             },
 			{
               "name": "Non-Departmental: Other",
-              "total": 21106513
+              "total": 17310490
             }
           ]
         }
