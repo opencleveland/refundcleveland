@@ -25,7 +25,7 @@
           ]
         },
         {
-          "name": "Community Services",
+          "name": "Emergency Services",
           "children": [
             {
               "name": "Fire",
@@ -42,8 +42,13 @@
 			{
               "name": "Department of Public Safety - Director's Office",
               "total": 7292191
-            },
-            {
+            }
+          ]
+        },
+        {
+          "name": "Community Services",
+          "children": [
+			{
               "name": "Recreation",
               "total": 15558362
             },
@@ -66,7 +71,7 @@
             {
               "name": "Community Relations Board",
               "total": 2034480
-            }
+            }		  
           ]
         },
         {
