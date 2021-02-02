@@ -4,7 +4,7 @@ from django.conf import settings
 import os
 from .forms import ChangeBudgetForm, SubmitBudgetForm
 from django.shortcuts import redirect
-
+from peoples_budget import models
 
 def home(request):
     with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
@@ -76,3 +76,14 @@ def store_data(request):
 
     else:
         return redirect("/change-the-budget")
+
+def view_budget(request, budget_id):
+    """View a saved budget given budget_id"""
+
+    submission = models.BudgetSubmission.objects.get(the_id=budget_id)
+
+    return render(request, 'view-budget.html', {
+        'budget_id': budget_id,
+        'json_data': submission.submitter_json,
+        'body_classes': 'view-budget'
+    })

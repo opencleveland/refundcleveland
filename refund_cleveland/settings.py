@@ -71,8 +71,12 @@ WSGI_APPLICATION = 'refund_cleveland.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd83jsp4ko08di',
+        'USER': 'neqgurwjxpbger',
+        'PASSWORD': '4080a8869b1c525784bf31f03bfb5c02bc091bd419e92999a339b87391159453',
+        'HOST': 'ec2-52-71-153-228.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
