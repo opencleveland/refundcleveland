@@ -15,6 +15,7 @@ import os
 try:
     from local_settings import *
 except ImportError:
+    SECRET_KEY = os.getenv('SECRET_KEY', 'ENTER KEY HERE')
     pass
 import django_heroku
 
