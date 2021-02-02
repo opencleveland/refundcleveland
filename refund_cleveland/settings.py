@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-from local_settings import *
+try:
+    from local_settings import *
+except ImportError:
+    pass
 import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
