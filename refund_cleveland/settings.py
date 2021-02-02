@@ -69,16 +69,7 @@ WSGI_APPLICATION = 'refund_cleveland.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd83jsp4ko08di',
-        'USER': 'neqgurwjxpbger',
-        'PASSWORD': '4080a8869b1c525784bf31f03bfb5c02bc091bd419e92999a339b87391159453',
-        'HOST': 'ec2-52-71-153-228.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+# This is controlled by Heroku for production, don't need to set here.
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
