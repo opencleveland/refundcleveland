@@ -7,7 +7,7 @@
     // Remove "Other" category from data object
     let other_category;
     data.children.forEach(function (category, i) {
-        if (category.name === "Other") {
+        if (category.name === "Administration, Law, and Other") {
             other_category = data.children[i];
             data.children.splice(i, 1);
         } else {
@@ -39,7 +39,7 @@
     // the user is manipulating
     d3.select("#header-info").append("div")
         .html(function () {
-            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> General Fund minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
+            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars

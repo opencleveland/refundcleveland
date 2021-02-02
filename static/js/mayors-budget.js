@@ -8,7 +8,7 @@
 
     // Move "Other" category to the end
     data.children.forEach(function (category, i) {
-        if (category.name == "Other") {
+        if (category.name == "Administration, Law, and Other") {
             let other_category = data.children[i];
             data.children.splice(i, 1);
             data.children.push(other_category)
@@ -20,7 +20,7 @@
     // Placeholder info explaining the simplified budget
     d3.select("#header-info").append("div")
         .html(function () {
-            return `<p>Refund Cleveland created this simplified view of the mayor's <strong>$${add_commas(data.total)}</strong> general fund proposal. View it below and then <a href="/change-the-budget">change the budget to match your priorities &raquo;</a>.</p>`
+            return `<p>Refund Cleveland created this simplified view of the mayor's <strong>$${add_commas(data.total)}</strong> budget proposal. View it below and then <a href="/change-the-budget">change the budget to match your priorities &raquo;</a>.</p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars
