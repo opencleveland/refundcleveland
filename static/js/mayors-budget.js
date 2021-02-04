@@ -7,15 +7,15 @@
     data = sort_desc_by_percentage(data);
 
     // Move "Other" category to the end
-    data.children.forEach(function (category, i) {
+    data.fund_structure.forEach(function (category, i) {
         if (category.name == "Administration, Law, and Other") {
-            let other_category = data.children[i];
-            data.children.splice(i, 1);
-            data.children.push(other_category)
+            let other_category = data.fund_structure[i];
+            data.fund_structure.splice(i, 1);
+            data.fund_structure.push(other_category)
         }
     });
 
-    let categories = data.children;
+    let categories = data.fund_structure;
 
     // Placeholder info explaining the simplified budget
     d3.select("#header-info").append("div")
