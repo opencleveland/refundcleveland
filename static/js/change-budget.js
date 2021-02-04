@@ -31,7 +31,7 @@
     // for the user
     let categories = data.fund_structure;
     categories.forEach(function (category) {
-        category.percentage = 0;
+        category.user_percentage = 0;
         category.total = 0;
     });
 
@@ -91,12 +91,12 @@
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
 
-            d.percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.percentage + max_amount));
-            d3.select(this).attr("height", d => (Math.round(d.percentage) * MULTIPLIER) + SHIFT);
-            d3.select(this).attr("y", height - (Math.round(d.percentage) * MULTIPLIER) - SHIFT);
+            d.user_percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.user_percentage + max_amount));
+            d3.select(this).attr("height", d => (Math.round(d.user_percentage) * MULTIPLIER) + SHIFT);
+            d3.select(this).attr("y", height - (Math.round(d.user_percentage) * MULTIPLIER) - SHIFT);
 
             // Update current category dollar amount
-            d.total = d.percentage / 100 * data.total;
+            d.total = d.user_percentage / 100 * data.total;
 
             update_legend(Math.round(update_total()));
             update_bar_totals();
@@ -118,8 +118,8 @@
 
     // Animate in bars on load
     bars.transition()
-        .attr("height", d => (d.percentage * MULTIPLIER) + SHIFT)
-        .attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT)
+        .attr("height", d => (d.user_percentage * MULTIPLIER) + SHIFT)
+        .attr("y", d => height - (d.user_percentage  * MULTIPLIER) - SHIFT)
         .delay((d, i) => 400 + i * 100)
         .duration(1500)
         .ease(d3.easeCubicOut);
@@ -128,9 +128,9 @@
     let bar_totals = svgs.append("text").style("opacity", 0);
 
     // Animate in bar totals on load
-    bar_totals.html(d => d.percentage + "%")
+    bar_totals.html(d => d.user_percentage + "%")
         .transition()
-        .attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
+        .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
         .style("opacity", 1)
         .delay((d, i) => 400 + i * 100)
         .duration(1500)
@@ -140,7 +140,7 @@
     let update_total = function () {
         let new_total = 0;
         for (let i = 0; i < categories.length; i++) {
-            new_total += categories[i].percentage;
+            new_total += categories[i].user_percentage;
         }
         return new_total;
     }
@@ -168,9 +168,9 @@
 
     // Update text for bar totals
     let update_bar_totals = function () {
-        bar_totals.attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
+        bar_totals.attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
             .html(function (d) {
-                return Math.round(d.percentage) + "%";
+                return Math.round(d.user_percentage) + "%";
             });
     }
 
@@ -213,4 +213,3 @@
 
 
 })();
-
