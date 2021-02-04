@@ -5,6 +5,7 @@ import os
 from .forms import ChangeBudgetForm, SubmitBudgetForm
 from django.shortcuts import redirect
 from peoples_budget import models
+import uuid
 
 def home(request):
     with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
@@ -61,13 +62,26 @@ def store_data(request):
             address = form.cleaned_data['address']
             budget = form.cleaned_data['json_data']
 
-            # TODO: Upload data to database
+            #TODO calculate ward from address or let user input ward
+            ward = -1
+
+            # Generate a new uuid
+            id = uuid.uuid4()
+
+            # save to database
+            new_budget = models.BudgetSubmission()
+            new_budget.the_id = id
+            new_budget.submitter_email = email
+            new_budget.submitter_address = address
+            new_budget.submitter_json = json.loads(budget)
+            new_budget.submitter_ward = ward
+            new_budget.save()
 
             # Confirm submitted data in template
             return render(request, 'store-data.html', {
                 'email': email,
                 'address': address,
-                'budget': json.loads(budget)
+                'id': id
             })
         else:
             return render(request, 'submit-budget.html', {
@@ -80,7 +94,11 @@ def store_data(request):
 def view_budget(request, budget_id):
     """View a saved budget given budget_id"""
 
-    submission = models.BudgetSubmission.objects.get(the_id=budget_id)
+    try:
+        submission = models.BudgetSubmission.objects.get(the_id=budget_id)
+    except:
+        return render(request, 'budget-not-found.html', {
+            'id': budget_id})
 
     return render(request, 'view-budget.html', {
         'budget_id': budget_id,

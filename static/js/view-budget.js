@@ -3,8 +3,6 @@
     // Retrieve and format data
     let data = JSON.parse(document.getElementById('json_data').textContent);
 
-    data = sum_category_totals(data);
-    data = add_percentage_to_categories(data);
     data = sort_desc_by_percentage(data);
 
     // Move "Other" category to the end
