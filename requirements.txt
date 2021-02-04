@@ -1,7 +1,7 @@
 asgiref==3.2.10
 certifi==2020.6.20
 chardet==3.0.4
-Django==3.0.3
+Django==3.1.5
 idna==2.10
 python-dotenv==0.14.0
 pytz==2020.1

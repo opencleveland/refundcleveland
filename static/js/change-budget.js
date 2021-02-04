@@ -6,14 +6,14 @@
 
     // Remove "Other" category from data object
     let other_category;
-    data.children.forEach(function (category, i) {
+    data.fund_structure.forEach(function (category, i) {
         if (category.name === "Administration, Law, and Other") {
-            other_category = data.children[i];
-            data.children.splice(i, 1);
+            other_category = data.fund_structure[i];
+            data.fund_structure.splice(i, 1);
         } else {
             // Optional: Remove line item totals
             // since they are no longer needed
-            data.children[i].children.forEach(function (line_item) {
+            data.fund_structure[i].children.forEach(function (line_item) {
                 delete line_item.total;
             });
         }
@@ -29,9 +29,9 @@
 
     // Clear category totals and percentage data
     // for the user
-    let categories = data.children;
+    let categories = data.fund_structure;
     categories.forEach(function (category) {
-        category.user_percentage = 0;
+        category.percentage = 0;
         category.total = 0;
     });
 
@@ -91,12 +91,12 @@
             curr_total = update_total();
             max_amount = Math.max(0, 100 - curr_total);
 
-            d.user_percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.user_percentage + max_amount));
-            d3.select(this).attr("height", d => (Math.round(d.user_percentage) * MULTIPLIER) + SHIFT);
-            d3.select(this).attr("y", height - (Math.round(d.user_percentage) * MULTIPLIER) - SHIFT);
+            d.percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.percentage + max_amount));
+            d3.select(this).attr("height", d => (Math.round(d.percentage) * MULTIPLIER) + SHIFT);
+            d3.select(this).attr("y", height - (Math.round(d.percentage) * MULTIPLIER) - SHIFT);
 
             // Update current category dollar amount
-            d.total = d.user_percentage / 100 * data.total;
+            d.total = d.percentage / 100 * data.total;
 
             update_legend(Math.round(update_total()));
             update_bar_totals();
@@ -118,8 +118,8 @@
 
     // Animate in bars on load
     bars.transition()
-        .attr("height", d => (d.user_percentage * MULTIPLIER) + SHIFT)
-        .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT)
+        .attr("height", d => (d.percentage * MULTIPLIER) + SHIFT)
+        .attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT)
         .delay((d, i) => 400 + i * 100)
         .duration(1500)
         .ease(d3.easeCubicOut);
@@ -128,9 +128,9 @@
     let bar_totals = svgs.append("text").style("opacity", 0);
 
     // Animate in bar totals on load
-    bar_totals.html(d => d.user_percentage + "%")
+    bar_totals.html(d => d.percentage + "%")
         .transition()
-        .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
+        .attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
         .style("opacity", 1)
         .delay((d, i) => 400 + i * 100)
         .duration(1500)
@@ -140,7 +140,7 @@
     let update_total = function () {
         let new_total = 0;
         for (let i = 0; i < categories.length; i++) {
-            new_total += categories[i].user_percentage;
+            new_total += categories[i].percentage;
         }
         return new_total;
     }
@@ -168,9 +168,9 @@
 
     // Update text for bar totals
     let update_bar_totals = function () {
-        bar_totals.attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
+        bar_totals.attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
             .html(function (d) {
-                return Math.round(d.user_percentage) + "%";
+                return Math.round(d.percentage) + "%";
             });
     }
 

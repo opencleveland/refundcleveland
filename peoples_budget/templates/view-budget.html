@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>Your budget:</h1>
+
+    <div id="budget_visualization"></div>
+
+{% endblock content %}
+
+{% block footer_scripts %}
+
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    {% comment %} Make json data available to external scripts {% endcomment %}
+    {{ json_data | json_script:"json_data" }}
+
+    <!-- Load shared functions -->
+    <script src="{% static 'js/shared.js' %}?{% now "U" %}"></script>
+
+    <!-- Load D3 visualizations -->
+    <script src="{% static 'js/view-budget.js' %}?{% now "U" %}"></script>
+
+    <!-- Load modal popups -->
+    <script src="{% static 'js/line-item-modals.js' %}?{% now "U" %}"></script>
+
+{% endblock footer_scripts %}

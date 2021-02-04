@@ -1,7 +1,8 @@
 (function () {
 
     // Retrieve and format data
-    let data = retrieve_budget_data();
+    let data = JSON.parse(document.getElementById('json_data').textContent);
+
     data = sum_category_totals(data);
     data = add_percentage_to_categories(data);
     data = sort_desc_by_percentage(data);
@@ -100,4 +101,3 @@
         .attr("y", height + margin.bottom);
 
 })();
-
