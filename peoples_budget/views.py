@@ -6,6 +6,14 @@ from .forms import ChangeBudgetForm, SubmitBudgetForm
 from django.shortcuts import redirect
 from peoples_budget import models
 import uuid
+import urllib, urllib.request
+import datetime
+
+try:
+    from local_settings import *
+except ImportError:
+    GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+    pass
 
 def home(request):
     with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
@@ -45,7 +53,7 @@ def submit_budget(request):
             submit_form = SubmitBudgetForm(initial={'json_data': json_data})
 
             return render(request, 'submit-budget.html', {
-                'form': submit_form
+                'form': submit_form,
             })
     else:
         return redirect("/change-the-budget")
@@ -59,11 +67,8 @@ def store_data(request):
 
         if form.is_valid():
             email = form.cleaned_data['email']
-            address = form.cleaned_data['address']
+            ward = form.cleaned_data['ward']
             budget = form.cleaned_data['json_data']
-
-            #TODO calculate ward from address or let user input ward
-            ward = -1
 
             # Generate a new uuid
             id = uuid.uuid4()
@@ -72,7 +77,6 @@ def store_data(request):
             new_budget = models.BudgetSubmission()
             new_budget.the_id = id
             new_budget.submitter_email = email
-            new_budget.submitter_address = address
             new_budget.submitter_json = json.loads(budget)
             new_budget.submitter_ward = ward
             new_budget.save()
@@ -80,7 +84,7 @@ def store_data(request):
             # Confirm submitted data in template
             return render(request, 'store-data.html', {
                 'email': email,
-                'address': address,
+                'ward': ward,
                 'id': id
             })
         else:
@@ -105,3 +109,23 @@ def view_budget(request, budget_id):
         'json_data': submission.submitter_json,
         'body_classes': 'view-budget'
     })
+
+def lookup_address(request):
+    body = json.loads(request.body)
+    address = body['address']
+
+    query = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" + urllib.parse.quote_plus(address) + "&includeOffices=true&levels=locality&key="+ GOOGLE_API_KEY
+
+    try:
+        json_response = json.load(urllib.request.urlopen(query))
+
+        ward = [x.split(':')[-1] for x in json_response['divisions'] if 'ward' in x]
+        if ward:
+            ward = ward[0]
+            return render(request, 'lookup_address.html', {
+                'ward': ward
+            })
+    except:
+        return render(request, 'lookup_address.html', {
+            'ward': None
+        })

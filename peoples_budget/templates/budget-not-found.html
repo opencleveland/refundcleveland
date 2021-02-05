@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <p>Error:</p>
-    <p>Budget with id {{ id }} not found.</p>
+    <ul class="errorlist">
+      <li>Budget with id {{ id }} not found.</li>
+    </ul>
 
 {% endblock content %}
 
