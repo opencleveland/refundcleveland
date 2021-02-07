@@ -3,8 +3,6 @@
     // Retrieve and format data
     let data = JSON.parse(document.getElementById('json_data').textContent);
 
-    data = sum_category_totals(data);
-    data = add_percentage_to_categories(data);
     data = sort_desc_by_percentage(data);
 
     // Move "Other" category to the end
@@ -57,8 +55,8 @@
 
     // Animate in bars on load
     bars.transition()
-        .attr("height", d => (d.percentage * MULTIPLIER) + SHIFT)
-        .attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT)
+        .attr("height", d => (d.user_percentage * MULTIPLIER) + SHIFT)
+        .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT)
         //.delay((d, i) => 200 + i * 100)
         .delay((d, i) => 200)
         .duration(1500)
@@ -68,9 +66,9 @@
     let bar_totals = svgs.append("text").style("opacity", 0);
 
     // Animate in bar totals on load
-    bar_totals.html(d => d.percentage + "%")
+    bar_totals.html(d => d.user_percentage + "%")
         .transition()
-        .attr("y", d => height - (d.percentage * MULTIPLIER) - SHIFT - 10)
+        .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
         .style("opacity", 1)
         .delay((d, i) => 200)
         .duration(1500)

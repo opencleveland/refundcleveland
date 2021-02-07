@@ -23,5 +23,6 @@ urlpatterns = [
     path('change-the-budget/', views.change_budget, name='change_budget'),
     path('submit/', views.submit_budget, name='submit_budget'),
     path('store-data/', views.store_data, name='store_data'),
-    path('<budget_id>/view/', views.view_budget, name='view_budget')
+    path('<budget_id>/view/', views.view_budget, name='view_budget'),
+    path('lookup_address', views.lookup_address, name='lookup_address')
 ]

@@ -2,15 +2,26 @@
 {% load static %}
 
 {% block content %}
-
+    <p>Upon submission, we will email you a link to the budget you designed and a letter you can send to your city council person with your budget attached.  The link will allow you to share your budget on social media and review it at your leisure.</p>
     <form id="submit_form" action="/store-data/" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit Your Budget" id="submit_btn">
     </form>
 
+    <p>Don't know your political ward? No problem! You can look it up on Cleveland's website <a href="https://clevelandcitycouncil.org/find-my-ward">find-my-ward</a> or we can look it up for you if you enter your address here:</p>
+    <label for="id_address">Address:</label><br>
+    <input type="text" id="id_address"/><br><br>
+    <input type="button" onclick="lookup_address()" value="Find Ward" id="submit_btn">
+
+
 {% endblock content %}
 
 {% block footer_scripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+<!-- Load scripts -->
+<script src="{% static 'js/submit-budget.js' %}?{% now "U" %}"></script>
 
 {% endblock footer_scripts %}
