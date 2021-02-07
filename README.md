@@ -40,6 +40,9 @@ pip3 install -r requirements.txt
 Copy and rename **local_settings_template.py** to **local_settings.py**, and fill in environmental variables:
 
 `SECRET_KEY` -- Django’s Secret Key used by the project
+`GOOGLE_API_KEY` -- Used for Google's Civic Information API to map Address to Political Ward
+
+`DATABASES` -- map of parameters to define the connection to a database.  In prod, we are using a postgres db hosted on heroku, and the connection is injected there via config vars.
 
 #### Run the app
 
@@ -54,7 +57,7 @@ This is currently done through heroku.
 
 ### Dependencies
 We used the following open source libraries/tools:
-d3, django, python3
+d3, django, python3, postgres, Google Civic Information API
 
 ### Note on Patches/Pull Requests 
 * Fork the project.
