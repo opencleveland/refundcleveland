@@ -96,14 +96,13 @@ div#content p {
 }
 
 a, a:visited {
-  color: $color2;
+  color: #000;
   font-weight: 700;
-  text-decoration: none;
 }
 
 a:hover {
   opacity: .9;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .tooltip {
