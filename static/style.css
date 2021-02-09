@@ -80,14 +80,13 @@ div#content p {
 }
 
 a, a:visited {
-  color: #FC4A1A;
+  color: #000;
   font-weight: 700;
-  text-decoration: none;
 }
 
 a:hover {
   opacity: 0.9;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .tooltip {
