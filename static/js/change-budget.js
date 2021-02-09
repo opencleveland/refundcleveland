@@ -126,6 +126,7 @@
 
     // Add text elements to SVG to display bar totals
     let bar_totals = svgs.append("text").style("opacity", 0);
+    let bar_totals_dollars = svgs.append("text").style("opacity", 0);
 
     // Animate in bar totals on load
     bar_totals.html(d => d.user_percentage + "%")
@@ -134,6 +135,19 @@
         .style("opacity", 1)
         .delay((d, i) => 400 + i * 100)
         .duration(1500)
+        .ease(d3.easeCubicOut);
+
+    // Animate in bar dollar amounts on load
+    bar_totals_dollars.html(d => "$0")
+        .attr("y", d => height - 5)
+        .attr("fill", "#fff")
+        .attr("x", 2)
+        .transition()
+        .attr("class", "dollar-amounts")
+        .attr("width", "100%")
+        .style("opacity", 1)
+        .delay(650)
+        .duration(1800)
         .ease(d3.easeCubicOut);
 
     // Get the current total of all programs
@@ -168,10 +182,15 @@
 
     // Update text for bar totals
     let update_bar_totals = function () {
+        // Update percentage
         bar_totals.attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
             .html(function (d) {
                 return Math.round(d.user_percentage) + "%";
             });
+
+        // Update dollar amount
+        bar_totals_dollars.html(d => "$" + add_commas(Math.round(d.user_percentage/100 * data.total)));
+
     }
 
     // Get total and update legend on load
