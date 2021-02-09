@@ -16,12 +16,6 @@
 
     let categories = data.fund_structure;
 
-    // Placeholder info explaining the simplified budget
-    d3.select("#header-info").append("div")
-        .html(function () {
-            return `<p>Refund Cleveland created this simplified view of the mayor's <strong>$${add_commas(data.total)}</strong> budget proposal. View it below and then <a href="/change-the-budget">change the budget to match your priorities &raquo;</a>.</p>`
-        });
-
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 2,  // bar height when data is 0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
@@ -66,7 +60,7 @@
     let bar_totals = svgs.append("text").style("opacity", 0);
 
     // Animate in bar totals on load
-    bar_totals.html(d => d.user_percentage + "%")
+    bar_totals.html(d => Math.round(d.user_percentage) + "%")
         .transition()
         .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
         .style("opacity", 1)
