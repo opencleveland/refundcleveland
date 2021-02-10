@@ -52,6 +52,5 @@ function add_commas(x) {
 
 // Returns array of bar colors
 function get_bar_colors() {
-    // return ["#3333CC", "#BD42BD", "#319fd4", "#4ABDAC", "#FC4A1A", "#CC3333", "#DFDCE3"];
     return ["#3333CC", "#4ABDAC", "#BD42BD", "#CC3333", "#319fd4", "#FC4A1A", "#DFDCE3"];
 }
