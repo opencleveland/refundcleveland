@@ -2,19 +2,63 @@
 {% load static %}
 
 {% block content %}
-    <h1>Submitted data:</h1>
+    <h1>Thank you for sharing how you'd like to fund Cleveland</h1>
 
-    <ul>
-        <li>Email:</li>
-        <ul>
-            <li>{{ email }}</li>
-        </ul>
-        <li>Political Ward:</li>
-        <ul>
-            <li>{{ ward }}</li>
-        </ul>
-        View your submission <a href="/{{ id }}/view/">here</a>
-    </ul>
+    <p><a href="/{{ id }}/view/">View your budget submission</a>. 
+
+<p>Now:</p>
+
+<h2> Share your Results on: </h2>
+<ul>
+    <li><a href="https://">Facebook</a></li>
+    <li>Twitter </li>
+</ul>
+
+<h2> Share your results with your councilperson </h2>
+
+<h3>Find your councilperson:</h3>
+
+<p>>Don't know what ward you live in ? Check at the city's <a href="https://clevelandcitycouncil.org/find-my-ward">find my ward page</a>
+</p>
+<p>Then,email the person below</p>
+<ul>
+    <li>Ward 1: <a href="mailto:jjones@clevelandcitycouncil.org">Joseph T. Jones</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li> Ward 13: <a href="mailto:kkelley@clevelandcitycouncil.org">Kevin Kelly</a></li>
+</ul>
+       
+
+Need some inspiration of what to include in an email. 
+
+<b> Do not copy this word for word. They will get tired of it and ignore. </b>
+<cite>
+<p>As a Clevelander and a resident of Ward {{ ward }}, it’s important to me that we spend our city’s limited resources in a thoughtful way. 
+    The city budget needs to listen to what the people of Cleveland think about how their own money should be spent. <p> There have been no town hall meetings or public comment sessions on Mayor Jackson’s budget proposal, which to me is unacceptable. 
+    There should be more room for the voice of the people when it comes to the people’s money.</p>
+
+Moreover, I’ve reviewed Mayor Jackson’s budget proposal as presented at 
+<a href="https://refundcleveland.com">refundcleveland.com</a>, and I think his proposal is <b>insert your thoughts</b> </p>
+ <p>
+    I think the budget spends too much on [X budget category the user cut most compared to the actual], and we’re just not spending enough on [Y budget category the user added to most compared to the actual].
+ 
+The particular budget item I'm most concerned about is [dropdown of specific items from category Y]--and this city should [[not cut it by $XX][do better than a minimal increase of $YY]].
+</p>
+Overall, based on the Mayor's revenue projections, here's how I think the budget should look:
+ <ul>
+<li>Policing and Corrections: $X, vs the mayor's $Y.</li>
+<li>Community Services (Fire, EMS, parks, etc): $X, vs the mayor's $Y.</li>
+<li>Environment and Sustainability: $X, vs the mayor's $Y.</li>
+<li>Infrastructure: $X, vs the mayor's $Y.</li>
+<li>Health: $X, vs the mayor's $Y.</li>
+</ul>
+Please keep this in mind as you amend and vote on this year's budget. It needs to represent the concerns and priorities of constituents like me, and it's never been more important that we get this right.
+ 
+
+</cite>
+
 
 {% endblock content %}
 
