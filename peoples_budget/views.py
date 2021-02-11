@@ -116,7 +116,7 @@ def view_budget(request, budget_id):
 
 def lookup_address(request):
     body = json.loads(request.body)
-    address = body['address']
+    address = body['address'] + 'Cleveland Ohio'
 
     query = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" + urllib.parse.quote_plus(address) + "&includeOffices=true&levels=locality&key="+ GOOGLE_API_KEY
 
