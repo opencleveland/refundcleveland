@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'peoples_budget',
+    'django_social_share'
 
 ]
 
@@ -67,7 +68,7 @@ TEMPLATES = [
             ],
         },
     },
-]
+] 
 
 WSGI_APPLICATION = 'refund_cleveland.wsgi.application'
 
