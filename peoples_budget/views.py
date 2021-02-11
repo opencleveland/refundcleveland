@@ -8,6 +8,7 @@ from peoples_budget import models
 import uuid
 import urllib, urllib.request
 import datetime
+import requests
 
 try:
     from local_settings import *
@@ -81,6 +82,9 @@ def store_data(request):
             new_budget.submitter_ward = ward
             new_budget.save()
 
+            # send email to user
+            send_email(email, id)
+
             # Confirm submitted data in template
             return render(request, 'store-data.html', {
                 'email': email,
@@ -129,3 +133,14 @@ def lookup_address(request):
         return render(request, 'lookup_address.html', {
             'ward': None
         })
+
+def send_email(submitter_email, id):
+	return requests.post(
+		"https://api.mailgun.net/v3/mg.refundcleveland.com/messages",
+		auth=("api", MAILGUN_API_KEY),
+		data={"from": "Refund Cleveland <info@refundcleveland.com>",
+			"to": [submitter_email],
+			"subject": "Your Cleveland Budget Proposal",
+			"text": f"Thank you for submitting your budget proposal for the 2021 City of Cleveland Budget!\n"
+                    f"View or share your budget here: https://www.refundcleveland.com/{id}/view\n\n"
+                    f"Brought to you by your friends at Open Cleveland! https://www.opencleveland.org"})
