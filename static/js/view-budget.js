@@ -16,6 +16,10 @@
 
     let categories = data.fund_structure;
 
+    // Temporary hard code total
+    data.total = 510657654;
+    console.log(data);
+
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 2,  // bar height when data is 0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
@@ -58,6 +62,7 @@
 
     // Add text elements to SVG to display bar totals
     let bar_totals = svgs.append("text").style("opacity", 0);
+    let bar_totals_dollars = svgs.append("text").style("opacity", 0);
 
     // Animate in bar totals on load
     bar_totals.html(d => Math.round(d.user_percentage) + "%")
@@ -66,6 +71,18 @@
         .style("opacity", 1)
         .delay((d, i) => 200)
         .duration(1500)
+        .ease(d3.easeCubicOut);
+
+    // Animate in bar dollar amounts on load
+    bar_totals_dollars.html(d => "$" + add_commas(Math.round(d.user_percentage/100 * data.total)))
+        .attr("y", d => height - 5)
+        .attr("fill", "#fff")
+        .attr("x", 2)
+        .transition()
+        .attr("class", "dollar-amounts")
+        .style("opacity", 1)
+        .delay(650)
+        .duration(1800)
         .ease(d3.easeCubicOut);
 
     // Display line items below each bar
