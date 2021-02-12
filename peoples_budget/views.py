@@ -14,6 +14,7 @@ try:
     from local_settings import *
 except ImportError:
     GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+    MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
     pass
 
 def home(request):
@@ -144,8 +145,8 @@ def send_email(submitter_email, id):
 			"text": f"Thank you for submitting your budget proposal for the 2021 City of Cleveland Budget!\n"
                     f"View or share your budget here: https://www.refundcleveland.com/{id}/view\n\n"
                     f"Brought to you by your friends at Open Cleveland! https://www.opencleveland.org"})
-                    
-                    
+
+
 def privacy_policy(request):
     return render(request, 'privacy-policy.html', {
         'home': True,
