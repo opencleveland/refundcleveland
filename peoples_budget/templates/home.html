@@ -11,12 +11,8 @@
 
     <a id="submit_btn" href="/change-the-budget">Change The Budget</a>
 
-    <!-- Modal content-->
-    {#    <div id="about-modal" class="modal">#}
-    {#        <div class="modal-content">#}
-    {#            <span class="close">&times;</span>#}
     <p>The residents of Cleveland have no public input into their city's budget. There are no budget town halls,
-        no public comment sessions, no way for the residents of Cleveland to discuss with their leaders what the
+        no public comment sessions, no way for the residents of Cleveland to discuss with their elected officials what the
         spending priorities should be in their community.</p>
     <p>This project is designed to make the budget for the City of Cleveland easier to understand. Its agenda is
         to make it clear where the money is going, and to provide people with the opportunity to see the
@@ -27,38 +23,11 @@
                                                                                 href="https://www.opencleveland.org/">Open
             Cleveland</a> and all of their
         volunteers for their help and guidance in bringing this project to life.</p>
-    <p>We value your privacy and <a href="/privacy-policy">read how your information will be shared </a>. </p>
-    {#        </div>#}
-    {#    </div>#}
-
+    <p>We value your privacy and invite you to <a href="/privacy-policy">read how your information will be shared</a>. </p>
 
 {% endblock content %}
 
 {% block footer_scripts %}
-
-
-
-    <!-- Modal -->
-    {#    <script>#}
-    {#        (function () {#}
-    {#            // Fade in the modal#}
-    {#            let modal = document.getElementById("about-modal");#}
-    {#            modal.style.opacity = 1;#}
-    {##}
-    {#            // Close the modal on close button click#}
-    {#            let span = document.getElementsByClassName("close")[0];#}
-    {#            span.onclick = function () {#}
-    {#                modal.style.display = "none";#}
-    {#            }#}
-    {##}
-    {#            // Close the modal on a click outside of the modal#}
-    {#            window.onclick = function (event) {#}
-    {#                if (event.target == modal) {#}
-    {#                    modal.style.display = "none";#}
-    {#                }#}
-    {#            }#}
-    {#        })();#}
-    {#    </script>#}
 
     <!-- Load D3.js -->
     <script src="https://d3js.org/d3.v6.min.js"></script>
