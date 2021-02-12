@@ -5,20 +5,19 @@
 
     data = sort_desc_by_percentage(data);
 
-    // Move "Other" category to the end
+    // Remove "Other" category from data object
     data.fund_structure.forEach(function (category, i) {
         if (category.name == "Administration, Law, and Other") {
             let other_category = data.fund_structure[i];
             data.fund_structure.splice(i, 1);
-            data.fund_structure.push(other_category)
         }
     });
 
     let categories = data.fund_structure;
 
-    // Temporary hard code total
-    data.total = 510657654;
-    console.log(data);
+    if (!data.hasOwnProperty('total')) {
+        data.total = 510657654;
+    }
 
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 2,  // bar height when data is 0
