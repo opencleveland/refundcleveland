@@ -194,7 +194,7 @@ div#change_budget, div#budget_visualization .bars {
   opacity: .2;
 }
 
-#change_budget .bar_wrap text.dollar-amounts {
+#budget_visualization .bar_wrap text.dollar-amounts, #change_budget .bar_wrap text.dollar-amounts {
   text-align: center;
   display: block;
   font-weight: 400;
