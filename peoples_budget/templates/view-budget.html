@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load social_share %}
 
 {% block content %}
     <h1>Your budget:</h1>
@@ -25,4 +26,10 @@
     <!-- Load modal popups -->
     <script src="{% static 'js/line-item-modals.js' %}?{% now "U" %}"></script>
 
+
+    <h2> Share your budget on: </h2>
+<ul>
+    <li>{% post_to_facebook "{{ id }}/view/" "Post to facebook" %}</li> 
+    <li>{% post_to_twitter "I made my city budget for Cleveland with #refundcleveland {{object.title}}. Check it out!" "{{ id }}/view/" "Post to Twitter" %} </li>
+</ul>
 {% endblock footer_scripts %}
