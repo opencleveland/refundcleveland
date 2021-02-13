@@ -55,7 +55,8 @@ Copy and rename **local_settings_template.py** to **local_settings.py**, and fil
 `GOOGLE_API_KEY` -- Used for Google's Civic Information API to map Address to Political Ward
 
 `DATABASES` -- map of parameters to define the connection to a database.  In prod, we are using a postgres db hosted on heroku, and the connection is injected there via config vars.  For local versions, enter the information you used when creating the database.  Example:
-```DATABASES = {
+```
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'refund1',
@@ -64,7 +65,8 @@ Copy and rename **local_settings_template.py** to **local_settings.py**, and fil
         'HOST': 'localhost',
         'PORT': '5432',
     }
-}```
+}
+```
 
 #### Run the app
 
