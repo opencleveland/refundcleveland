@@ -46,6 +46,7 @@ If you need to install PostgreSQL, please follow these steps:
 1. Open a command line and run `psql -U postgres`.  This is the default superuser.  Enter the password you created.
 1. Within the postgres terminal, enter the command `CREATE DATABASE <databaseName>;`.
 1. Update your local_settings.py file!
+1. Run the command `python3 manage.py migrate` within the command line to create tables within your database.
 
 
 #### Add local settings
