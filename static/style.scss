@@ -211,6 +211,10 @@ div#change_budget, div#budget_visualization .bars {
   opacity: .9;
 }
 
+#change_budget .bar_wrap:last-child rect:hover {
+    cursor: not-allowed;
+}
+
 .bar_wrap rect:hover ~ text {
   fill: #000;
 }
