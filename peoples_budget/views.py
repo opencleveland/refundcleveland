@@ -17,6 +17,7 @@ except ImportError:
     MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
     pass
 
+
 def home(request):
     with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
         json_file = json.load(file)
@@ -37,6 +38,21 @@ def change_budget(request):
     form = ChangeBudgetForm(request.POST)
 
     return render(request, 'change-the-budget.html', {
+        'change_budget': True,
+        'data': json_file,
+        'body_classes': 'change-the-budget',
+        'form': form
+    })
+
+def test(request):
+    """Test new UI option"""
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
+        json_file = json.load(file)
+
+    # Add hidden field to store user budget data
+    form = ChangeBudgetForm(request.POST)
+
+    return render(request, 'test.html', {
         'change_budget': True,
         'data': json_file,
         'body_classes': 'change-the-budget',
@@ -100,6 +116,7 @@ def store_data(request):
     else:
         return redirect("/change-the-budget")
 
+
 def view_budget(request, budget_id):
     """View a saved budget given budget_id"""
 
@@ -115,11 +132,13 @@ def view_budget(request, budget_id):
         'body_classes': 'view-budget'
     })
 
+
 def lookup_address(request):
     body = json.loads(request.body)
     address = body['address'] + 'Cleveland Ohio'
 
-    query = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" + urllib.parse.quote_plus(address) + "&includeOffices=true&levels=locality&key="+ GOOGLE_API_KEY
+    query = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" + urllib.parse.quote_plus(
+        address) + "&includeOffices=true&levels=locality&key=" + GOOGLE_API_KEY
 
     try:
         json_response = json.load(urllib.request.urlopen(query))
@@ -135,16 +154,17 @@ def lookup_address(request):
             'ward': None
         })
 
+
 def send_email(submitter_email, id):
-	return requests.post(
-		"https://api.mailgun.net/v3/mg.refundcleveland.com/messages",
-		auth=("api", MAILGUN_API_KEY),
-		data={"from": "Refund Cleveland <info@refundcleveland.com>",
-			"to": [submitter_email],
-			"subject": "Your Cleveland Budget Proposal",
-			"text": f"Thank you for submitting your budget proposal for the 2021 City of Cleveland Budget!\n"
-                    f"View or share your budget here: https://www.refundcleveland.com/{id}/view\n\n"
-                    f"Brought to you by your friends at Open Cleveland! https://www.opencleveland.org"})
+    return requests.post(
+        "https://api.mailgun.net/v3/mg.refundcleveland.com/messages",
+        auth=("api", MAILGUN_API_KEY),
+        data={"from": "Refund Cleveland <info@refundcleveland.com>",
+              "to": [submitter_email],
+              "subject": "Your Cleveland Budget Proposal",
+              "text": f"Thank you for submitting your budget proposal for the 2021 City of Cleveland Budget!\n"
+                      f"View or share your budget here: https://www.refundcleveland.com/{id}/view\n\n"
+                      f"Brought to you by your friends at Open Cleveland! https://www.opencleveland.org"})
 
 
 def privacy_policy(request):
