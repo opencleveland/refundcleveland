@@ -3,28 +3,21 @@
     // Retrieve and format data
     let data = JSON.parse(document.getElementById('json_data').textContent);
 
-    // Temporarily remove "other" category from data object
-    let other_category;
+    data = sort_desc_by_percentage(data);
+
+    // Remove "Other" category from data object
     data.fund_structure.forEach(function (category, i) {
-        if (category.name === "Administration, Law, and Other") {
-            other_category = data.fund_structure[i];
-            other_category.user_percentage = Math.round(parseFloat(other_category.percentage));
+        if (category.name == "Administration, Law, and Other") {
+            let other_category = data.fund_structure[i];
             data.fund_structure.splice(i, 1);
-        } else {
-            // Optional: Remove line item totals
-            // since they are no longer needed
-            data.fund_structure[i].children.forEach(function (line_item) {
-                delete line_item.total;
-            });
         }
     });
 
-    data = sort_desc_by_percentage(data);
-
-    // Re-add "other" category to end of data object
-    data.fund_structure.push(other_category);
-
     let categories = data.fund_structure;
+
+    // if (!data.hasOwnProperty('total')) {
+    //     data.total = 510657654;
+    // }
 
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 2,  // bar height when data is $0
@@ -78,6 +71,18 @@
         .delay((d, i) => 200)
         .duration(1500)
         .ease(d3.easeCubicOut);
+
+    // // Animate in bar dollar amounts on load
+    // bar_totals_dollars.html(d => "$" + add_commas(Math.round(d.user_percentage/100 * data.total)))
+    //     .attr("y", d => height - 5)
+    //     .attr("fill", "#fff")
+    //     .attr("x", 2)
+    //     .transition()
+    //     .attr("class", "dollar-amounts")
+    //     .style("opacity", 1)
+    //     .delay(650)
+    //     .duration(1800)
+    //     .ease(d3.easeCubicOut);
 
     // Display line items below each bar
     bar_divs.append("div")
