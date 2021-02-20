@@ -8,6 +8,7 @@
     data.fund_structure.forEach(function (category, i) {
         if (category.name === "Administration, Law, and Other") {
             other_category = data.fund_structure[i];
+            other_category.user_percentage = Math.round(parseFloat(other_category.percentage));
             data.fund_structure.splice(i, 1);
         } else {
             // Optional: Remove line item totals
