@@ -116,9 +116,9 @@
     let drag_bars = d3.drag()
         .on("start", function (event, d) {
             scrollable = false;
+            bar_index = bars.nodes().indexOf(this);
         })
         .on("drag", function (event, d) {
-            let bar_index = bars.nodes().indexOf(this);
             udpate_bar_height(event, d, bar_index)
             update_legend(Math.round(update_total()));
             update_bar_totals();
@@ -126,6 +126,7 @@
         })
         .on("end", function (event, d) {
             scrollable = true;
+            bar_index = -1;
         });
 
     // Add bars to SVG
