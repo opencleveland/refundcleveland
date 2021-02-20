@@ -4,7 +4,10 @@
     let data = retrieve_budget_data();
     data = sum_category_totals(data);
 
-    // Remove "Other" category from data object
+    // Calculate category percentage data
+    data = add_percentage_to_categories(data);
+
+    // Temporarily remove "other" category from data object
     let other_category;
     data.fund_structure.forEach(function (category, i) {
         if (category.name === "Administration, Law, and Other") {
@@ -19,27 +22,33 @@
         }
     });
 
+    // Calculate total without "other" category
     data.full_total = data.total;
     data.total -= other_category.total;
 
-    // Calculate category percentage data
-    // and sort to match order of home page.
-    data = add_percentage_to_categories(data);
+    // Sort to match order of home page
     data = sort_desc_by_percentage(data);
+
+    // Re-add "other" category to end of data object
+    data.fund_structure.push(other_category);
 
     // Clear category totals and percentage data
     // for the user
     let categories = data.fund_structure;
     categories.forEach(function (category) {
-        category.user_percentage = 0;
-        category.total = 0;
+        if (category != other_category) {
+            category.user_percentage = 0;
+            category.total = 0;
+        } else {
+            category.user_percentage = Math.round(parseFloat(category.percentage));
+        }
     });
 
     // Placeholder info explaining what data
     // the user is manipulating
     d3.select("#header-info").append("div")
         .html(function () {
-            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
+            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Administration, Law, and Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars
@@ -71,10 +80,13 @@
             bar_index = background_bars.nodes().indexOf(this);
         })
         .on("drag", function (event, d) {
-            udpate_bar_height(event, d, bar_index)
-            update_legend(Math.round(update_total()));
-            update_bar_totals();
-            update_form_input_value();
+            // Update bar totals and height if not "other" category
+            if (bar_index != categories.length - 1) {
+                udpate_bar_height(event, d, bar_index)
+                update_legend(Math.round(update_total()));
+                update_bar_totals();
+                update_form_input_value();
+            }
         })
         .on("end", function (event, d) {
             scrollable = true;
@@ -119,10 +131,13 @@
             bar_index = bars.nodes().indexOf(this);
         })
         .on("drag", function (event, d) {
-            udpate_bar_height(event, d, bar_index)
-            update_legend(Math.round(update_total()));
-            update_bar_totals();
-            update_form_input_value();
+            // Update bar totals and height if not "other" category
+            if (bar_index != categories.length - 1) {
+                udpate_bar_height(event, d, bar_index)
+                update_legend(Math.round(update_total()));
+                update_bar_totals();
+                update_form_input_value();
+            }
         })
         .on("end", function (event, d) {
             scrollable = true;
@@ -138,6 +153,28 @@
         .attr("x", 0)
         .attr("fill", (d, i) => colors[i % colors.length])
         .call(drag_bars);
+
+    // Add disabled symbol to "Other" bar
+    let disabled_rect = d3.select(svgs.nodes()[bar_divs.nodes().length - 1]).append("g")
+        .attr("class", "disabled-rect");
+
+    disabled_rect.append("line")
+        .style("stroke", "#ee8f8f")
+        .style("stroke-width", .5)
+        .style("stroke-dasharray", 3)
+        .attr("x1", 0)
+        .attr("y1", (height - (100 * MULTIPLIER) - SHIFT))
+        .attr("x2", "100%")
+        .attr("y2", (100 * MULTIPLIER) + SHIFT + 25);
+
+    disabled_rect.append("line")
+        .style("stroke", "#ee8f8f")
+        .style("stroke-width", .5)
+        .style("stroke-dasharray", 3)
+        .attr("x1", "100%")
+        .attr("y1", (height - (100 * MULTIPLIER) - SHIFT))
+        .attr("x2", 0)
+        .attr("y2", (100 * MULTIPLIER) + SHIFT + 25);
 
     // Animate in bars on load
     bars.transition()
@@ -189,12 +226,14 @@
         return new_total;
     }
 
+    let submit_btn = document.getElementById("submit_btn");
+
     // Update the legend HTML
     let update_legend = function (balance) {
         let curr_bal = 100 - balance;
         if (curr_bal === 0) {
             // Enable Submit button
-            // document.getElementById("submit_btn").disabled = false;
+            // submit_btn.disabled = false;
 
             // Update legend and add balanced class
             d3.select("#change_budget_legend")
@@ -202,7 +241,7 @@
 
         } else {
             // Disable Submit button
-            document.getElementById("submit_btn").disabled = true;
+            submit_btn.disabled = true;
 
             // Update legend
             d3.select("#change_budget_legend")
