@@ -4,9 +4,6 @@
     let data = retrieve_budget_data();
     data = sum_category_totals(data);
 
-    // Calculate category percentage data
-    data = add_percentage_to_categories(data);
-
     // Remove "Other" category from data object
     let other_category;
     data.fund_structure.forEach(function (category, i) {
@@ -25,33 +22,24 @@
     data.full_total = data.total;
     data.total -= other_category.total;
 
-    // Sort to match order of home page
+    // Calculate category percentage data
+    // and sort to match order of home page.
+    data = add_percentage_to_categories(data);
     data = sort_desc_by_percentage(data);
-
-    // Add other category to the end
-    data.fund_structure.push(other_category);
 
     // Clear category totals and percentage data
     // for the user
     let categories = data.fund_structure;
     categories.forEach(function (category) {
-        if (category != other_category) {
-            category.user_percentage = 0;
-            category.total = 0;
-        }
-        else {
-            category.user_percentage = Math.round(parseFloat(category.percentage));
-            // console.log(category.percentage);
-            // category.user_percentage = 0;
-            // category.total = category.user_percentage / 100 * data.total;
-        }
+        category.user_percentage = 0;
+        category.total = 0;
     });
 
     // Placeholder info explaining what data
     // the user is manipulating
     d3.select("#header-info").append("div")
         .html(function () {
-            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Administration, Law, and Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
+            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars
@@ -83,12 +71,10 @@
             bar_index = background_bars.nodes().indexOf(this);
         })
         .on("drag", function (event, d) {
-            if (bar_index != categories.length - 1) {
-                udpate_bar_height(event, d, bar_index)
-                update_legend(Math.round(update_total()));
-                update_bar_totals();
-                update_form_input_value();
-            }
+            udpate_bar_height(event, d, bar_index)
+            update_legend(Math.round(update_total()));
+            update_bar_totals();
+            update_form_input_value();
         })
         .on("end", function (event, d) {
             scrollable = true;
@@ -133,12 +119,10 @@
             bar_index = bars.nodes().indexOf(this);
         })
         .on("drag", function (event, d) {
-            if (bar_index != categories.length - 1) {
-                udpate_bar_height(event, d, bar_index)
-                update_legend(Math.round(update_total()));
-                update_bar_totals();
-                update_form_input_value();
-            }
+            udpate_bar_height(event, d, bar_index)
+            update_legend(Math.round(update_total()));
+            update_bar_totals();
+            update_form_input_value();
         })
         .on("end", function (event, d) {
             scrollable = true;
@@ -205,14 +189,12 @@
         return new_total;
     }
 
-    let submit_btn = document.getElementById("submit_btn");
-
     // Update the legend HTML
     let update_legend = function (balance) {
         let curr_bal = 100 - balance;
         if (curr_bal === 0) {
             // Enable Submit button
-            // submit_btn.disabled = false;
+            // document.getElementById("submit_btn").disabled = false;
 
             // Update legend and add balanced class
             d3.select("#change_budget_legend")
@@ -220,7 +202,7 @@
 
         } else {
             // Disable Submit button
-            submit_btn.disabled = true;
+            document.getElementById("submit_btn").disabled = true;
 
             // Update legend
             d3.select("#change_budget_legend")
