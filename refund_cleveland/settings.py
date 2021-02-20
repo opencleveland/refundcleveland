@@ -18,8 +18,8 @@ except ImportError:
     SECRET_KEY = os.getenv('SECRET_KEY')
     GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
     pass
-# import django_heroku
-#
+import django_heroku
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -118,4 +118,4 @@ STATICFILES_DIRS = [
 ]
 
 # Configure Django App for Heroku.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
