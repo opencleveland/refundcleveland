@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="change_budget">
+        <div id="header-info">
+            <h1>What would your budget look like?</h1>
+        </div>
+        <div id="change_budget_legend"></div>
+        <div id="change_budget"></div>
+    </div>
+
+    <form action="/submit/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit Your Budget" id="submit_btn">
+    </form>
+
+{% endblock content %}
+
+{% block footer_scripts %}
+
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    {% comment %} Make json data available to external scripts {% endcomment %}
+    {{ data | json_script:"json_data" }}
+
+    <!-- Load shared functions -->
+    <script src="{% static 'js/shared.js' %}?{% now "U" %}"></script>
+    <!-- Load D3 visualizations -->
+    <script src="{% static 'js/change-budget-test.js' %}?{% now "U" %}"></script>
+    <!-- Load modal popups -->
+    <script src="{% static 'js/line-item-modals.js' %}?{% now "U" %}"></script>
+
+{% endblock footer_scripts %}
