@@ -4,7 +4,10 @@
     let data = retrieve_budget_data();
     data = sum_category_totals(data);
 
-    // Remove "Other" category from data object
+    // Calculate category percentage data
+    data = add_percentage_to_categories(data);
+
+    // Temporarily remove "other" category from data object
     let other_category;
     data.fund_structure.forEach(function (category, i) {
         if (category.name === "Administration, Law, and Other") {
@@ -19,33 +22,39 @@
         }
     });
 
+    // Calculate total without "other" category
     data.full_total = data.total;
     data.total -= other_category.total;
 
-    // Calculate category percentage data
-    // and sort to match order of home page.
-    data = add_percentage_to_categories(data);
+    // Sort to match order of home page
     data = sort_desc_by_percentage(data);
+
+    // Re-add "other" category to end of data object
+    data.fund_structure.push(other_category);
 
     // Clear category totals and percentage data
     // for the user
     let categories = data.fund_structure;
     categories.forEach(function (category) {
-        category.user_percentage = 0;
-        category.total = 0;
+        if (category != other_category) {
+            category.user_percentage = 0;
+            category.total = 0;
+        } else {
+            category.user_percentage = Math.round(parseFloat(category.percentage));
+        }
     });
 
     // Placeholder info explaining what data
     // the user is manipulating
     d3.select("#header-info").append("div")
         .html(function () {
-            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
+            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Administration, Law, and Other" category in our <a href="/">&laquo; simplified view of Mayor Jackson's 2021 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars
-        SHIFT = 40,  // bar height when data is $0
+        SHIFT = 2,  // bar height when data is $0
         margin = {top: 0, right: 0, bottom: 0, left: 0},
-        height = 230 - margin.top - margin.bottom + SHIFT,
+        height = 225 - margin.top - margin.bottom + SHIFT,
         colors = get_bar_colors();
 
     // Select container div
@@ -64,14 +73,6 @@
         .attr("width", "100%")
         .attr("y", 0);
 
-    // Add background bar rects
-    let background_bars = svgs.append("rect")
-        .attr("class", "background_bar")
-        .attr("width", "100%")
-        .attr("height", d => (100 * MULTIPLIER) + SHIFT)
-        .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
-        .attr("x", 0);
-
     // Prevent default scrolling behavior in Google Chrome
     // when user should be able to drag bars
     let scrollable = true;
@@ -81,30 +82,51 @@
         }
     }, {passive: false});
 
-    // Bars drag event handler
+    // Update bar height to match user percentage
     let max_amount;
-    let drag_bars = d3.drag()
-        .on("start", function (event, d) {
-            scrollable = false;
-        })
-        .on("drag", function (event, d) {
-            curr_total = update_total();
-            max_amount = Math.max(0, 100 - curr_total);
+    let udpate_bar_height = function (event, d, bar_index) {
+        curr_total = update_total();
+        max_amount = Math.max(0, 100 - curr_total);
 
-            d.user_percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.user_percentage + max_amount));
-            d3.select(this).attr("height", d => (Math.round(d.user_percentage) * MULTIPLIER) + SHIFT);
-            d3.select(this).attr("y", height - (Math.round(d.user_percentage) * MULTIPLIER) - SHIFT);
+        d.user_percentage = Math.max(0, Math.min((height / MULTIPLIER), (height - event.y) / MULTIPLIER, d.user_percentage + max_amount));
+        d3.select(bars.nodes()[bar_index]).attr("height", d => (Math.round(d.user_percentage) * MULTIPLIER) + SHIFT);
+        d3.select(bars.nodes()[bar_index]).attr("y", height - (Math.round(d.user_percentage) * MULTIPLIER) - SHIFT);
 
-            // Update current category dollar amount
-            d.total = d.user_percentage / 100 * data.total;
+        // Update current category dollar amount
+        d.total = d.user_percentage / 100 * data.total;
+    }
 
-            update_legend(Math.round(update_total()));
-            update_bar_totals();
-            update_form_input_value();
-        })
-        .on("end", function (event, d) {
-            scrollable = true;
-        });
+    // Bars drag event handler closure
+    let bar_index = -1;
+    let drag_bars = function (this_parent_node) {
+        return d3.drag()
+            .on("start", function (event, d) {
+                scrollable = false;
+                bar_index = this_parent_node.nodes().indexOf(this);
+            })
+            .on("drag", function (event, d) {
+                // Update bar totals and height if not "other" category
+                if (bar_index != categories.length - 1) {
+                    udpate_bar_height(event, d, bar_index)
+                    update_legend(Math.round(update_total()));
+                    update_bar_totals();
+                    update_form_input_value();
+                }
+            })
+            .on("end", function (event, d) {
+                scrollable = true;
+                bar_index = -1;
+            });
+    }
+
+    // Add background bar rects
+    let background_bars = svgs.append("rect")
+        .attr("class", "background_bar")
+        .attr("width", "100%")
+        .attr("height", d => (100 * MULTIPLIER) + SHIFT)
+        .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
+        .attr("x", 0);
+    background_bars.call(drag_bars(background_bars));
 
     // Add bars to SVG
     let bars = svgs.append("rect")
@@ -113,42 +135,71 @@
         .attr("height", d => (100 * MULTIPLIER) + SHIFT)
         .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
         .attr("x", 0)
-        .attr("fill", (d, i) => colors[i % colors.length])
-        .call(drag_bars);
+        .attr("fill", (d, i) => colors[i % colors.length]);
+    bars.call(drag_bars(bars));
+
+    // Add disabled symbol to "Other" bar
+    let disabled_rect = d3.select(svgs.nodes()[bar_divs.nodes().length - 1]).append("g")
+        .attr("class", "disabled-rect");
+
+    disabled_rect.append("line")
+        .style("stroke", "#ee8f8f")
+        .style("stroke-width", .5)
+        .style("stroke-dasharray", 3)
+        .attr("x1", 0)
+        .attr("y1", (height - (100 * MULTIPLIER) - SHIFT))
+        .attr("x2", "100%")
+        .attr("y2", (100 * MULTIPLIER) + SHIFT + 25);
+
+    disabled_rect.append("line")
+        .style("stroke", "#ee8f8f")
+        .style("stroke-width", .5)
+        .style("stroke-dasharray", 3)
+        .attr("x1", "100%")
+        .attr("y1", (height - (100 * MULTIPLIER) - SHIFT))
+        .attr("x2", 0)
+        .attr("y2", (100 * MULTIPLIER) + SHIFT + 25);
 
     // Animate in bars on load
     bars.transition()
         .attr("height", d => (d.user_percentage * MULTIPLIER) + SHIFT)
-        .attr("y", d => height - (d.user_percentage  * MULTIPLIER) - SHIFT)
-        .delay((d, i) => 400 + i * 100)
+        .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT)
+        .delay((d, i) => 0)
         .duration(1500)
         .ease(d3.easeCubicOut);
 
+    // // Click event handler
+    // background_bars.on("click", function (event, d) {
+    //     let i = background_bars.nodes().indexOf(this);
+    //     // console.log(`bar ${i} clicked`);
+    //     // console.log(d3.select(bars.nodes()[i]).datum());
+    // });
+
     // Add text elements to SVG to display bar totals
     let bar_totals = svgs.append("text").style("opacity", 0);
-    let bar_totals_dollars = svgs.append("text").style("opacity", 0);
+    // let bar_totals_dollars = svgs.append("text").style("opacity", 0);
 
     // Animate in bar totals on load
     bar_totals.html(d => d.user_percentage + "%")
         .transition()
         .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
         .style("opacity", 1)
-        .delay((d, i) => 400 + i * 100)
+        .delay((d, i) => 0)
         .duration(1500)
         .ease(d3.easeCubicOut);
 
-    // Animate in bar dollar amounts on load
-    bar_totals_dollars.html(d => "$0")
-        .attr("y", d => height - 5)
-        .attr("fill", "#fff")
-        .attr("x", 2)
-        .transition()
-        .attr("class", "dollar-amounts")
-        .attr("width", "100%")
-        .style("opacity", 1)
-        .delay(650)
-        .duration(1800)
-        .ease(d3.easeCubicOut);
+    // // Animate in bar dollar amounts on load
+    // bar_totals_dollars.html(d => "$0")
+    //     .attr("y", d => height - 5)
+    //     .attr("fill", "#fff")
+    //     .attr("x", 2)
+    //     .transition()
+    //     .attr("class", "dollar-amounts")
+    //     .attr("width", "100%")
+    //     .style("opacity", 1)
+    //     .delay(650)
+    //     .duration(1800)
+    //     .ease(d3.easeCubicOut);
 
     // Get the current total of all programs
     let update_total = function () {
@@ -159,12 +210,14 @@
         return new_total;
     }
 
+    let submit_btn = document.getElementById("submit_btn");
+
     // Update the legend HTML
     let update_legend = function (balance) {
         let curr_bal = 100 - balance;
         if (curr_bal === 0) {
             // Enable Submit button
-            document.getElementById("submit_btn").disabled = false;
+            submit_btn.disabled = false;
 
             // Update legend and add balanced class
             d3.select("#change_budget_legend")
@@ -172,7 +225,7 @@
 
         } else {
             // Disable Submit button
-            document.getElementById("submit_btn").disabled = true;
+            submit_btn.disabled = true;
 
             // Update legend
             d3.select("#change_budget_legend")
@@ -189,7 +242,7 @@
             });
 
         // Update dollar amount
-        bar_totals_dollars.html(d => "$" + add_commas(Math.round(d.user_percentage/100 * data.total)));
+        // bar_totals_dollars.html(d => "$" + add_commas(Math.round(d.user_percentage/100 * data.total)));
 
     }
 
@@ -229,6 +282,5 @@
         json_input.value = JSON.stringify(data);
     }
     update_form_input_value();
-
 
 })();
