@@ -73,35 +73,6 @@
         .attr("width", "100%")
         .attr("y", 0);
 
-    let bar_index = -1;
-    let drag_background_bars = d3.drag()
-        .on("start", function (event, d) {
-            scrollable = false;
-            bar_index = background_bars.nodes().indexOf(this);
-        })
-        .on("drag", function (event, d) {
-            // Update bar totals and height if not "other" category
-            if (bar_index != categories.length - 1) {
-                udpate_bar_height(event, d, bar_index)
-                update_legend(Math.round(update_total()));
-                update_bar_totals();
-                update_form_input_value();
-            }
-        })
-        .on("end", function (event, d) {
-            scrollable = true;
-            bar_index = -1;
-        });
-
-    // Add background bar rects
-    let background_bars = svgs.append("rect")
-        .attr("class", "background_bar")
-        .attr("width", "100%")
-        .attr("height", d => (100 * MULTIPLIER) + SHIFT)
-        .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
-        .attr("x", 0)
-        .call(drag_background_bars);
-
     // Prevent default scrolling behavior in Google Chrome
     // when user should be able to drag bars
     let scrollable = true;
@@ -111,6 +82,8 @@
         }
     }, {passive: false});
 
+    // Update bar height to match user percentage
+    let max_amount;
     let udpate_bar_height = function (event, d, bar_index) {
         curr_total = update_total();
         max_amount = Math.max(0, 100 - curr_total);
@@ -123,26 +96,37 @@
         d.total = d.user_percentage / 100 * data.total;
     }
 
-    // Bars drag event handler
-    let max_amount;
-    let drag_bars = d3.drag()
-        .on("start", function (event, d) {
-            scrollable = false;
-            bar_index = bars.nodes().indexOf(this);
-        })
-        .on("drag", function (event, d) {
-            // Update bar totals and height if not "other" category
-            if (bar_index != categories.length - 1) {
-                udpate_bar_height(event, d, bar_index)
-                update_legend(Math.round(update_total()));
-                update_bar_totals();
-                update_form_input_value();
-            }
-        })
-        .on("end", function (event, d) {
-            scrollable = true;
-            bar_index = -1;
-        });
+    // Bars drag event handler closure
+    let bar_index = -1;
+    let drag_bars = function (this_parent_node) {
+        return d3.drag()
+            .on("start", function (event, d) {
+                scrollable = false;
+                bar_index = this_parent_node.nodes().indexOf(this);
+            })
+            .on("drag", function (event, d) {
+                // Update bar totals and height if not "other" category
+                if (bar_index != categories.length - 1) {
+                    udpate_bar_height(event, d, bar_index)
+                    update_legend(Math.round(update_total()));
+                    update_bar_totals();
+                    update_form_input_value();
+                }
+            })
+            .on("end", function (event, d) {
+                scrollable = true;
+                bar_index = -1;
+            });
+    }
+
+    // Add background bar rects
+    let background_bars = svgs.append("rect")
+        .attr("class", "background_bar")
+        .attr("width", "100%")
+        .attr("height", d => (100 * MULTIPLIER) + SHIFT)
+        .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
+        .attr("x", 0);
+    background_bars.call(drag_bars(background_bars));
 
     // Add bars to SVG
     let bars = svgs.append("rect")
@@ -151,8 +135,8 @@
         .attr("height", d => (100 * MULTIPLIER) + SHIFT)
         .attr("y", d => height - (100 * MULTIPLIER) - SHIFT)
         .attr("x", 0)
-        .attr("fill", (d, i) => colors[i % colors.length])
-        .call(drag_bars);
+        .attr("fill", (d, i) => colors[i % colors.length]);
+    bars.call(drag_bars(bars));
 
     // Add disabled symbol to "Other" bar
     let disabled_rect = d3.select(svgs.nodes()[bar_divs.nodes().length - 1]).append("g")
@@ -298,6 +282,5 @@
         json_input.value = JSON.stringify(data);
     }
     update_form_input_value();
-
 
 })();
