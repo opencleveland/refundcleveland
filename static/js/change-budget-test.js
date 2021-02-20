@@ -64,19 +64,21 @@
         .attr("width", "100%")
         .attr("y", 0);
 
+    let bar_index = -1;
     let drag_background_bars = d3.drag()
         .on("start", function (event, d) {
             scrollable = false;
+            bar_index = background_bars.nodes().indexOf(this);
         })
         .on("drag", function (event, d) {
-            const i = background_bars.nodes().indexOf(this);
-            udpate_bar_height(event, d, i)
+            udpate_bar_height(event, d, bar_index)
             update_legend(Math.round(update_total()));
             update_bar_totals();
             update_form_input_value();
         })
         .on("end", function (event, d) {
             scrollable = true;
+            bar_index = -1;
         });
 
     // Add background bar rects
@@ -140,8 +142,8 @@
     bars.transition()
         .attr("height", d => (d.user_percentage * MULTIPLIER) + SHIFT)
         .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT)
-        .delay((d, i) => 400 + i * 100)
-        .duration(1500)
+        .delay((d, i) => 0)
+        .duration(1000)
         .ease(d3.easeCubicOut);
 
     background_bars.on("click", function (event, d) {
@@ -166,8 +168,8 @@
         .transition()
         .attr("y", d => height - (d.user_percentage * MULTIPLIER) - SHIFT - 10)
         .style("opacity", 1)
-        .delay((d, i) => 400 + i * 100)
-        .duration(1500)
+        .delay((d, i) => 0)
+        .duration(1000)
         .ease(d3.easeCubicOut);
 
     // // Animate in bar dollar amounts on load
