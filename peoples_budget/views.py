@@ -120,6 +120,8 @@ def store_data(request):
 
 def view_budget(request, budget_id):
     """View a saved budget given budget_id"""
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
+        mayor_json_file = json.load(file)
 
     try:
         submission = models.BudgetSubmission.objects.get(the_id=budget_id)
@@ -129,8 +131,9 @@ def view_budget(request, budget_id):
 
     return render(request, 'view-budget.html', {
         'budget_id': budget_id,
-        'json_data': submission.submitter_json,
-        'body_classes': 'view-budget'
+        'user_json_data': submission.submitter_json,
+        'body_classes': 'view-budget',
+        'mayor_json_data': mayor_json_file
     })
 
 

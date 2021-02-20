@@ -15,7 +15,8 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
 
     {% comment %} Make json data available to external scripts {% endcomment %}
-    {{ json_data | json_script:"json_data" }}
+    {{ user_json_data | json_script:"user_json_data" }}
+    {{ mayor_json_data | json_script:"mayor_json_data" }}
 
     <!-- Load shared functions -->
     <script src="{% static 'js/shared.js' %}?{% now "U" %}"></script>

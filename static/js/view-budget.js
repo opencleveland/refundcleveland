@@ -1,23 +1,52 @@
 (function () {
 
-    // Retrieve and format data
-    let data = JSON.parse(document.getElementById('json_data').textContent);
+    // Retrieve user data
+    let user_data = JSON.parse(document.getElementById('user_json_data').textContent);
 
-    data = sort_desc_by_percentage(data);
-
-    // Remove "Other" category from data object
-    data.fund_structure.forEach(function (category, i) {
-        if (category.name == "Administration, Law, and Other") {
-            let other_category = data.fund_structure[i];
-            data.fund_structure.splice(i, 1);
+    // Temporarily remove "other" category from data object
+    let other_category;
+    user_data.fund_structure.forEach(function (category, i) {
+        if (category.name === "Administration, Law, and Other") {
+            other_category = user_data.fund_structure[i];
+            user_data.fund_structure.splice(i, 1);
         }
     });
 
-    let categories = data.fund_structure;
+    if (other_category == null) {
+        // NOTE: If user submitted budget prior to inclusion of "other" category
+        // on the change budget page, the "other" category will be missing
+        // from the data object
 
-    // if (!data.hasOwnProperty('total')) {
-    //     data.total = 510657654;
-    // }
+        // Retrieve mayor's budget data
+        let mayor_data = JSON.parse(document.getElementById('mayor_json_data').textContent);
+        mayor_data = sum_category_totals(mayor_data);
+        mayor_data = add_percentage_to_categories(mayor_data);
+
+        // Get the missing "other" category
+        // and add missing user_percentage property
+        mayor_data.fund_structure.forEach(function (category, i) {
+            if (category.name === "Administration, Law, and Other") {
+                other_category = mayor_data.fund_structure[i];
+                other_category.user_percentage = Math.round(parseFloat(other_category.percentage));
+            }
+        });
+
+        // Recalculate user percentages so they are relative to the full fund
+        user_data.fund_structure.forEach(function (category, i) {
+            if (category.name !== "Administration, Law, and Other") {
+                let user_dollars = (category.user_percentage / 100) * user_data.total;
+                category.user_percentage = (user_dollars / user_data.full_total * 100).toFixed(2);
+            }
+        });
+    }
+
+    user_data = sort_desc_by_percentage(user_data);
+
+    // Re-add "other" category to end of data object
+    // console.log(other_category);
+    user_data.fund_structure.push(other_category);
+
+    let categories = user_data.fund_structure;
 
     const MULTIPLIER = 2,  // add height to bars
         SHIFT = 2,  // bar height when data is $0
@@ -71,18 +100,6 @@
         .delay((d, i) => 200)
         .duration(1500)
         .ease(d3.easeCubicOut);
-
-    // // Animate in bar dollar amounts on load
-    // bar_totals_dollars.html(d => "$" + add_commas(Math.round(d.user_percentage/100 * data.total)))
-    //     .attr("y", d => height - 5)
-    //     .attr("fill", "#fff")
-    //     .attr("x", 2)
-    //     .transition()
-    //     .attr("class", "dollar-amounts")
-    //     .style("opacity", 1)
-    //     .delay(650)
-    //     .duration(1800)
-    //     .ease(d3.easeCubicOut);
 
     // Display line items below each bar
     bar_divs.append("div")
