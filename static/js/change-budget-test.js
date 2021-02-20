@@ -147,18 +147,12 @@
         .duration(1000)
         .ease(d3.easeCubicOut);
 
-    background_bars.on("click", function (event, d) {
-        const i = background_bars.nodes().indexOf(this);
-        // console.log(`bar ${i} clicked`);
-        // console.log(d3.select(bars.nodes()[i]).datum());
-        udpate_bar_height(event, d, i);
-        udpate_bar_height(event, d, i)
-        update_legend(Math.round(update_total()));
-        update_bar_totals();
-        update_form_input_value();
-
-
-    });
+    // // Click event handler
+    // background_bars.on("click", function (event, d) {
+    //     let i = background_bars.nodes().indexOf(this);
+    //     // console.log(`bar ${i} clicked`);
+    //     // console.log(d3.select(bars.nodes()[i]).datum());
+    // });
 
     // Add text elements to SVG to display bar totals
     let bar_totals = svgs.append("text").style("opacity", 0);
