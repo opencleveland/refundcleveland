@@ -7,6 +7,11 @@
     <p><a href="/{{ id }}/view/">View your budget submission</a>. 
 
 <p>Now:</p>
+<h2>Share your budget on social media</h2>
+<ul>
+    <li>{% post_to_facebook viewUrl "Post to Facebook" %}</li>
+    <li>{% post_to_twitter "I made my city budget for Cleveland with #refundcleveland. Check it out!" viewUrl "Post to Twitter" %} </li>
+</ul>
 
 <h2>Share your budget submission with your ward's councilperson </h2>
 <p>The City Council will vote on the budget in a couple weeks! </p> 
@@ -14,23 +19,42 @@
 
 <p>According to your submission, <strong>you live in ward {{ ward }}:</strong></p>
 <ul>
+{% if ward == 1 %}
     <li>Ward 1: <a href="mailto:jjones@clevelandcitycouncil.org">Joseph T. Jones - jjones@clevelandcitycouncil.org</a></li>
+{% elif ward == 2 %}
     <li>Ward 2: <a href="mailto:kbishop@clevelandcitycouncil.org">Kevin Bishop - kbishop@clevelandcitycouncil.org</a></li>
+{% elif ward == 3 %}
     <li>Ward 3: <a href="mailto:kmccormack@clevelandcitycouncil.org">Kerry McCormack - kmccormack@clevelandcitycouncil.org</a></li>
+{% elif ward == 4 %}
     <li>Ward 4: <a href="mailto:kjohnson@clevelandcitycouncil.org">Ken Johnson - kjohnson@clevelandcitycouncil.org</a></li>
+{% elif ward == 5 %}
     <li>Ward 5: <a href="mailto:pcleveland@clevelandcitycouncil.org">Phyllis Cleveland - pcleveland@clevelandcitycouncil.org</a></li>
+{% elif ward == 6 %}
     <li>Ward 6: <a href="mailto:bgriffin@clevelandcitycouncil.org">Blaine Griffin - bgriffin@clevelandcitycouncil.org</a></li>
+{% elif ward == 7 %}
     <li>Ward 7: <a href="mailto:bjones@clevelandcitycouncil.org">Basheer Jones - bjones@clevelandcitycouncil.org</a></li>
+{% elif ward == 8 %}
     <li>Ward 8: <a href="mailto:mpolensek@clevelandcitycouncil.org">Mike Polensek - mpolensek@clevelandcitycouncil.org</a></li>
+{% elif ward == 9 %}
     <li>Ward 9: <a href="mailto:kconwell@clevelandcitycouncil.org">Kevin Conwell - kconwell@clevelandcitycouncil.org</a></li>
+{% elif ward == 10 %}
     <li>Ward 10: <a href="mailto:ahairston@clevelandcitycouncil.org">Anthony Hairston - ahairston@clevelandcitycouncil.org</a></li>
+{% elif ward == 11 %}
     <li>Ward 11: <a href="mailto:bmooney@clevelandcitycouncil.org">Brian Mooney - bmooney@clevelandcitycouncil.org</a></li>
+{% elif ward == 12 %}
     <li>Ward 12: <a href="mailto:abrancatelli@clevelandcitycouncil.org">Tony Brancatelli - abrancatelli@clevelandcitycouncil.org</a></li>
+{% elif ward == 13 %}
     <li>Ward 13: <a href="mailto:kkelley@clevelandcitycouncil.org">Kevin Kelley - kkelley@clevelandcitycouncil.org</a></li>
+{% elif ward == 14 %}
     <li>Ward 14: <a href="mailto:jsantana@clevelandcitycouncil.org">Jasmin Santana - jsantana@clevelandcitycouncil.org</a></li>
+{% elif ward == 15 %}
     <li>Ward 15: <a href="mailto:jspencer@clevelandcitycouncil.org">Jenny Spencer - jspencer@clevelandcitycouncil.org</a></li>
+{% elif ward == 16 %}
     <li>Ward 16: <a href="mailto:bkazy@clevelandcitycouncil.org">Brian Kazy - bkazy@clevelandcitycouncil.org</a></li>
+{% elif ward == 17 %}
     <li>Ward 17: <a href="mailto:cslife@clevelandcitycouncil.org">Charles Slife - cslife@clevelandcitycouncil.org</a></li>
+{% endif %}
+
 </ul>
        
 

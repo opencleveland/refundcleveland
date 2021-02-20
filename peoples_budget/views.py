@@ -106,7 +106,8 @@ def store_data(request):
             return render(request, 'store-data.html', {
                 'email': email,
                 'ward': ward,
-                'id': id
+                'id': id,
+                'viewUrl': ('https://' if request.is_secure() else 'http://') + request.get_host()+'/'+str(id)+'/view/'
             })
         else:
             return render(request, 'submit-budget.html', {
