@@ -44,21 +44,6 @@ def change_budget(request):
         'form': form
     })
 
-def test(request):
-    """Test new UI option"""
-    with open(os.path.join(settings.BASE_DIR, 'static/data/2021-mayors-estimate-fullgeneralfund.json')) as file:
-        json_file = json.load(file)
-
-    # Add hidden field to store user budget data
-    form = ChangeBudgetForm(request.POST)
-
-    return render(request, 'test.html', {
-        'change_budget': True,
-        'data': json_file,
-        'body_classes': 'change-the-budget',
-        'form': form
-    })
-
 
 def submit_budget(request):
     """Collect user PII and submit with budget data to database"""
