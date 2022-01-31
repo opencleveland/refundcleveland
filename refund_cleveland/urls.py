@@ -25,5 +25,6 @@ urlpatterns = [
     path('store-data/', views.store_data, name='store_data'),
     path('<budget_id>/view/', views.view_budget, name='view_budget'),
     path('lookup_address', views.lookup_address, name='lookup_address'),
-    path('privacy-policy', views.privacy_policy, name='privacy_policy')
+    path('privacy-policy', views.privacy_policy, name='privacy_policy'),
+    path('understanding-the-budget/', views.understanding_the_budget, name='understanding_the_budget')
 ]

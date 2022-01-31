@@ -161,3 +161,10 @@ def privacy_policy(request):
         'home': True,
         'body_classes': 'privacy-policy'
     })
+
+def understanding_the_budget(request):
+    return render(request, 'understanding-the-budget.html', {
+        'home': True,
+        'body_classes': 'understanding_the_budget'
+    })
+
