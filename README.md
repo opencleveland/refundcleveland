@@ -30,6 +30,12 @@ Pre-Requisites:
 - PostgreSQL
 - Mailgun API Key (if you wish to send out emails while testing)
 
+Pre-Requisites for Debian:
+
+```bash
+sudo apt install python3-venv python3-pip libpq-dev
+```
+
 #### Clone repo and install requirements
 
 ```sh
