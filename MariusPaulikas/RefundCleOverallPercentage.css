@@ -1,0 +1,17 @@
+.header {
+  padding-top: 10px;  
+  text-align: center;
+    
+}
+
+#title, h1 {
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+ #title, #title20, #title21, #title22 {
+  display: none;
+  margin-top: 10px;
+  text-align: center;
+}

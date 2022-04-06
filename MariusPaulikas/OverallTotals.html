@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "RefundCleTotals.css"/>
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      
+
+
+        google.charts.load('current', {
+        'callback': function() {
+
+
+      
+        var data2019 = google.visualization.arrayToDataTable([
+            ['Year', 'Total expenses(U.S.$)', {role: 'style'}, {type: 'string', role: 'annotation'}],
+            ['Policing and Corrections',  216928495, 'color:blue', '$216,928,495'],
+            ['Emergency Services',  136869117, 'color:green', '$136,869,117'],
+            ['Infrastructure and Housing',  66621278, 'color:purple', '$66,621,278'],
+            ['Community Services',  35788485, 'color:red', '$35,788,485'],
+            ['Environment and Sustainability',  33966932, 'color:lightblue', '$33,966,932'],
+            ['Health',  6238843, 'orange', '$6,238,843'],
+            ['Administration, Law, and Other',  143536732, 'color:grey', '$143,536,732']
+            ]);
+
+        var data2020 = google.visualization.arrayToDataTable([
+            ['Year', 'Total expenses(U.S.$)', {role: 'style'}, {type: 'string', role: 'annotation'}],
+            ['Policing and Corrections',  218163964, 'color:blue', '$218,163,964'],
+            ['Emergency Services',  137953502, 'color:green', '$137,953,502'],
+            ['Infrastructure and Housing',  52614486, 'color:purple', '$52,614,486'],
+            ['Community Services',  36932490, 'color:red', '$36,932,490'],
+            ['Environment and Sustainability',  34006956, 'color:lightblue', '$34,006,956'],
+            ['Health',  6515949, 'orange', '$6,515,949'],
+            ['Administration, Law, and Other',  120146367, 'color:grey', '$120,146,367']
+            ]);
+
+        var data2021 = google.visualization.arrayToDataTable([
+            ['Year', 'Total expenses(U.S.$)', {role: 'style'}, {type: 'string', role: 'annotation'}],
+            ['Policing and Corrections',  220802402, 'color:blue', '$220,802,402'],
+            ['Emergency Services',  142939315, 'color:green', '$142,939,315'],
+            ['Infrastructure and Housing',  56291666, 'color:purple', '$56,291,666'],
+            ['Community Services',  39341013, 'color:red', '$39,341,013'],
+            ['Environment and Sustainability',  39977984, 'color:lightblue', '$39,977,984'],
+            ['Health',  6505316, 'orange', '$6,505,316'],
+            ['Administration, Law, and Other',  128279812, 'color:grey', '$128,279,812']
+            ]);
+
+        var data2022 = google.visualization.arrayToDataTable([
+            ['Year', 'Total expenses(U.S.$)', {role: 'style'}, {type: 'string', role: 'annotation'}],
+            ['Policing and Corrections',  237046040, 'color:blue', '$237,046,040'],
+            ['Emergency Services',  146739779, 'color:green', '$146,739,779'],
+            ['Infrastructure and Housing',  53354259, 'color:purple', '$53,354,259'],
+            ['Community Services',  44171442, 'color:red', '$44,171,442'],
+            ['Environment and Sustainability',  40005257, 'color:lightblue', '$40,005,257'],
+            ['Health',  9868366, 'orange', '$9,868,366'],
+            ['Administration, Law, and Other',  122462271, 'color:grey', '$122,462,271']
+            ]);
+
+        var options = {
+            
+            width: 1200,
+            height: 400,
+            colors:['blue','green','purple','red','lightblue','orange','grey'],
+            vAxis: {
+                    title: 'Total expenses(U.S. dollars)',
+                    },
+            bar: {groupWidth: "95%"},
+            legend: { position: 'none' },
+            
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data2019, options);
+
+        document.getElementById('2019').addEventListener('click', function () {
+        options.vAxis.title = '2019 budgetary expenses'
+        chart.draw(data2020, options);
+        }, false);
+
+
+        document.getElementById('2020').addEventListener('click', function () {
+        options.vAxis.title = '2020 budgetary expenses'
+        chart.draw(data2021, options);
+        }, false);
+
+
+        document.getElementById('2021').addEventListener('click', function () {
+        options.vAxis.title = '2021 budgetary expenses'
+        chart.draw(data2022, options);
+        }, false);
+
+
+        document.getElementById('2022').addEventListener('click', function () {
+        options.vAxis.title = '2022 budgetary expenses'
+        chart.draw(data2019, options);
+        }, false);
+
+    },
+  'packages':['corechart', 'bar']
+});
+
+
+
+
+      </script>
+</head>
+<body>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <h2>Total budgetary expenses</h2>
+   
+    <div id = "chart_div"></div>
+
+    <input type="button" id="2019" value="2019" />
+    <input type="button" id="2020" value="2020" />
+    <input type="button" id="2021" value="2021" />
+    <input type="button" id="2022" value="2022" />
+
+
+</body>
+</html>

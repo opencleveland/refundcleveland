@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "RefundCleOverallPercentage.css"/>
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      
+
+    
+      google.charts.load('current', {
+        'callback': function() {
+
+        var data2019 = google.visualization.arrayToDataTable([
+            ['Year', 'Percentage of budget', {role: 'style'}, {type: 'string', role: 'annotation'}],
+            ['Policing and Corrections',  33.90, 'color:blue', '33.90%'],
+            ['Emergency Services',  21.39, 'color:green', '21.39%'],
+            ['Infrastructure and Housing',  10.41, 'color:purple', '10.41%'],
+            ['Community Services',  5.59, 'color:red', '5.59%'],
+            ['Environment and Sustainability',  5.31, 'color:lightblue', '5.31%'],
+            ['Health',  0.97, 'orange', '0.97%'],
+            ['Administration, Law, and Other',  22.43, 'color:grey', '22.43%']
+            ]);
+
+
+        var data2020 = google.visualization.arrayToDataTable([
+            ['Year', 'Percentage of budget', {role: 'style'}, {type: 'string', role: 'annotation'}],
+            ['Policing and Corrections',  35.98, 'color:blue', '35.98%'],
+            ['Emergency Services',  22.75, 'color:green', '22.75%'],
+            ['Infrastructure and Housing',  8.68, 'color:purple', '8.68%'],
+            ['Community Services',  6.09, 'color:red', '6.09%'],
+            ['Environment and Sustainability',  5.61, 'color:lightblue', '5.61%'],
+            ['Health',  1.07, 'orange', '1.07%' ],
+            ['Administration, Law, and Other',  19.82, 'color:grey', '19.82%']
+            ]);
+
+        var data2021 = google.visualization.arrayToDataTable([
+            ['Year', 'Percentage of budget', {role: 'style'}, {type: 'string', role: 'annotation'}],
+            ['Policing and Corrections',  34.82, 'color:blue', '34.82%'],
+            ['Emergency Services',  22.54, 'color:green', '22.54%'],
+            ['Infrastructure and Housing',  8.88, 'color:purple', '8.88%'],
+            ['Community Services',  6.20, 'color:red', '6.20%'],
+            ['Environment and Sustainability',  6.30, 'color:lightblue', '6.30%'],
+            ['Health',  1.03, 'orange', '1.03%'],
+            ['Administration, Law, and Other',  20.23, 'color:grey', '20.23%']
+            ]);
+
+        var data2022 = google.visualization.arrayToDataTable([
+            ['Year', 'Percentage of budget', {role: 'style'}, {type: 'string', role: 'annotation'}],
+            ['Policing and Corrections',  36.27, 'color:blue', '36.27%'],
+            ['Emergency Services',  22.45, 'color:green', '22.45%'],
+            ['Infrastructure and Housing',  8.16, 'color:purple', '8.16%'],
+            ['Community Services',  6.76, 'color:red', '6.76%'],
+            ['Environment and Sustainability',  6.12, 'color:lightblue', '6.12%'],
+            ['Health',  1.51, 'orange', '1.51%'],
+            ['Administration, Law, and Other',  18.74, 'color:grey', '18.74%']
+            ]);
+
+
+        var options = {
+            
+            width: 1200,
+            height: 400,
+            colors:['blue','green','purple','red','lightblue','orange','grey'],
+            vAxis: {
+                    title: '2019 budget percentage',
+                    },
+            bar: {groupWidth: "95%"},
+            legend: { position: 'none' },
+            
+        };
+
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data2019, options);
+
+        document.getElementById('2019').addEventListener('click', function () {
+        // var p = document.getElementById("title");
+        // p.style.display = "block";  
+        options.vAxis.title = '2019 budget percentage'
+        chart.draw(data2019, options);
+        }, false);
+
+        document.getElementById('2020').addEventListener('click', function () {
+        // var p = document.getElementById("title");
+        // p.style.display = "block";  
+        options.vAxis.title = '2020 budget percentage'
+        chart.draw(data2020, options);
+        }, false);
+
+        document.getElementById('2021').addEventListener('click', function () {
+        // var p = document.getElementById("title");
+        // p.style.display = "block";  
+        options.vAxis.title = '2021 budget percentage'
+        chart.draw(data2021, options);
+        }, false);
+
+        document.getElementById('2022').addEventListener('click', function () {
+        // var p = document.getElementById("title");
+        // p.style.display = "block";  
+        options.vAxis.title = '2022 budget percentage'
+        chart.draw(data2022, options);
+        }, false);
+
+  },
+  'packages':['corechart', 'bar']
+});
+
+
+    </script>
+</head>
+<body>
+
+    <h1>Cleveland Budget</h1>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!-- <h1 id = "title">Budget for 2019</h1>
+    <h1 id = "title">Budget for 2020</h1>
+    <h1 id = "title">Budget for 2021</h1>
+    <h1 id = "title">Budget for 2022</h1> -->
+    
+
+    <div id="chart_div"></div>
+
+    <input type="button" id="2019" value="2019" />
+    <input type="button" id="2020" value="2020" />
+    <input type="button" id="2021" value="2021" />
+    <input type="button" id="2022" value="2022" />
+
+</body>
+</html>
+
+<!-- See the following: https://stackoverflow.com/questions/38161862/change-google-chart-data-and-appearance-with-button -->
+<!-- See the following: https://stackoverflow.com/questions/38161862/change-google-chart-data-and-appearance-with-button -->
