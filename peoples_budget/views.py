@@ -151,7 +151,7 @@ def send_email(submitter_email, id):
         data={"from": "Refund Cleveland <info@refundcleveland.com>",
               "to": [submitter_email],
               "subject": "Your Cleveland Budget Proposal",
-              "text": f"Thank you for submitting your budget proposal for the 2021 City of Cleveland Budget!\n"
+              "text": f"Thank you for submitting your budget proposal for the 2023 City of Cleveland Budget!\n"
                       f"View or share your budget here: https://www.refundcleveland.com/{id}/view\n\n"
                       f"Brought to you by your friends at Open Cleveland! https://www.opencleveland.org"})
 
