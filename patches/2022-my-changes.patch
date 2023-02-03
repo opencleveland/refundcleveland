@@ -1,0 +1,13 @@
+diff --git a/peoples_budget/templates/understanding-the-budget.html b/peoples_budget/templates/understanding-the-budget.html
+index ffec95c..d0e5b6c 100644
+--- a/peoples_budget/templates/understanding-the-budget.html
++++ b/peoples_budget/templates/understanding-the-budget.html
+@@ -5,7 +5,7 @@
+     <div class="understanding_the_budget">
+         <div id="header-info">
+             <h1>Here's what you need to know about the 2022 General Budget</h1>
+-            <h3>A guide and glossary created by the Cleveland Documenters</h3>
++            <h3>A guide and glossary created by the <a href "https://cleveland.documenters.org/">Cleveland Documenters</a></h3>
+         </div>
+ <p>Cleveland is required by law each year to pass a balanced budget, meaning the city can&rsquo;t spend more money than it takes in.&nbsp;</p>
+ <p><strong>Here&rsquo;s how the process works:</strong></p>
