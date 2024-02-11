@@ -1,0 +1,221 @@
+{
+	"fund_structure": [{
+			"name": "Environment and Sustainability",
+			"children": [{
+					"name": "Office of Sustainability",
+					"total": 1440763
+				},
+				{
+					"name": "Department of Public Health - Environment",
+					"total": 2585263
+				},
+				{
+					"name": "Department of Public Health - Air Quality",
+					"total": 1256008
+				},
+				{
+					"name": "Division of Waste Disposal",
+					"total": 38107897
+				}
+			]
+		},
+		{
+			"name": "Emergency Services",
+			"children": [{
+					"name": "Fire",
+					"total": 114619597
+				},
+				{
+					"name": "Emergency Medical Service",
+					"total": 36461249
+				},
+				{
+					"name": "Animal Care and Control",
+					"total": 3754933
+				},
+				{
+					"name": "Department of Public Safety - Director's Office",
+					"total": 6076955
+				}
+			]
+		},
+		{
+			"name": "Community Services",
+			"children": [{
+					"name": "Recreation",
+					"total": 18049418
+				},
+				{
+					"name": "Parks Maintenance & Properties",
+					"total": 19907625
+				},
+				{
+					"name": "Department of Aging",
+					"total": 2046674
+				},
+				{
+					"name": "Office of Intervention, Prevention, and Opportunity",
+					"total": 5031213
+				},
+				{
+					"name": "Office of Equal Opportunity",
+					"total": 1440303
+				},
+				{
+					"name": "Community Relations Board",
+					"total": 3159005
+				}
+			]
+		},
+		{
+			"name": "Health",
+			"children": [{
+					"name": "Department of Public Health - Director's Office",
+					"total": 2521023
+				},
+				{
+					"name": "Department of Public Health - Health",
+					"total": 5882200
+				},
+				{
+					"name": "Health, Equity & Soc. Justice",
+					"total": 2026541
+				}
+			]
+		},
+		{
+			"name": "Infrastructure and Housing",
+			"children": [{
+					"name": "Office of Capital Projects",
+					"total": 7878030
+				},
+				{
+					"name": "Public Works Administration",
+					"total": 3141348
+				},
+				{
+					"name": "Non-Departmental: Subsidy to Street Construction",
+					"total": 19601569
+
+				},
+				{
+					"name": "Community Development Director's Office",
+					"total": 2256802
+
+				},
+				{
+					"name": "Building Standards and Appeals",
+					"total": 312450
+				},
+				{
+					"name": "City Planning Commission",
+					"total": 3745907
+				},
+                {
+					"name": "Landmarks Commission",
+					"total": 390145
+				},
+				{
+					"name": "Zoning Appeals",
+					"total": 281391
+				},
+				{
+					"name": "Department of Building & Housing",
+					"total": 14414892
+				},
+				{
+					"name": "Department of Public Works - Property Management",
+					"total": 9096485
+				},
+				{
+					"name": "Department of Public Works - Parking Facilities",
+					"total": 989789
+				},
+				{
+					"name": "Department of Public Works - Division of Traffic Engineering",
+					"total": 4066336
+				}
+			]
+		},
+		{
+			"name": "Policing and Corrections",
+			"children": [{
+					"name": "Police",
+					"total": 217941309
+				},
+				{
+					"name": "Corrections",
+					"total": 3990201
+				},
+				{
+					"name": "Police Review Board",
+					"total": 204308
+				},
+				{
+					"name": "Community Police Commission",
+					"total": 2313759
+				},
+				{
+					"name": "Department of Public Safety - Office of Professional Standards",
+					"total": 1976605
+				},
+				{
+					"name": "Department of Public Safety - Department of Justice",
+					"total": 4188024
+				},
+				{
+					"name": "Police Inspector General",
+					"total": 236266
+				}
+			]
+		},
+		{
+			"name": "Administration, Law, and Other",
+			"children": [{
+					"name": "Office of the Mayor",
+					"total": 3133483
+				},
+				{
+					"name": "Office of Urban Analytics & Innovation",
+					"total": 1741831
+				},
+				{
+					"name": "Civil Service Commission",
+					"total": 1507289
+				},
+				{
+					"name": "Boxing & Wrestling Commission",
+					"total": 31826
+				},
+				{
+					"name": "Office of Budget & Management",
+					"total": 785676
+				},
+				{
+					"name": "Department of Human Resources",
+					"total": 5361521
+				},
+				{
+					"name": "Department of Law",
+					"total": 18623670
+				},
+				{
+					"name": "Department of Finance",
+					"total": 28822014
+				},
+				{
+					"name": "Economic Development",
+					"total": 1921284
+				},
+				{
+					"name": "Non-Departmental: Subsidies to Non-Street Construction Funds",
+					"total": 36781887
+				},
+				{
+					"name": "Non-Departmental: Other",
+					"total": 23145334
+				}
+			]
+		}
+	]
+}
