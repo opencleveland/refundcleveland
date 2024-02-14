@@ -19,7 +19,7 @@ except ImportError:
 
 
 def home(request):
-    with open(os.path.join(settings.BASE_DIR, 'static/data/2023-mayors-estimate-fullgeneralfund.json')) as file:
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2024-mayors-estimate-fullgeneralfund.json')) as file:
         json_file = json.load(file)
 
     return render(request, 'home.html', {
@@ -31,7 +31,7 @@ def home(request):
 
 def change_budget(request):
     """Collect user budget data"""
-    with open(os.path.join(settings.BASE_DIR, 'static/data/2023-mayors-estimate-fullgeneralfund.json')) as file:
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2024-mayors-estimate-fullgeneralfund.json')) as file:
         json_file = json.load(file)
 
     # Add hidden field to store user budget data
@@ -105,7 +105,7 @@ def store_data(request):
 
 def view_budget(request, budget_id):
     """View a saved budget given budget_id"""
-    with open(os.path.join(settings.BASE_DIR, 'static/data/2023-mayors-estimate-fullgeneralfund.json')) as file:
+    with open(os.path.join(settings.BASE_DIR, 'static/data/2024-mayors-estimate-fullgeneralfund.json')) as file:
         mayor_json_file = json.load(file)
 
     try:
@@ -151,7 +151,7 @@ def send_email(submitter_email, id):
         data={"from": "Refund Cleveland <info@refundcleveland.com>",
               "to": [submitter_email],
               "subject": "Your Cleveland Budget Proposal",
-              "text": f"Thank you for submitting your budget proposal for the 2023 City of Cleveland Budget!\n"
+              "text": f"Thank you for submitting your budget proposal for the 2024 City of Cleveland Budget!\n"
                       f"View or share your budget here: https://www.refundcleveland.com/{id}/view\n\n"
                       f"Brought to you by your friends at Open Cleveland! https://www.opencleveland.org"})
 
