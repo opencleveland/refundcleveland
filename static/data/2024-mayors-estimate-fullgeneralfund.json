@@ -121,19 +121,19 @@
 				},
 				{
 					"name": "Department of Building & Housing",
-					"total": 14414892
+					"total": 15833253
 				},
 				{
 					"name": "Department of Public Works - Property Management",
-					"total": 9096485
+					"total": 10221344
 				},
 				{
 					"name": "Department of Public Works - Parking Facilities",
-					"total": 989789
+					"total": 1132287
 				},
 				{
 					"name": "Department of Public Works - Division of Traffic Engineering",
-					"total": 4066336
+					"total": 4440473
 				}
 			]
 		},
@@ -141,31 +141,31 @@
 			"name": "Policing and Corrections",
 			"children": [{
 					"name": "Police",
-					"total": 217941309
+					"total": 230920747
 				},
 				{
 					"name": "Corrections",
-					"total": 3990201
+					"total": 4060145
 				},
 				{
 					"name": "Police Review Board",
-					"total": 204308
+					"total": 239745
 				},
 				{
 					"name": "Community Police Commission",
-					"total": 2313759
+					"total": 2214158
 				},
 				{
 					"name": "Department of Public Safety - Office of Professional Standards",
-					"total": 1976605
+					"total": 2069462
 				},
 				{
 					"name": "Department of Public Safety - Department of Justice",
-					"total": 4188024
+					"total": 4663519
 				},
 				{
 					"name": "Police Inspector General",
-					"total": 236266
+					"total": 162442
 				}
 			]
 		},
@@ -173,47 +173,47 @@
 			"name": "Administration, Law, and Other",
 			"children": [{
 					"name": "Office of the Mayor",
-					"total": 3133483
+					"total": 3715853
 				},
 				{
 					"name": "Office of Urban Analytics & Innovation",
-					"total": 1741831
+					"total": 1732460
 				},
 				{
 					"name": "Civil Service Commission",
-					"total": 1507289
+					"total": 2031486
 				},
 				{
 					"name": "Boxing & Wrestling Commission",
-					"total": 31826
+					"total": 31792
 				},
 				{
 					"name": "Office of Budget & Management",
-					"total": 785676
+					"total": 787449
 				},
 				{
 					"name": "Department of Human Resources",
-					"total": 5361521
+					"total": 6143681
 				},
 				{
 					"name": "Department of Law",
-					"total": 18623670
+					"total": 20006532
 				},
 				{
 					"name": "Department of Finance",
-					"total": 28822014
+					"total": 34969999
 				},
 				{
 					"name": "Economic Development",
-					"total": 1921284
+					"total": 2890918
 				},
 				{
 					"name": "Non-Departmental: Subsidies to Non-Street Construction Funds",
-					"total": 36781887
+					"total": 37069313
 				},
 				{
 					"name": "Non-Departmental: Other",
-					"total": 23145334
+					"total": 34037254
 				}
 			]
 		}
