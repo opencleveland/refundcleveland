@@ -26,7 +26,7 @@ Most of our features, issues, and discussion is coordinated through our slack ch
 
 Pre-Requisites:
 - Git
-- Python 3.8+
+- Python 3.9+
 - PostgreSQL
 - Mailgun API Key (if you wish to send out emails while testing)
 
