@@ -16,9 +16,9 @@ If something is not behaving as you expected, it could be a bug, or if you have 
 
 ## How to become involved:
 
-Join our slack channel - #refundcleveland. Complete self-sign up link https://opencle-slack.herokuapp.com/ to join our slack instance.
+Join our Discord Channel - Complete self-sign up link at https://discord.gg/wq8GRDvyJH to join our discord or email, opencleveland at gmail dot com
 
-Most of our features, issues, and discussion is coordinated through our slack channel.
+Most of our features, issues, and discussion is coordinated through our discord
 
 ## Developer Instructions
 
