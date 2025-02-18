@@ -48,7 +48,7 @@
     // the user is manipulating
     d3.select("#header-info").append("div")
         .html(function () {
-            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Administration, Law, and Other" category in our <a href="/">&laquo; simplified view of Mayor Bibb's 2024 budget proposal</a>).</p>`
+            return `<p>Refund Cleveland is collecting public feedback about how <strong>$${add_commas(data.total)}</strong> should be dispersed between the categories below (the full <strong>$${add_commas(data.full_total)}</strong> minus the <strong>$${add_commas(other_category.total)}</strong> "Administration, Law, and Other" category in our <a href="/">&laquo; simplified view of Mayor Bibb's 2025 budget proposal</a>).</p>`
         });
 
     const MULTIPLIER = 2,  // add height to bars
