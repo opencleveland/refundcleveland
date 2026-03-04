@@ -121,13 +121,13 @@ def view_budget(request, budget_id):
         'mayor_json_data': mayor_json_file
     })
 
-
+# TODO(DevLoggith): update this function to use cleveland open data's "City of Cleveland Wards (2026)" dataset along with nominatim geocoding
 def lookup_address(request):
     body = json.loads(request.body)
-    address = body['address'] + 'Cleveland Ohio'
+    address = body['address'] + ' Cleveland Ohio'
 
-    query = "https://civicinfo.googleapis.com/civicinfo/v2/representatives?address=" + urllib.parse.quote_plus(
-        address) + "&includeOffices=true&levels=locality&key=" + GOOGLE_API_KEY
+    query = "https://www.googleapis.com/civicinfo/v2/divisionsByAddress?address=" + urllib.parse.quote_plus(
+        address) + "&key=" + GOOGLE_API_KEY
 
     try:
         json_response = json.load(urllib.request.urlopen(query))
