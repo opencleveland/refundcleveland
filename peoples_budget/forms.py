@@ -3,9 +3,9 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 def validate_ward(value):
-    if value < 1 or value > 17:
+    if value < 1 or value > 15:
         raise ValidationError(
-            _('%(value)s is not a valid ward (1-17)'),
+            _('%(value)s is not a valid ward (1-15)'),
             params={'value': value},
         )
 
